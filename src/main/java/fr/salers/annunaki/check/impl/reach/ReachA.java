@@ -86,6 +86,7 @@ public class ReachA extends Check {
         }
     }
 
+    //TY FUNKEEEEEEEEEE
     public List<Pair<AxisAlignedBB, Long>> getRightLocations(int time, int delta) {
         return data.getTargetLocs().stream()
                 .sorted(Comparator.comparingLong(pair -> Math.abs(pair.getY() - (System.currentTimeMillis() - time))))

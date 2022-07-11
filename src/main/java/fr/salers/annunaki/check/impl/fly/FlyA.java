@@ -27,6 +27,8 @@ import java.util.Locale;
 
 public class FlyA extends Check {
 
+    private double prediction;
+
     public FlyA(PlayerData data) {
         super(data);
     }
@@ -49,18 +51,24 @@ public class FlyA extends Check {
             double lowestOffset = 1;
 
             for (double mins : minValues) {
-                for (boolean vel : new boolean[]{true, false}) {
+                for (boolean zeroZeroThree : new boolean[]{true, false}) {
 
                     double offset = 69;
 
-                    if (!vel) {
-                        final double prediction = (lastDelta - 0.08F) * 0.98F;
-                        final double fixedPrediction = Math.abs(prediction) > mins ? prediction : 0;
+                    prediction = (lastDelta - 0.08F) * 0.98F;
 
-                        offset = Math.abs(delta - fixedPrediction);
-                    } else if (data.getVelocityProcessor().getVelocities().size() != 0) {
-                        offset = Math.abs(delta - data.getVelocityProcessor().getLastVelocity().getY());
+                    if(Math.abs(prediction) < 0.005)
+                        prediction = 0;
+
+
+                    if (zeroZeroThree) {
+                        prediction = (prediction - 0.08F) * 0.98F;
+
+                        if(Math.abs(prediction) < 0.005)
+                            prediction = 0;
                     }
+
+                    offset = Math.abs(delta - prediction);
 
                     if (offset < lowestOffset) {
                         lowestOffset = offset;
