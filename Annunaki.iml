@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<module version="4">
+<module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
   <component name="FacetManager">
     <facet type="minecraft" name="Minecraft">
       <configuration>
@@ -9,5 +9,30 @@
         </autoDetectTypes>
       </configuration>
     </facet>
+  </component>
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
+    <output url="file://$MODULE_DIR$/target/classes" />
+    <output-test url="file://$MODULE_DIR$/target/test-classes" />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/main/resources" type="java-resource" />
+      <excludeFolder url="file://$MODULE_DIR$/target" />
+    </content>
+    <orderEntry type="jdk" jdkName="1.8 (3)" jdkType="JavaSDK" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: org.github.spigot:1.8.8:1.8.8" level="project" />
+    <orderEntry type="library" name="Maven: com.github.retrooper.packetevents:spigot:2.0-29fe12ef57-1" level="project" />
+    <orderEntry type="library" name="Maven: com.github.retrooper.packetevents:api:2.0-3fd2b883de-1" level="project" />
+    <orderEntry type="library" name="Maven: net.kyori:adventure-api:4.10.1" level="project" />
+    <orderEntry type="library" name="Maven: net.kyori:adventure-key:4.10.1" level="project" />
+    <orderEntry type="library" name="Maven: net.kyori:examination-api:1.3.0" level="project" />
+    <orderEntry type="library" name="Maven: net.kyori:examination-string:1.3.0" level="project" />
+    <orderEntry type="library" name="Maven: org.jetbrains:annotations:23.0.0" level="project" />
+    <orderEntry type="library" name="Maven: net.kyori:adventure-text-serializer-gson:4.10.1" level="project" />
+    <orderEntry type="library" name="Maven: com.google.code.gson:gson:2.8.0" level="project" />
+    <orderEntry type="library" name="Maven: net.kyori:adventure-text-serializer-legacy:4.10.1" level="project" />
+    <orderEntry type="library" name="Maven: net.kyori:adventure-nbt:4.10.1" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: org.projectlombok:lombok:1.18.24" level="project" />
+    <orderEntry type="library" name="Maven: org.atteo.classindex:classindex:3.9" level="project" />
   </component>
 </module>
