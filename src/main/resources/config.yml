@@ -1,0 +1,18 @@
+commands:
+  no-permission: '&cYou don''t have permission to do that!'
+  not-player: '&cYou must be a player to do that!'
+  help: |
+    &5&lAnnunaki AntiCheat
+
+    &7- &d/annunaki alerts
+    &7- &d/annunaki debug
+  alerts-enabled: '&aAlerts are now enabled!'
+  alerts-disabled: '&cAlerts are now disabled!'
+
+checks:
+  alert: '&5Annunaki &7// &d%player% &7failed &d%type% (%name%)%experimental% &5x%vl%'
+  hover: |
+    &d%description%
+
+    &d%info%
+  click-command: '/tp %player%'
