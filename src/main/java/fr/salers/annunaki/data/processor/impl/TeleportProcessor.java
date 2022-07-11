@@ -1,5 +1,6 @@
 package fr.salers.annunaki.data.processor.impl;
 
+import com.github.retrooper.packetevents.event.PacketReceiveEvent;
 import com.github.retrooper.packetevents.event.PacketSendEvent;
 import com.github.retrooper.packetevents.protocol.packettype.PacketType;
 import com.github.retrooper.packetevents.wrapper.play.server.WrapperPlayServerPlayerPositionAndLook;
@@ -32,7 +33,12 @@ public class TeleportProcessor extends Processor {
         if (event.getPacketType() == PacketType.Play.Server.PLAYER_POSITION_AND_LOOK) {
             final WrapperPlayServerPlayerPositionAndLook wrapper = new WrapperPlayServerPlayerPositionAndLook(event);
             data.confirm(() -> tps.add(new Vector(wrapper.getX(), wrapper.getY(), wrapper.getZ())));
-        } else if (PacketUtil.isFlying(event.getPacketType())) {
+        }
+    }
+
+    @Override
+    public void handlePre(PacketReceiveEvent event) {
+       if (PacketUtil.isFlying(event.getPacketType())) {
 
             teleportTicks++;
 
@@ -53,7 +59,5 @@ public class TeleportProcessor extends Processor {
 
         }
     }
-
-
 }
 
