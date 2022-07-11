@@ -12,6 +12,7 @@ import fr.salers.annunaki.check.impl.badpackets.BadPacketsC;
 import fr.salers.annunaki.check.impl.badpackets.BadPacketsD;
 import fr.salers.annunaki.check.impl.fly.FlyA;
 import fr.salers.annunaki.check.impl.killaura.KillAuraA;
+import fr.salers.annunaki.check.impl.motion.MotionA;
 import fr.salers.annunaki.check.impl.reach.ReachA;
 import fr.salers.annunaki.check.impl.speed.SpeedA;
 import fr.salers.annunaki.check.impl.strafe.StrafeA;
@@ -47,6 +48,7 @@ public class CheckManager {
                 new ReachA(data),
                 new SpeedA(data),
                 new StrafeA(data),
+                new MotionA(data),
                 new FlyA(data)
 
 

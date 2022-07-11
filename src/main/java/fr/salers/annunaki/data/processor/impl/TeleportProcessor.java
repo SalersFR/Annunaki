@@ -38,7 +38,7 @@ public class TeleportProcessor extends Processor {
 
     @Override
     public void handlePre(PacketReceiveEvent event) {
-       if (PacketUtil.isFlying(event.getPacketType())) {
+        if (PacketUtil.isFlying(event.getPacketType())) {
 
             teleportTicks++;
 
@@ -54,7 +54,6 @@ public class TeleportProcessor extends Processor {
 
                 }
             }
-
 
 
         }

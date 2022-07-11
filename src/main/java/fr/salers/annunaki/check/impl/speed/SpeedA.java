@@ -91,8 +91,13 @@ public class SpeedA extends Check {
             //which can make him false flags our check
             //so instead of exempting, we try to account without creating bypasses
             if (collisionProcessor.isLastNearPiston() || collisionProcessor.isNearPiston() ||
-                    collisionProcessor.isBonkingHead() || collisionProcessor.isLastBonkingHead())
+                    collisionProcessor.isBonkingHead() || collisionProcessor.isLastBonkingHead()
+            || collisionProcessor.isNearStairs() || collisionProcessor.isLastNearStairs() || collisionProcessor.isNearSlab() ||
+            collisionProcessor.isLastNearSlab())
                 clientMotion *= 1.5;
+
+            if(positionProcessor.getDeltaXZ() > clientMotion && positionProcessor.getDeltaY() <= 0)
+                clientMotion *= 1.2;
 
             //the speed difference between we expect the player to move, and what he actually moved
             final double ratio = (positionProcessor.getDeltaXZ() - clientMotion);

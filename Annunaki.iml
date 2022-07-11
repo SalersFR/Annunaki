@@ -20,19 +20,6 @@
     </content>
     <orderEntry type="jdk" jdkName="1.8 (3)" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" scope="PROVIDED" name="Maven: org.github.spigot:1.8.8:1.8.8" level="project" />
-    <orderEntry type="library" name="Maven: com.github.retrooper.packetevents:spigot:2.0-29fe12ef57-1" level="project" />
-    <orderEntry type="library" name="Maven: com.github.retrooper.packetevents:api:2.0-3fd2b883de-1" level="project" />
     <orderEntry type="library" name="Maven: net.kyori:adventure-api:4.10.1" level="project" />
-    <orderEntry type="library" name="Maven: net.kyori:adventure-key:4.10.1" level="project" />
-    <orderEntry type="library" name="Maven: net.kyori:examination-api:1.3.0" level="project" />
-    <orderEntry type="library" name="Maven: net.kyori:examination-string:1.3.0" level="project" />
-    <orderEntry type="library" name="Maven: org.jetbrains:annotations:23.0.0" level="project" />
-    <orderEntry type="library" name="Maven: net.kyori:adventure-text-serializer-gson:4.10.1" level="project" />
-    <orderEntry type="library" name="Maven: com.google.code.gson:gson:2.8.0" level="project" />
-    <orderEntry type="library" name="Maven: net.kyori:adventure-text-serializer-legacy:4.10.1" level="project" />
-    <orderEntry type="library" name="Maven: net.kyori:adventure-nbt:4.10.1" level="project" />
-    <orderEntry type="library" scope="PROVIDED" name="Maven: org.projectlombok:lombok:1.18.24" level="project" />
-    <orderEntry type="library" name="Maven: org.atteo.classindex:classindex:3.9" level="project" />
   </component>
 </module>

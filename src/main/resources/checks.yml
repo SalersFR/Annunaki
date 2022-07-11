@@ -80,14 +80,8 @@ badpackets:
     max-vl: 5
     punish-command: 'kick %player% Unfair Advantage'
 
-
 speed:
   a:
-    enabled: true
-    punish: true
-    max-vl: 5
-    punish-command: 'kick %player% Unfair Advantage'
-  b:
     enabled: true
     punish: true
     max-vl: 5
@@ -99,6 +93,12 @@ fly:
     max-vl: 5
     punish-command: 'kick %player% Unfair Advantage'
 strafe:
+  a:
+    enabled: true
+    punish: true
+    max-vl: 5
+    punish-command: 'kick %player% Unfair Advantage'
+motion:
   a:
     enabled: true
     punish: true
