@@ -40,7 +40,8 @@ public class VelocityA extends Check {
 
             final double ratio = (delta / velocity) * 100.D;
             final boolean exempt = delta == 0.42F ||
-                    collisionProcessor.isInWeb() || collisionProcessor.isBonkingHead();
+                    collisionProcessor.isInWeb() || collisionProcessor.isBonkingHead() ||
+                    collisionProcessor.isInWater() || collisionProcessor.isInLava();
 
 
             if ((ratio < 99.999D || ratio > 100.05) && !exempt && data.getVelocityProcessor().getVelTicks() <= 1 && ratio > 0) {

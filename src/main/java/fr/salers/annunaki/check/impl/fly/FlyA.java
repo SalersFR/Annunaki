@@ -57,14 +57,14 @@ public class FlyA extends Check {
 
                     prediction = (lastDelta - 0.08F) * 0.98F;
 
-                    if(Math.abs(prediction) < 0.005)
+                    if(Math.abs(prediction) < mins)
                         prediction = 0;
 
 
                     if (zeroZeroThree) {
                         prediction = (prediction - 0.08F) * 0.98F;
 
-                        if(Math.abs(prediction) < 0.005)
+                        if(Math.abs(prediction) < mins)
                             prediction = 0;
                     }
 
@@ -82,8 +82,7 @@ public class FlyA extends Check {
                     || collisionProcessor.isInLava()
                     || collisionProcessor.isOnClimbable()
                     || collisionProcessor.isInWeb()
-                    || collisionProcessor.isTeleporting()
-                    || collisionProcessor.isLastTeleporting()
+                    || data.getTeleportProcessor().getTeleportTicks() <= 2
                     || collisionProcessor.getFenceCollisions().stream().anyMatch(WrappedBlock::isFence)
                     || data.getVelocityProcessor().getVelTicks() <= 2
                     || collisionProcessor.isBonkingHead()

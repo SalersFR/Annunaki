@@ -97,7 +97,7 @@ public class SpeedA extends Check {
             //the speed difference between we expect the player to move, and what he actually moved
             final double ratio = (positionProcessor.getDeltaXZ() - clientMotion);
 
-            if (ratio > 0.0005 && positionProcessor.getDeltaXZ() > 0.1) {
+            if (ratio > 0.0005 && positionProcessor.getDeltaXZ() > 0.1 && data.getTeleportProcessor().getTeleportTicks() > 1) {
                 //don't make the buffer redundant
                 buffer += buffer < 6.0 ? 1.0 : 5.0E-5;
                 if (buffer > 3.0)

@@ -31,7 +31,7 @@ public class BadPacketsB extends Check {
 
             final float pitch = Math.abs(data.getRotationProcessor().getPitch());
 
-            if (pitch > 90.f)
+            if (pitch > 90.f && data.getTeleportProcessor().getTeleportTicks() > 1)
                 fail("pitch=" + pitch);
         }
     }

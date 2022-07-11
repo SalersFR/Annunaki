@@ -34,6 +34,7 @@ public class PlayerData {
     private final ActionProcessor actionProcessor = new ActionProcessor(this);
     private final CollisionProcessor collisionProcessor = new CollisionProcessor(this);
     private final StatusProcessor statusProcessor = new StatusProcessor(this);
+    private final TeleportProcessor teleportProcessor = new TeleportProcessor(this);
     // private final EntityProcessor entityProcessor = new EntityProcessor(this);
     private List<Pair<AxisAlignedBB, Long>> targetLocs = new ArrayList<>();
 
