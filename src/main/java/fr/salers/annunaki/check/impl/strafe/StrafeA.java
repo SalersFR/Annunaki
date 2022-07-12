@@ -49,7 +49,7 @@ public class StrafeA extends Check {
                 if (offsetX > 0.026F || offsetZ > 0.026F) {
                     if (++buffer > 3)
                         fail("offsetX=" + offsetX + " offsetZ=" + offsetZ);
-                } else if (buffer > 0) buffer -= 0.1;
+                } else if (buffer > 0) buffer -= 0.3;
 
             }
 

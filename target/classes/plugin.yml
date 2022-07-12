@@ -1,0 +1,8 @@
+name: Annunaki
+version: 1.0
+authors: [ ExDiggers, Salers ]
+main: fr.salers.annunaki.Annunaki
+
+commands:
+  annunaki:
+    permission: annunaki.command.base

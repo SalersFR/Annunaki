@@ -5,6 +5,7 @@ import fr.salers.annunaki.Annunaki;
 import fr.salers.annunaki.check.Check;
 import fr.salers.annunaki.config.Config;
 import fr.salers.annunaki.data.processor.Processor;
+import fr.salers.annunaki.data.processor.TrackingProcessor;
 import fr.salers.annunaki.data.processor.impl.*;
 import fr.salers.annunaki.manager.CheckManager;
 import fr.salers.annunaki.util.Pair;
@@ -36,6 +37,7 @@ public class PlayerData {
     private final StatusProcessor statusProcessor = new StatusProcessor(this);
     private final TeleportProcessor teleportProcessor = new TeleportProcessor(this);
     // private final EntityProcessor entityProcessor = new EntityProcessor(this);
+
     private List<Pair<AxisAlignedBB, Long>> targetLocs = new ArrayList<>();
 
     @Setter

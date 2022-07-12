@@ -97,7 +97,7 @@ public class SpeedA extends Check {
                 clientMotion *= 1.5;
 
             if(positionProcessor.getDeltaXZ() > clientMotion && positionProcessor.getDeltaY() <= 0)
-                clientMotion *= 1.2;
+                clientMotion *= 2;
 
             //the speed difference between we expect the player to move, and what he actually moved
             final double ratio = (positionProcessor.getDeltaXZ() - clientMotion);
