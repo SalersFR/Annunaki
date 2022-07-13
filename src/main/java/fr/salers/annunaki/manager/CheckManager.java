@@ -12,6 +12,7 @@ import fr.salers.annunaki.check.impl.badpackets.BadPacketsC;
 import fr.salers.annunaki.check.impl.badpackets.BadPacketsD;
 import fr.salers.annunaki.check.impl.fly.FlyA;
 import fr.salers.annunaki.check.impl.killaura.KillAuraA;
+import fr.salers.annunaki.check.impl.killaura.KillAuraB;
 import fr.salers.annunaki.check.impl.motion.MotionA;
 import fr.salers.annunaki.check.impl.motion.MotionB;
 import fr.salers.annunaki.check.impl.reach.ReachA;
@@ -46,6 +47,7 @@ public class CheckManager {
                 new AutoclickerD(data),
                 new AutoclickerE(data),
                 new KillAuraA(data),
+                new KillAuraB(data),
                 new ReachA(data),
                 new SpeedA(data),
                 new StrafeA(data),

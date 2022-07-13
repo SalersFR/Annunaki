@@ -7,6 +7,7 @@ import fr.salers.annunaki.check.Check;
 import fr.salers.annunaki.check.CheckInfo;
 import fr.salers.annunaki.data.PlayerData;
 import fr.salers.annunaki.data.processor.impl.RotationProcessor;
+import fr.salers.annunaki.util.MathUtil;
 import fr.salers.annunaki.util.PacketUtil;
 import lombok.SneakyThrows;
 import org.bukkit.entity.Entity;
@@ -38,7 +39,6 @@ public class AimB extends Check {
     private int hitTicks;
     private int s, sensitivity;
 
-
     public AimB(PlayerData data) {
         super(data);
     }
@@ -47,41 +47,7 @@ public class AimB extends Check {
     @Override
     public void handle(PacketReceiveEvent event) {
         if (event.getPacketType() == PacketType.Play.Client.INTERACT_ENTITY) {
-            final WrapperPlayClientInteractEntity wrapper = new WrapperPlayClientInteractEntity(event);
-
-            final RotationProcessor rotationProcessor = data.getRotationProcessor();
-
-            final Player damager = data.getPlayer();
-            final Entity victim = data.getPlayer().getNearbyEntities(20, 20, 20).stream().
-                    filter(entity -> entity.getEntityId() == wrapper.getEntityId()).findFirst().get();
-
-            final double x1 = damager.getEyeLocation().getX();
-            final double z1 = damager.getEyeLocation().getZ();
-            final double vdX = damager.getEyeLocation().getDirection().getX();
-            final double vdZ = damager.getEyeLocation().getDirection().getZ();
-            final double x2 = victim.getLocation().getX();
-            final double z2 = victim.getLocation().getZ();
-
-            final double dotProduct = vdX * (x2 - x1) + vdZ * (z2 - z1);
-            final double avMod = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(z2 - z1, 2));
-            final double vdMod = Math.sqrt(vdX * vdX + vdZ * vdZ);
-
-            final double cosAngle = dotProduct / (avMod * vdMod);
-            final int angle = (int) Math.toDegrees(Math.acos(cosAngle));
-
-            final double reach = /*data.getReachProcessor.getReach();*/ damager.getEyeLocation().toVector().clone().
-                    setY(0).distance(victim.getLocation().toVector().clone().setY(0));
-
-            final double accel = rotationProcessor.getAccelYaw();
-
-            if (reach > 1.5 && angle > 50 && (accel <= 6.25 || accel > 90 || sensitivity == -1) && hitTicks > 2) {
-                if (++buffer > 1)
-                    fail("angle=" + angle + " accel=" + accel);
-            } else if (buffer > 0) buffer -= 0.01;
-
             hitTicks = 0;
-
-
         } else if (PacketUtil.isRotation(event.getPacketType())) {
             final RotationProcessor rotationProcessor = data.getRotationProcessor();
 
@@ -110,6 +76,16 @@ public class AimB extends Check {
                 sensitivity = -1;
                 forEach(candidates::add);
             }
+
+            final double expandedGCD = MathUtil.getAbsGcd(Math.abs(rotationProcessor.getDeltaPitch()),
+                    Math.abs(rotationProcessor.getLastDeltaPitch()));
+            if(sensitivity != -1 && deltaPitch != 0 && expandedGCD < 131072L) {
+                if(++buffer > 5)
+                    fail("gcd=" + expandedGCD + " sens=" + sensitivity);
+            } else if(sensitivity == -1 && deltaPitch != 0 && expandedGCD > 151072L && distanceX > 7.5 && hitTicks < 4) {
+                if(++buffer > 10)
+                    fail("gcd=" + expandedGCD + " sens=" + sensitivity);
+            } else if(buffer > 0) buffer -= 0.34;
 
         } else if (PacketUtil.isFlying(event.getPacketType()))
             hitTicks++;

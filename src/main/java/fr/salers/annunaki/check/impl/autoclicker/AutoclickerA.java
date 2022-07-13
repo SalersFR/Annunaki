@@ -46,7 +46,7 @@ public class AutoclickerA extends Check {
                 final double entropy = stats.getEntropy();
                 final double std = stats.getStd();
 
-                if (entropy < 0.975 && std < 2.75) {
+                if (entropy < 0.975 && std < 2.75 && stats.getCps() > 9) {
                     if (++buffer > 3)
                         fail(" std=" + std + " ent=" + entropy);
                 } else if (buffer > 0) buffer -= 0.06;

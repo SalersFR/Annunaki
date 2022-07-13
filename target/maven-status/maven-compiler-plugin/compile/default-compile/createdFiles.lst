@@ -40,6 +40,7 @@ fr\salers\annunaki\nms\impl\NmsImplementation8.class
 fr\salers\annunaki\check\impl\badpackets\BadPacketsA$1.class
 fr\salers\annunaki\data\processor\impl\RotationProcessor.class
 fr\salers\annunaki\check\impl\fly\FlyA.class
+fr\salers\annunaki\check\impl\killaura\KillAuraB.class
 fr\salers\annunaki\data\processor\impl\entity\EntityMovement.class
 fr\salers\annunaki\config\CheckConfig.class
 fr\salers\annunaki\command\impl\DebugCommand.class

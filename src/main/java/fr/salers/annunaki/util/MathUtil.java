@@ -74,6 +74,10 @@ public class MathUtil {
         }
     }
 
+    public static double getAbsGcd(final double a, final double b) {
+        return getGcdL((long) (EXPANDER * a), (long) (EXPANDER * b));
+    }
+
 
     public static double getEntropy(Collection<? extends Number> values) {
         double n = values.size();
@@ -243,8 +247,8 @@ public class MathUtil {
      * @param previous - The previous value
      * @return - The GCD of those two values
      */
-    public long getGcd(final long current, final long previous) {
-        return (previous <= 16384L) ? current : getGcd(previous, current % previous);
+    public long getGcdL(final long current, final long previous) {
+        return (previous <= 16384L) ? current : getGcdL(previous, current % previous);
     }
 
     /**

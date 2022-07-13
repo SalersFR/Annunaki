@@ -14,7 +14,6 @@ import java.util.LinkedList;
 /**
  * @author Salers
  * made on dev.notonweed.annunaki.check.impl.killaura
- * brand new concept lol
  */
 @CheckInfo(
         type = "KillAura",
