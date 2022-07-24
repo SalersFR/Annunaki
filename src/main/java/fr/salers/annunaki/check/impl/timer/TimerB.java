@@ -54,6 +54,9 @@ public class TimerB extends Check {
             last = event.getTimestamp();
 
 
+        } else if(event.getPacketType().equals(PacketType.Play.Server.PLAYER_POSITION_AND_LOOK)) {
+            balance = 0;
+            last = event.getTimestamp();
         }
     }
 }

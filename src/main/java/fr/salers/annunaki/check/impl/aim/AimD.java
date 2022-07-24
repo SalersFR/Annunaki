@@ -38,9 +38,9 @@ public class AimD extends Check {
 
             for (double mod : mods) {
                 if ((deltaPitch % mod == 0 || deltaYaw % mod == 0) && deltaPitch != 0 && deltaYaw != 0) {
-                    if (++buffer > 1)
+                    if (++buffer > 4)
                         fail("deltaYaw=" + deltaYaw + " deltaPitch=" + deltaPitch + " mod=" + mod);
-                } else if (buffer > 0) buffer -= 0.02;
+                } else if (buffer > 0) buffer -= 0.5;
             }
 
 

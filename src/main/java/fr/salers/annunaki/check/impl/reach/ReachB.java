@@ -33,7 +33,7 @@ public class ReachB extends Check {
 
     @Override
     public void handle(PacketReceiveEvent event) {
-        if(hitTicks > 0 && (event.getPacketType().equals(PacketType.Play.Client.PLAYER_POSITION_AND_ROTATION) || event.getPacketType().equals(PacketType.Play.Client.PLAYER_ROTATION) || event.getPacketType().equals(PacketType.Play.Client.PLAYER_POSITION))) {
+        if(hitTicks > 0 && (event.getPacketType().equals(PacketType.Play.Client.PLAYER_POSITION_AND_ROTATION) || event.getPacketType().equals(PacketType.Play.Client.PLAYER_POSITION))) {
             CollisionProcessor collision = data.getCollisionProcessor();
             boolean exempt = data.getPlayer().getGameMode() == GameMode.CREATIVE || collision.isTeleporting() || collision.isLastInVehicle() || !(data.getActionProcessor().getLastTarget() instanceof Player);
             if (!exempt) {
@@ -44,13 +44,18 @@ public class ReachB extends Check {
                         return;
                     }
 
-
                     AxisAlignedBB targetBox = targetData.getCollisionProcessor().getBoundingBox();
                     targetBox.expand(0.1, 0.1, 0.1);
+                    targetBox.expand(0.03, 0, 0.03);
 
                     double min = Double.MAX_VALUE;
+
+                    // once client version is added, there are different eye heights needing to be accounted for; prone, crouching and standing.
                     for (float eyeHeight : getEyeHeights()) {
+                        // get their eye height
                         Vec3 eyeLoc = getPositionEyes(eyeHeight);
+
+                        // get their head location, one is a fix for MDF which skips a look packet for some reason.
                         Vec3 look, look2;
                         if (event.getPacketType() == PacketType.Play.Client.PLAYER_POSITION_AND_ROTATION || event.getPacketType() == PacketType.Play.Client.PLAYER_ROTATION) {
                             look2 = this.getVectorForRotation(data.getRotationProcessor().getPitch(), data.getRotationProcessor().getYaw());
@@ -60,6 +65,7 @@ public class ReachB extends Check {
                             look = look2;
                         }
 
+                        // raycast the head location to the target
                         Vec3 rayEnd = eyeLoc.addVector(look.getX() * 6.0D, look.getY() * 6.0D, look.getZ() * 6.0D);
                         Vec3 rayEnd2 = eyeLoc.addVector(look2.getX() * 6.0D, look2.getY() * 6.0D, look2.getZ() * 6.0D);
 
@@ -72,13 +78,22 @@ public class ReachB extends Check {
                             min = Math.min(min, Math.min(d33, m));
                         }
 
+                        // Bukkit limits reach to 6, so the ray is probably infinite.
+                        if(min > 6.0D) {
+                            min = 0;
+                            break;
+                        }
+
+                        // They're inside eachother :flushed:
                         if (data.getCollisionProcessor().getBoundingBox().intersectsWith(targetBox)) {
                             min = 0;
                             break;
                         }
                     }
 
+                    // reach is 3.0
                     if (min > 3.0D) {
+                        // buffer to stop falses
                         if (buffer++ > 2) {
                             fail("reach: " + min);
                             buffer = 0;
@@ -93,7 +108,7 @@ public class ReachB extends Check {
             hitTicks--;
         } else if(event.getPacketType().equals(PacketType.Play.Client.INTERACT_ENTITY)) {
             if(data.getActionProcessor().getAction() == WrapperPlayClientInteractEntity.InteractAction.ATTACK) {
-                hitTicks = 1;
+                hitTicks = 2;
             }
         }
     }

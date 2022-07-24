@@ -89,7 +89,7 @@ public class FlyA extends Check {
                     || collisionProcessor.isNearSlab()
                     || collisionProcessor.isNearAnvil()
                     || collisionProcessor.isNearStairs()
-                    || collisionProcessor.getTicksAlive() < 30;
+                    || collisionProcessor.getTicksAlive() < 30 || data.getPlayer().isFlying();
 
             if (exempt || collisionProcessor.getClientAirTicks() < 3)
                 return;

@@ -36,6 +36,8 @@ public class RotationProcessor extends Processor {
     private double modulo, closestSensitivity;
     private int sensitivityPercent;
 
+    private double cinematicTicks;
+
     public RotationProcessor(PlayerData data) {
         super(data);
     }
@@ -52,6 +54,7 @@ public class RotationProcessor extends Processor {
             lastDeltaYaw = deltaYaw;
 
             if (PacketUtil.isRotation(event.getPacketType())) {
+
                 pitch = flying.getLocation().getPitch();
 
                 yaw = flying.getLocation().getYaw() % 360;
