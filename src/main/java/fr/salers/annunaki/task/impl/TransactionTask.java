@@ -9,6 +9,8 @@ import fr.salers.annunaki.task.type.PreTask;
 import fr.salers.annunaki.util.Pair;
 import fr.salers.annunaki.util.mc.AxisAlignedBB;
 
+import java.util.Objects;
+
 public class TransactionTask implements PreTask, PostTask {
 
     @Override
@@ -33,7 +35,7 @@ public class TransactionTask implements PreTask, PostTask {
         WrapperPlayServerWindowConfirmation transaction =
                 new WrapperPlayServerWindowConfirmation(0, (short) -4517, false);
 
-        Annunaki.getInstance().getPlayerDataManager().values().forEach(data
+        Annunaki.getInstance().getPlayerDataManager().values().stream().filter(Objects::nonNull).forEach(data
                 -> PacketEvents.getAPI().getPlayerManager().sendPacket(data.getPlayer(), transaction));
     }
 }

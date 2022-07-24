@@ -66,6 +66,17 @@ velocity:
     enabled: true
     punish: true
     max-vl: 10
+   punish-command: 'kick %player% Unfair Advantage'
+reach:
+  a:
+    enabled: true
+    punish: true
+    max-vl: 25
+    punish-command: 'kick %player% Unfair Advantage'
+  b:
+    enabled: true
+    punish: true
+    max-vl: 25
     punish-command: 'kick %player% Unfair Advantage'
 badpackets:
   a:

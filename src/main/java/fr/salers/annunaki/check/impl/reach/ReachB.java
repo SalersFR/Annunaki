@@ -5,6 +5,7 @@ import com.github.retrooper.packetevents.protocol.packettype.PacketType;
 import com.github.retrooper.packetevents.wrapper.play.client.WrapperPlayClientInteractEntity;
 import fr.salers.annunaki.Annunaki;
 import fr.salers.annunaki.check.Check;
+import fr.salers.annunaki.check.CheckInfo;
 import fr.salers.annunaki.data.PlayerData;
 import fr.salers.annunaki.data.processor.impl.CollisionProcessor;
 import fr.salers.annunaki.util.mc.AxisAlignedBB;
@@ -14,6 +15,14 @@ import fr.salers.annunaki.util.mc.Vec3;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 
+@CheckInfo(
+        type = "Reach",
+        name = "B",
+        description = "Checks for attacking out of range",
+        experimental = true,
+        maxVl = 15,
+        punish = true
+)
 public class ReachB extends Check {
 
     int hitTicks = 0;
@@ -108,6 +117,7 @@ public class ReachB extends Check {
     }
 
     private double getBlockReachDistance(PlayerData pd) {
-        return data.getPlayer().getGameMode() == GameMode.CREATIVE ? 5.0D : data.getPlayer().getGameMode() == GameMode.ADVENTURE ? 3.0D : data.getPlayer().getGameMode() == GameMode.SURVIVAL ? 3.0D : 5.0D;
+        return data.getPlayer().getGameMode() == GameMode.CREATIVE ? 5.0D : data.getPlayer().getGameMode() == GameMode.ADVENTURE
+                ? 3.0D : data.getPlayer().getGameMode() == GameMode.SURVIVAL ? 3.0D : 5.0D;
     }
 }

@@ -35,6 +35,7 @@ fr\salers\annunaki\data\processor\impl\ActionProcessor$1.class
 fr\salers\annunaki\data\processor\impl\TransactionProcessor.class
 fr\salers\annunaki\data\PlayerData.class
 fr\salers\annunaki\util\mc\BlockPos$2$1.class
+fr\salers\annunaki\check\impl\reach\ReachB.class
 fr\salers\annunaki\check\ConfigInfo.class
 fr\salers\annunaki\util\world\WrappedBlock.class
 fr\salers\annunaki\data\processor\impl\CollisionProcessor.class

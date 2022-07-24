@@ -12,11 +12,17 @@ import net.minecraft.server.v1_8_R3.Packet;
 import org.bukkit.Bukkit;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
- * @author Salers
+ * @author Bitbot25
  * made on fr.salers.annunaki.check.impl.timer
+ *
+ * October 2021, Orress, Salers and Bitbot decided to make an ac for fun
+ * Accidentally, bitbot made an actual decent timer check
+ * Since December 2021, either Orress and Bibot vanished
+ * Thank you for all guys, you were my only friends in this community <3
  */
 
 @CheckInfo(
@@ -27,11 +33,11 @@ import java.util.List;
         maxVl = 50,
         punish = true
 )
+
 public class TimerA extends Check {
 
-    private int packets;
-    private List<Integer> delays = new ArrayList<>();
-
+    private long last = System.currentTimeMillis();
+    private final List<Long> delays = new ArrayList<>();
     public TimerA(PlayerData data) {
         super(data);
     }
@@ -39,22 +45,34 @@ public class TimerA extends Check {
     @Override
     public void handle(PacketReceiveEvent event) {
         if(PacketUtil.isFlying(event.getPacketType())) {
-            packets++;
 
-        } else if(event.getPacketType() == PacketType.Play.Client.WINDOW_CONFIRMATION) {
-            delays.add(data.getTeleportProcessor().getTeleportTicks() <= 5 ? 1 : packets);
+            final long delay = event.getTimestamp() - last;
+            if(delays.add(data.getTeleportProcessor().getTeleportTicks() <= 3 ? 50L : delay) && delays.size() >= 40) {
+                double avg = delays.stream().mapToLong(l -> l).average().orElse(0.0d);
+                double dev = dev(delays, avg);
+                avg += dev * 0.25d;
+                double pct = (50L / avg) * 100.0d;
 
-            if(delays.size() == 60) {
-                final long count = delays.stream().filter(d -> d == 0 || d >= 2).count();
-                if(Math.abs(count - 30) > 2) {
+                if(pct > 100.75 || pct < 97.25) {
                     if(++buffer > 5)
-                        fail("count=" + count);
-                } else if(buffer > 0) buffer -= 0.125;
+                        fail("percentage=" + (int) pct + "%");
+                } else if(buffer > 0) buffer -= 0.2;
+
                 delays.clear();
+
             }
 
 
-            packets = 0;
-        }
+            last = event.getTimestamp();
+
+        } 
+    }
+
+    public double dev(Collection<? extends Number> collection, double avg) {
+        double variance = collection.stream().mapToDouble(n -> {
+            double v = n.doubleValue() - avg;
+            return v * v;
+        }).average().orElse(0D);
+        return Math.sqrt(variance);
     }
 }

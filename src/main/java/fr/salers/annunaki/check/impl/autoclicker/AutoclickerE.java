@@ -53,7 +53,7 @@ public class AutoclickerE extends Check {
                 final int outliers = stats.getOutliers();
 
                 if (entropy < 3.5 && skewness < 0 && std <= 3.95 && kurtosis <= 11.5 && ((Math.abs(outliers - lastOutliers)
-                        <= 1 && outliers < 13) || outliers <= 1)) {
+                        <= 1 && outliers < 13) || outliers <= 1) && stats.getCps() > 9.5) {
                     if (++buffer > 4)
                         fail("ent=" + entropy + " skew=" + skewness + " std=" + std + " kurt=" + kurtosis + " outs=" + outliers);
                 } else if (buffer > 0) buffer -= 0.025D;

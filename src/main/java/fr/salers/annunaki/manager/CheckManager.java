@@ -13,6 +13,7 @@ import fr.salers.annunaki.check.impl.killaura.KillAuraB;
 import fr.salers.annunaki.check.impl.motion.MotionA;
 import fr.salers.annunaki.check.impl.motion.MotionB;
 import fr.salers.annunaki.check.impl.reach.ReachA;
+import fr.salers.annunaki.check.impl.reach.ReachB;
 import fr.salers.annunaki.check.impl.speed.SpeedA;
 import fr.salers.annunaki.check.impl.strafe.StrafeA;
 import fr.salers.annunaki.check.impl.timer.TimerA;
@@ -49,6 +50,7 @@ public class CheckManager {
                 new KillAuraA(data),
                 new KillAuraB(data),
                 new ReachA(data),
+                new ReachB(data),
                 new SpeedA(data),
                 new StrafeA(data),
                 new MotionA(data),
