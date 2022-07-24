@@ -1,20 +1,33 @@
 package fr.salers.annunaki.util.mc;
 
 public class Vec3 {
+
     /**
      * X coordinate of Vec3D
      */
     public final double xCoord;
+
+    public double getX() {
+        return xCoord;
+    }
 
     /**
      * Y coordinate of Vec3D
      */
     public final double yCoord;
 
+    public double getY() {
+        return yCoord;
+    }
+
     /**
      * Z coordinate of Vec3D
      */
     public final double zCoord;
+
+    public double getZ() {
+        return zCoord;
+    }
 
     public Vec3(double x, double y, double z) {
         if (x == -0.0D) {

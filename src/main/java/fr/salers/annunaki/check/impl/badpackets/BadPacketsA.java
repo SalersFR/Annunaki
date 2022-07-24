@@ -48,7 +48,7 @@ public class BadPacketsA extends Check {
                     break;
             }
 
-            if (sentAttack && !sentInteractAt && sentInteractAt) {
+            if (sentAttack && !sentInteractAt && sentInteract) {
                 if (++buffer > 3)
                     fail("buffer=" + buffer);
             } else if (buffer > 0) buffer -= 0.1D;

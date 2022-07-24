@@ -42,7 +42,7 @@ public class MotionA extends Check {
 
             final double delta = positionProcessor.getDeltaY();
             final boolean exempt = collisionProcessor.isBonkingHead() || collisionProcessor.isOnSlime() || collisionProcessor.isLastOnSlime()
-                    || collisionProcessor.isNearPiston() || data.getVelocityProcessor().getVelTicks() < 5 || collisionProcessor.isNearStairs() || collisionProcessor.isNearSlab();
+                    || collisionProcessor.isNearPiston() || data.getVelocityProcessor().getVelTicks() < 5 || collisionProcessor.isNearStairs() || collisionProcessor.isNearSlab() || collisionProcessor.isLastInVehicle();
 
 
             if (delta > 0 && collisionProcessor.getClientAirTicks() == 1 && !exempt) {

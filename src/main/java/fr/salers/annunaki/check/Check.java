@@ -31,6 +31,7 @@ public abstract class Check {
     }
 
     public void handle(PacketReceiveEvent event) {
+
     }
 
     public void handle(PacketSendEvent event) {

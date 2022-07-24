@@ -11,6 +11,7 @@ import com.github.retrooper.packetevents.wrapper.play.server.WrapperPlayServerPl
 import fr.salers.annunaki.data.PlayerData;
 import fr.salers.annunaki.data.processor.Processor;
 import fr.salers.annunaki.util.PacketUtil;
+import fr.salers.annunaki.util.mc.AxisAlignedBB;
 import fr.salers.annunaki.util.world.SimpleCollisionBox;
 import fr.salers.annunaki.util.world.WrappedBlock;
 import lombok.Getter;
@@ -62,6 +63,8 @@ public class CollisionProcessor extends Processor {
 
     private SimpleCollisionBox collisionBox, bonkingBoundingBox, fenceBoundingBox, horizontalCollisionBox;
 
+    private AxisAlignedBB boundingBox;
+
     public CollisionProcessor(PlayerData data) {
         super(data);
     }
@@ -75,6 +78,10 @@ public class CollisionProcessor extends Processor {
             collisionBox = new SimpleCollisionBox(loc);
 
             collisionBox.expand(0, -1.0E-3, 0);
+
+            boundingBox = new AxisAlignedBB(loc.getX(), loc.getY(), loc.getZ());
+
+            boundingBox.expand(0, -1.0E-3, 0);
 
             horizontalCollisionBox = collisionBox.expand(0.1, 1.0E-3, 0.01);
 

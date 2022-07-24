@@ -26,6 +26,8 @@ public class ActionProcessor extends Processor {
     private Vector3i lastBlockPlace;
     private Entity lastTarget;
 
+    private WrapperPlayClientInteractEntity.InteractAction action;
+
     private int lastBlockPlaceId;
 
     public ActionProcessor(PlayerData data) {
@@ -74,9 +76,11 @@ public class ActionProcessor extends Processor {
         } else if (event.getPacketType() == PacketType.Play.Client.INTERACT_ENTITY) {
             final WrapperPlayClientInteractEntity wrapper = new WrapperPlayClientInteractEntity(event);
 
+            action = wrapper.getAction();
+
             if (wrapper.getAction() == WrapperPlayClientInteractEntity.InteractAction.ATTACK)
                 lastTarget = data.getPlayer().getWorld().getEntities().stream().filter(entity -> entity.getEntityId()
-                        == wrapper.getEntityId()).findAny().get();
+                        == wrapper.getEntityId()).findAny().orElse(null);
         }
     }
 }
