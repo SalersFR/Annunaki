@@ -53,10 +53,10 @@ public class TimerA extends Check {
                 avg += dev * 0.25d;
                 double pct = (50L / avg) * 100.0d;
 
-                if(pct > 100.75 || pct < 97.25) {
+                if(pct > 100.75 || pct < 93.25) {
                     if(++buffer > 5)
                         fail("percentage=" + (int) pct + "%");
-                } else if(buffer > 0) buffer -= 0.2;
+                } else if(buffer > 0) buffer -= 0.25;
 
                 delays.clear();
 

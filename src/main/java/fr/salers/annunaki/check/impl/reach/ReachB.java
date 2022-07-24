@@ -57,7 +57,7 @@ public class ReachB extends Check {
 
                         // get their head location, one is a fix for MDF which skips a look packet for some reason.
                         Vec3 look, look2;
-                        if (event.getPacketType() == PacketType.Play.Client.PLAYER_POSITION_AND_ROTATION || event.getPacketType() == PacketType.Play.Client.PLAYER_ROTATION) {
+                        if (event.getPacketType() == PacketType.Play.Client.PLAYER_POSITION_AND_ROTATION) {
                             look2 = this.getVectorForRotation(data.getRotationProcessor().getPitch(), data.getRotationProcessor().getYaw());
                             look = this.getVectorForRotation(data.getRotationProcessor().getPitch(), data.getRotationProcessor().getLastYaw());
                         } else {
