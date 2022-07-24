@@ -21,7 +21,9 @@ fr\salers\annunaki\data\processor\TrackingProcessor$TrackedEntity.class
 fr\salers\annunaki\util\lag\ConfirmedPotionEffect.class
 fr\salers\annunaki\task\Task.class
 fr\salers\annunaki\util\MathUtil.class
+fr\salers\annunaki\check\impl\timer\TimerA.class
 fr\salers\annunaki\util\mc\EnumFacing.class
+fr\salers\annunaki\check\impl\aim\AimE.class
 fr\salers\annunaki\check\impl\autoclicker\AutoclickerE.class
 fr\salers\annunaki\manager\NmsManager.class
 fr\salers\annunaki\data\processor\Processor.class
@@ -44,6 +46,7 @@ fr\salers\annunaki\check\impl\killaura\KillAuraB.class
 fr\salers\annunaki\data\processor\impl\entity\EntityMovement.class
 fr\salers\annunaki\config\CheckConfig.class
 fr\salers\annunaki\command\impl\DebugCommand.class
+fr\salers\annunaki\check\impl\timer\TimerB.class
 fr\salers\annunaki\check\Check.class
 fr\salers\annunaki\check\impl\badpackets\BadPacketsD.class
 fr\salers\annunaki\data\processor\impl\entity\TrackedEntityContainer.class
@@ -54,6 +57,7 @@ fr\salers\annunaki\check\impl\aim\AimD.class
 fr\salers\annunaki\util\mc\EnumFacing$EnumFacing$1.class
 fr\salers\annunaki\util\mc\Vec3.class
 fr\salers\annunaki\util\mc\Vec3i.class
+fr\salers\annunaki\util\TickTimer.class
 fr\salers\annunaki\check\impl\badpackets\BadPacketsA.class
 fr\salers\annunaki\check\impl\autoclicker\AutoclickerD.class
 fr\salers\annunaki\util\mc\EnumFacing$AxisDirection.class

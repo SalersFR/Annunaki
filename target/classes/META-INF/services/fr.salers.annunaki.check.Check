@@ -2,6 +2,7 @@ fr.salers.annunaki.check.impl.aim.AimA
 fr.salers.annunaki.check.impl.aim.AimB
 fr.salers.annunaki.check.impl.aim.AimC
 fr.salers.annunaki.check.impl.aim.AimD
+fr.salers.annunaki.check.impl.aim.AimE
 fr.salers.annunaki.check.impl.autoclicker.AutoclickerA
 fr.salers.annunaki.check.impl.autoclicker.AutoclickerB
 fr.salers.annunaki.check.impl.autoclicker.AutoclickerC
@@ -19,4 +20,6 @@ fr.salers.annunaki.check.impl.motion.MotionB
 fr.salers.annunaki.check.impl.reach.ReachA
 fr.salers.annunaki.check.impl.speed.SpeedA
 fr.salers.annunaki.check.impl.strafe.StrafeA
+fr.salers.annunaki.check.impl.timer.TimerA
+fr.salers.annunaki.check.impl.timer.TimerB
 fr.salers.annunaki.check.impl.velocity.VelocityA

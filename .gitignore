@@ -43,3 +43,7 @@ Annunaki.iml
 .idea/libraries/Maven__org_projectlombok_lombok_1_18_24.xml
 .idea/misc.xml
 Annunaki.iml
+target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
+target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
+target/classes/META-INF/services/fr.salers.annunaki.check.Check
+target/classes/checks.yml

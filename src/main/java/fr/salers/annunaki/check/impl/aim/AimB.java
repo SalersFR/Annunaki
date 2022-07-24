@@ -82,10 +82,10 @@ public class AimB extends Check {
             if(sensitivity != -1 && deltaPitch != 0 && expandedGCD < 131072L) {
                 if(++buffer > 5)
                     fail("gcd=" + expandedGCD + " sens=" + sensitivity);
-            } else if(sensitivity == -1 && deltaPitch != 0 && expandedGCD > 151072L && distanceX > 7.5 && hitTicks < 4) {
+            } else if(sensitivity == -1 && deltaPitch != 0 && expandedGCD > 50000L && distanceX > 7.5 && hitTicks < 4) {
                 if(++buffer > 10)
                     fail("gcd=" + expandedGCD + " sens=" + sensitivity);
-            } else if(buffer > 0) buffer -= 0.34;
+            } else if(buffer > 0) buffer -= 0.25;
 
         } else if (PacketUtil.isFlying(event.getPacketType()))
             hitTicks++;

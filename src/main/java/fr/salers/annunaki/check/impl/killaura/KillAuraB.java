@@ -36,7 +36,8 @@ public class KillAuraB extends Check {
             final String dir = getCardinalDirection();
             final PositionProcessor positionProcessor = data.getPositionProcessor();
 
-            if (hitTicks < 4 &&data.getActionProcessor().isSprinting() && data.getVelocityProcessor().getVelTicks() > 4) {
+            if (hitTicks < 4 && data.getVelocityProcessor().getVelTicks() > 4 && (positionProcessor.getDeltaXZ() > 0.23
+                    || data.getActionProcessor().isSprinting())) {
                 switch (dir) {
                     case "S":
                         if (positionProcessor.getDeltaZ() < -0.065 && !(Math.abs(positionProcessor.getDeltaZ()) <= 0.04)) {

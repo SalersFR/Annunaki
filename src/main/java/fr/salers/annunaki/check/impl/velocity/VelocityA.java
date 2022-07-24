@@ -43,7 +43,6 @@ public class VelocityA extends Check {
                     collisionProcessor.isInWeb() || collisionProcessor.isBonkingHead() ||
                     collisionProcessor.isInWater() || collisionProcessor.isInLava();
 
-
             if ((ratio < 99.999D || ratio > 100.05) && !exempt && data.getVelocityProcessor().getVelTicks() <= 1 && ratio > 0) {
                 if (buffer++ > 2)
                     fail("ratio= " + ratio);
@@ -52,7 +51,6 @@ public class VelocityA extends Check {
             if (!exempt && data.getVelocityProcessor().getVelTicks() == 1 && data.getDebugging().contains("Velocity") && data.getDebugging().contains("A")) {
                 Bukkit.broadcastMessage(((ratio > 100.5 || ratio < 99.99) ? "§c" : "") + "ratio=" + ratio);
             }
-
 
         }
     }

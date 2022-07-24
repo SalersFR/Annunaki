@@ -1,10 +1,7 @@
 package fr.salers.annunaki.manager;
 
 import fr.salers.annunaki.check.Check;
-import fr.salers.annunaki.check.impl.aim.AimA;
-import fr.salers.annunaki.check.impl.aim.AimB;
-import fr.salers.annunaki.check.impl.aim.AimC;
-import fr.salers.annunaki.check.impl.aim.AimD;
+import fr.salers.annunaki.check.impl.aim.*;
 import fr.salers.annunaki.check.impl.autoclicker.*;
 import fr.salers.annunaki.check.impl.badpackets.BadPacketsA;
 import fr.salers.annunaki.check.impl.badpackets.BadPacketsB;
@@ -18,6 +15,8 @@ import fr.salers.annunaki.check.impl.motion.MotionB;
 import fr.salers.annunaki.check.impl.reach.ReachA;
 import fr.salers.annunaki.check.impl.speed.SpeedA;
 import fr.salers.annunaki.check.impl.strafe.StrafeA;
+import fr.salers.annunaki.check.impl.timer.TimerA;
+import fr.salers.annunaki.check.impl.timer.TimerB;
 import fr.salers.annunaki.check.impl.velocity.VelocityA;
 import fr.salers.annunaki.data.PlayerData;
 import lombok.Getter;
@@ -36,6 +35,7 @@ public class CheckManager {
                 new AimB(data),
                 new AimC(data),
                 new AimD(data),
+                new AimE(data),
                 new VelocityA(data),
                 new BadPacketsA(data),
                 new BadPacketsB(data),
@@ -53,7 +53,9 @@ public class CheckManager {
                 new StrafeA(data),
                 new MotionA(data),
                 new MotionB(data),
-                new FlyA(data)
+                new FlyA(data),
+                new TimerA(data),
+                new TimerB(data)
 
 
         );

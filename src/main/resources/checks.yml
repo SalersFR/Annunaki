@@ -9,7 +9,6 @@ autoclicker:
     punish: true
     max-vl: 20
     punish-command: 'kick %player% Unfair Advantage'
-
   c:
     enabled: true
     punish: true
@@ -57,6 +56,11 @@ aim:
     punish: true
     max-vl: 20
     punish-command: 'kick %player% Unfair Advantage'
+  e:
+    enabled: true
+    punish: true
+    max-vl: 20
+    punish-command: 'kick %player% Unfair Advantage'
 velocity:
   a:
     enabled: true
@@ -84,7 +88,17 @@ badpackets:
     punish: true
     max-vl: 5
     punish-command: 'kick %player% Unfair Advantage'
-
+timer:
+  a:
+    enabled: true
+    punish: true
+    max-vl: 5
+    punish-command: 'kick %player% Unfair Advantage'
+  b:
+    enabled: true
+    punish: true
+    max-vl: 20
+    punish-command: 'kick %player% Unfair Advantage'
 speed:
   a:
     enabled: true

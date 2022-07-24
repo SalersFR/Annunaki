@@ -49,7 +49,7 @@ public class MotionA extends Check {
                 if (fixedJumpMotion != delta)
                     if (++buffer > 1)
                         fail("delta=" + (float) delta + " motion=" + fixedJumpMotion);
-                    else if (buffer > 0) buffer -= 0.025;
+                    else if (buffer > 0) buffer -= 0.5;
             }
 
 
