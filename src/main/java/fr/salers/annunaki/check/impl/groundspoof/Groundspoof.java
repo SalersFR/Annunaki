@@ -29,8 +29,11 @@ public class Groundspoof extends Check {
 
                 if (!isOnGround && data.getCollisionProcessor().isClientOnGround()) {
                     if (buffer++ >= 1) {
-                        fail("client=" + data.getCollisionProcessor().isClientOnGround() + ", server=" + isOnGround);
+                        fail("client=" + data.getCollisionProcessor().isClientOnGround() + ", server=" + false);
+                        buffer = 0;
                     }
+                } else {
+                    buffer = Math.max(buffer - 0.1, 0);
                 }
             }
         }

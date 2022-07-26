@@ -33,29 +33,32 @@ public class StrafeA extends Check {
     @Override
     public void handle(PacketReceiveEvent event) {
         if (PacketUtil.isFlying(event.getPacketType())) {
-            final PositionProcessor positionProcessor = data.getPositionProcessor();
-            final CollisionProcessor collisionProcessor = data.getCollisionProcessor();
+            boolean exempt = data.getPlayer().isFlying();
+            if(!exempt) {
+                final PositionProcessor positionProcessor = data.getPositionProcessor();
+                final CollisionProcessor collisionProcessor = data.getCollisionProcessor();
 
-            final double deltaX = positionProcessor.getDeltaX();
-            final double deltaZ = positionProcessor.getDeltaZ();
+                final double deltaX = positionProcessor.getDeltaX();
+                final double deltaZ = positionProcessor.getDeltaZ();
 
-            final double predictedX = positionProcessor.getLastDeltaX() * 0.91f;
-            final double predictedZ = positionProcessor.getLastDeltaZ() * 0.91f;
+                final double predictedX = positionProcessor.getLastDeltaX() * 0.91f;
+                final double predictedZ = positionProcessor.getLastDeltaZ() * 0.91f;
 
-            final double offsetX = Math.abs(deltaX - predictedX);
-            final double offsetZ = Math.abs(deltaZ - predictedZ);
+                final double offsetX = Math.abs(deltaX - predictedX);
+                final double offsetZ = Math.abs(deltaZ - predictedZ);
 
-            if (collisionProcessor.getCollisionGroundTicks() > 2 && positionProcessor.getDeltaXZ() > 0.1 && ++hitTicks > 3) {
-                if (offsetX > 0.026F || offsetZ > 0.026F) {
-                    if (++buffer > 3)
-                        fail("offsetX=" + offsetX + " offsetZ=" + offsetZ);
-                } else if (buffer > 0) buffer -= 0.3;
+                if (collisionProcessor.getClientAirTicks() > 2 && positionProcessor.getDeltaXZ() > 0.1 && ++hitTicks > 3) {
+                    if (offsetX > 0.026F || offsetZ > 0.026F) {
+                        if (++buffer > 3)
+                            fail("offsetX=" + offsetX + " offsetZ=" + offsetZ);
+                    } else if (buffer > 0) buffer -= 0.3;
 
+                }
             }
-
         } else if (event.getPacketType() == PacketType.Play.Client.INTERACT_ENTITY) {
-            if (new WrapperPlayClientInteractEntity(event).getAction() == WrapperPlayClientInteractEntity.InteractAction.ATTACK)
+            if (data.getActionProcessor().getAction() == WrapperPlayClientInteractEntity.InteractAction.ATTACK) {
                 hitTicks = 0;
+            }
         }
     }
 }

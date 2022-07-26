@@ -33,6 +33,7 @@ public abstract class Check {
         this.data = data;
         checkInfo = getClass().getAnnotation(CheckInfo.class);
         configInfo = loadConfigInfo();
+        punishCommands = new HashMap<>();
     }
 
     public void handle(PacketReceiveEvent event) {
@@ -89,6 +90,14 @@ public abstract class Check {
 
         info.setMaxVl((int) Annunaki.getInstance().getCheckConfig().get(checkInfo, "max-vl", checkInfo.maxVl()));
         info.setPunish(((boolean) Annunaki.getInstance().getCheckConfig().get(checkInfo, "punish", checkInfo.punish())));
+
+       String path = checkInfo.type().toLowerCase()
+                + "." + checkInfo.name().toLowerCase() + ".punish-commands";
+
+        for(String s : Annunaki.getInstance().getCheckConfig().getStringList( path + "punish-commands")) {
+            String[] split = s.split(":");
+            punishCommands.put(Integer.valueOf(split[0]), s.split(":")[1]);
+        }
 
         return info;
     }
