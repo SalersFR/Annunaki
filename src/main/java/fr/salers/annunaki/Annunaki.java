@@ -1,6 +1,7 @@
 package fr.salers.annunaki;
 
 import com.github.retrooper.packetevents.PacketEvents;
+import fr.salers.annunaki.banwave.BanwaveManager;
 import fr.salers.annunaki.command.BaseCommand;
 import fr.salers.annunaki.config.CheckConfig;
 import fr.salers.annunaki.listener.BukkitListener;
@@ -15,6 +16,8 @@ import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.IOException;
+
 @Getter
 public class Annunaki extends JavaPlugin {
 
@@ -25,6 +28,8 @@ public class Annunaki extends JavaPlugin {
     private final TaskManager taskManager = new TaskManager();
 
     private final CheckConfig checkConfig = new CheckConfig();
+
+    private final BanwaveManager banwaveManager = new BanwaveManager();
 
     private ViaManager viaManager;
 
@@ -49,9 +54,12 @@ public class Annunaki extends JavaPlugin {
     @Override
     public void onEnable() {
         saveDefaultConfig();
-        saveResource("checks.yml", false);
 
-        checkConfig.setup();
+        try {
+            checkConfig.setup();
+        } catch (IOException e) {
+
+        }
 
         nmsManager.setup();
         taskManager.setup();

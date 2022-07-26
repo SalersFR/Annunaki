@@ -11,7 +11,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="Annunaki" target="1.8" />
+      <module name="Annunaki" target="9" />
     </bytecodeTargetLevel>
   </component>
 </project>

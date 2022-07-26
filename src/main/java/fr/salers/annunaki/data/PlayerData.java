@@ -5,7 +5,6 @@ import fr.salers.annunaki.Annunaki;
 import fr.salers.annunaki.check.Check;
 import fr.salers.annunaki.config.Config;
 import fr.salers.annunaki.data.processor.Processor;
-import fr.salers.annunaki.data.processor.TrackingProcessor;
 import fr.salers.annunaki.data.processor.impl.*;
 import fr.salers.annunaki.manager.CheckManager;
 import fr.salers.annunaki.util.Pair;
@@ -51,16 +50,6 @@ public class PlayerData {
     private String debugging = "";
 
     private ClientVersion version;
-
-    public void ban() {
-        if (autobanning) return;
-        autobanning = true;
-
-        Bukkit.getScheduler().runTask(Annunaki.getInstance(), () ->
-                Bukkit.dispatchCommand(Bukkit.getConsoleSender(),
-                        Config.AUTOBAN_COMMAND.getAsString()
-                                .replaceAll("%player%", player.getName())));
-    }
 
     public void confirm(Runnable runnable) {
         transactionProcessor.confirm(runnable);

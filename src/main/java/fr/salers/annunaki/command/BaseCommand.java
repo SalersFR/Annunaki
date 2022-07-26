@@ -2,6 +2,7 @@ package fr.salers.annunaki.command;
 
 import fr.salers.annunaki.Annunaki;
 import fr.salers.annunaki.command.impl.AlertsCommand;
+import fr.salers.annunaki.command.impl.BanwaveCommand;
 import fr.salers.annunaki.command.impl.DebugCommand;
 import fr.salers.annunaki.config.Config;
 import fr.salers.annunaki.data.PlayerData;
@@ -19,7 +20,8 @@ public class BaseCommand implements CommandExecutor {
 
     private final List<SubCommand> subCommands = Arrays.asList(
             new AlertsCommand(),
-            new DebugCommand()
+            new DebugCommand(),
+            new BanwaveCommand()
     );
 
     // Could probably be cleaner, but this is better than what I've done before so it's good for now
