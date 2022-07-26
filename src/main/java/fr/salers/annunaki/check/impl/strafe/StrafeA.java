@@ -45,7 +45,7 @@ public class StrafeA extends Check {
             final double offsetX = Math.abs(deltaX - predictedX);
             final double offsetZ = Math.abs(deltaZ - predictedZ);
 
-            if (collisionProcessor.getClientAirTicks() > 2 && positionProcessor.getDeltaXZ() > 0.1 && ++hitTicks > 3) {
+            if (collisionProcessor.getCollisionGroundTicks() > 2 && positionProcessor.getDeltaXZ() > 0.1 && ++hitTicks > 3) {
                 if (offsetX > 0.026F || offsetZ > 0.026F) {
                     if (++buffer > 3)
                         fail("offsetX=" + offsetX + " offsetZ=" + offsetZ);

@@ -12,6 +12,7 @@ import fr.salers.annunaki.util.mc.AxisAlignedBB;
 import fr.salers.annunaki.util.mc.MathHelper;
 import fr.salers.annunaki.util.mc.MovingObjectPosition;
 import fr.salers.annunaki.util.mc.Vec3;
+import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 
@@ -65,7 +66,7 @@ public class ReachB extends Check {
                             look = look2;
                         }
 
-                        // raycast the head location to the target
+                        // raycast the eye location to the target
                         Vec3 rayEnd = eyeLoc.addVector(look.getX() * 6.0D, look.getY() * 6.0D, look.getZ() * 6.0D);
                         Vec3 rayEnd2 = eyeLoc.addVector(look2.getX() * 6.0D, look2.getY() * 6.0D, look2.getZ() * 6.0D);
 
@@ -75,6 +76,11 @@ public class ReachB extends Check {
                         if (one != null && two != null) {
                             double m = eyeLoc.distanceTo(one.hitVec);
                             double d33 = rayEnd.distanceTo(two.hitVec);
+
+                            if (data.getDebugging().equalsIgnoreCase("reachb")) {
+                                Bukkit.broadcastMessage("m: " + m + ", d33: " + d33);
+                            }
+
                             min = Math.min(min, Math.min(d33, m));
                         }
 
@@ -108,7 +114,7 @@ public class ReachB extends Check {
             hitTicks--;
         } else if(event.getPacketType().equals(PacketType.Play.Client.INTERACT_ENTITY)) {
             if(data.getActionProcessor().getAction() == WrapperPlayClientInteractEntity.InteractAction.ATTACK) {
-                hitTicks = 2;
+                hitTicks = 5;
             }
         }
     }

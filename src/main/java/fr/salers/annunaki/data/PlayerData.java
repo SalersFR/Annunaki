@@ -10,6 +10,7 @@ import fr.salers.annunaki.data.processor.impl.*;
 import fr.salers.annunaki.manager.CheckManager;
 import fr.salers.annunaki.util.Pair;
 import fr.salers.annunaki.util.mc.AxisAlignedBB;
+import fr.salers.annunaki.util.version.ClientVersion;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -49,6 +50,8 @@ public class PlayerData {
     @Setter
     private String debugging = "";
 
+    private ClientVersion version;
+
     public void ban() {
         if (autobanning) return;
         autobanning = true;
@@ -65,5 +68,9 @@ public class PlayerData {
 
     public void confirmPost(Runnable runnable) {
         transactionProcessor.confirmPost(runnable);
+    }
+
+    public void setVersion(ClientVersion matchProtocol) {
+        this.version = matchProtocol;
     }
 }

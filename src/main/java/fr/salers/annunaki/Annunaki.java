@@ -9,6 +9,7 @@ import fr.salers.annunaki.listener.PacketEventsOutListener;
 import fr.salers.annunaki.manager.NmsManager;
 import fr.salers.annunaki.manager.PlayerDataManager;
 import fr.salers.annunaki.manager.TaskManager;
+import fr.salers.annunaki.manager.ViaManager;
 import io.github.retrooper.packetevents.factory.spigot.SpigotPacketEventsBuilder;
 import lombok.Getter;
 import org.bukkit.Bukkit;
@@ -24,6 +25,8 @@ public class Annunaki extends JavaPlugin {
     private final TaskManager taskManager = new TaskManager();
 
     private final CheckConfig checkConfig = new CheckConfig();
+
+    private ViaManager viaManager;
 
     public static Annunaki getInstance() {
         return instance;
@@ -61,6 +64,14 @@ public class Annunaki extends JavaPlugin {
                 .registerListeners(new PacketEventsInListener(), new PacketEventsOutListener());
 
         PacketEvents.getAPI().init();
+
+        if(Bukkit.getPluginManager().getPlugin("ViaVersion") != null) {
+            viaManager = new ViaManager();
+        }
+
+        if(Bukkit.getPluginManager().getPlugin("floodgate") != null) {
+            // TODO: Add support for floodgate
+        }
 
         taskManager.start();
     }

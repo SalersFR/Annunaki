@@ -36,11 +36,13 @@ public class AimD extends Check {
             final double deltaYaw = rotationProcessor.getDeltaYaw();
             final double deltaPitch = rotationProcessor.getDeltaPitch();
 
-            for (double mod : mods) {
-                if ((deltaPitch % mod == 0 || deltaYaw % mod == 0) && deltaPitch != 0 && deltaYaw != 0) {
-                    if (++buffer > 4)
-                        fail("deltaYaw=" + deltaYaw + " deltaPitch=" + deltaPitch + " mod=" + mod);
-                } else if (buffer > 0) buffer -= 0.5;
+            if(rotationProcessor.getCinematicTicks() < 1) {
+                for (double mod : mods) {
+                    if ((deltaPitch % mod == 0 || deltaYaw % mod == 0) && deltaPitch != 0 && deltaYaw != 0) {
+                        if (++buffer > 4)
+                            fail("deltaYaw=" + deltaYaw + " deltaPitch=" + deltaPitch + " mod=" + mod);
+                    } else if (buffer > 0) buffer -= 0.5;
+                }
             }
 
 

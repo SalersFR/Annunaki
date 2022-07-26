@@ -67,6 +67,8 @@ public class RotationProcessor extends Processor {
 
                 if (deltaPitch == 0) return;
 
+                handleCinematic();
+
                 double lowestModulo = Double.MAX_VALUE;
                 float closestSensitivity = Float.NaN;
 
@@ -107,6 +109,16 @@ public class RotationProcessor extends Processor {
                 deltaPitch = 0;
                 deltaYaw = 0;
             }
+        }
+    }
+
+    private void handleCinematic() {
+        if (deltaPitch < 0.33 && deltaPitch > 0)
+            cinematicTicks++;
+        else if (pitch < 0.92 && pitch > 0)
+            cinematicTicks++;
+        else {
+            cinematicTicks = cinematicTicks <= 0 ? 0 : cinematicTicks / 2;
         }
     }
 }
