@@ -11,6 +11,9 @@ import net.md_5.bungee.api.chat.ComponentBuilder;
 import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.atteo.classindex.IndexSubclasses;
+import org.bukkit.Bukkit;
+
+import java.util.HashMap;
 
 @Getter
 @IndexSubclasses
@@ -23,6 +26,8 @@ public abstract class Check {
     private final ConfigInfo configInfo;
     protected double buffer = -1;
     private int vl;
+
+    private HashMap<Integer, String> punishCommands;
 
     public Check(final PlayerData data) {
         this.data = data;
@@ -69,10 +74,9 @@ public abstract class Check {
                 .filter(PlayerData::isAlerts)
                 .forEach(data -> data.getPlayer().spigot().sendMessage(alert));
 
-        if (!data.getPlayer().hasPermission("ptsd.bypass.punishment")
-                && configInfo.isPunish()
-                && this.vl >= configInfo.getMaxVl()) {
-            data.ban();
+        if(!data.getPlayer().hasPermission("ptsd.bypass.punishment")
+                && configInfo.isPunish() && punishCommands.containsKey(vl)) {
+            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), punishCommands.get(vl).replace("%player%", data.getPlayer().getName()).replace("%check%", checkInfo.name()));
         }
 
         // TODO: banwaves

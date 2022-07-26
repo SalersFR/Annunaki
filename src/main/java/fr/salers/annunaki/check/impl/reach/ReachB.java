@@ -46,12 +46,10 @@ public class ReachB extends Check {
                     }
 
                     AxisAlignedBB targetBox = targetData.getCollisionProcessor().getBoundingBox();
-                    targetBox.expand(0.1, 0.1, 0.1);
-                    targetBox.expand(0.03, 0, 0.03);
+                    targetBox.expand(0.103, 0.1, 0.103);
 
                     double min = Double.MAX_VALUE;
 
-                    // once client version is added, there are different eye heights needing to be accounted for; prone, crouching and standing.
                     for (float eyeHeight : getEyeHeights()) {
                         // get their eye height
                         Vec3 eyeLoc = getPositionEyes(eyeHeight);
@@ -120,7 +118,14 @@ public class ReachB extends Check {
     }
 
     public float[] getEyeHeights() {
-            return new float[] { 1.62f };
+
+        if(data.getVersion().getIntVersion() < 9) {
+            return new float[]{1.62f};
+        } else if(data.getVersion().getIntVersion() < 14 ) {
+            return new float[] { 0.4f, 1.54f, 1.62f };
+        } else {
+            return new float[] { 0.4f, 1.27f, 1.62f };
+        }
     }
 
     protected final Vec3 getVectorForRotation(float pitch, float yaw)

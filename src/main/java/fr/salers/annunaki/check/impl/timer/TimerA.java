@@ -45,11 +45,12 @@ public class TimerA extends Check {
     @Override
     public void handle(PacketReceiveEvent event) {
         if(PacketUtil.isFlying(event.getPacketType())) {
+            delays.add(data.getTeleportProcessor().getTeleportTicks() <= 3 ? 50L : event.getTimestamp() - last);
 
-            final long delay = event.getTimestamp() - last;
-            if(delays.add(data.getTeleportProcessor().getTeleportTicks() <= 3 ? 50L : delay) && delays.size() >= 40) {
+            if(delays.size() >= 40) {
                 double avg = delays.stream().mapToLong(l -> l).average().orElse(0.0d);
                 double dev = dev(delays, avg);
+
                 avg += dev * 0.25d;
                 double pct = (50L / avg) * 100.0d;
 

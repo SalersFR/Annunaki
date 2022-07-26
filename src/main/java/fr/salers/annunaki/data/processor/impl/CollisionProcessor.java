@@ -12,6 +12,7 @@ import fr.salers.annunaki.data.PlayerData;
 import fr.salers.annunaki.data.processor.Processor;
 import fr.salers.annunaki.util.PacketUtil;
 import fr.salers.annunaki.util.mc.AxisAlignedBB;
+import fr.salers.annunaki.util.mc.MathHelper;
 import fr.salers.annunaki.util.world.SimpleCollisionBox;
 import fr.salers.annunaki.util.world.WrappedBlock;
 import lombok.Getter;
@@ -295,10 +296,7 @@ public class CollisionProcessor extends Processor {
             }
         }
 
-        if (location.getLocation().getBlock().isLiquid()) return true;
-        if (location.getLocation().clone().add(0, 0.01, 0).getBlock().isLiquid()) return true;
-
-        return false;
+        return (location.getLocation().getBlock().isLiquid() || location.getLocation().clone().add(0, 0.01, 0).getBlock().isLiquid());
     }
 
 
@@ -359,12 +357,11 @@ public class CollisionProcessor extends Processor {
 
                 for (Entity entity : world.getChunkAt(xVal, zVal).getEntities()) {
                     //We have to do this due to stupidness
-                    if (entity == null && entity.getEntityId() != player.getEntityId()) continue;
-
-                    //Make sure the entity is within the radius specified
-                    if (entity.getLocation().distanceSquared(location) > radius * radius) continue;
-
-                    entities.add(entity);
+                    if(entity != null && entity.getEntityId() != player.getEntityId() && entity.getLocation() != null) {
+                        if (entity.getLocation().distance(location) <= radius) {
+                            entities.add(entity);
+                        }
+                    }
                 }
             }
         }
@@ -377,7 +374,7 @@ public class CollisionProcessor extends Processor {
 
         for (double x = -expand; x <= expand; x += expand) {
             for (double z = -expand; z <= expand; z += expand) {
-                if (location.clone().add(x, 2.0, z).getBlock().getType() != Material.AIR)
+                if (location.clone().add(x, 2.0, z).getBlock().getType().isSolid())
                     return true;
             }
         }
@@ -385,8 +382,24 @@ public class CollisionProcessor extends Processor {
     }
 
     public boolean haveABlockNearHead(final Location location) {
-        return location.getWorld().getHighestBlockAt(location).getType() != Material.AIR;
+        if(location != null) {
+            Location head = location.clone().add(0, 1.8, 0);
+
+            for(int x = -1; x <= 1; x++) {
+                for(int z = -1; z <= 1; z++) {
+                    if(head.clone().add(x, 0, z).getBlock().getType().isSolid()) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 
 
+    public boolean isChunkLoaded(Location loc) {
+        int x = MathHelper.floor_double(loc.getX()), z = MathHelper.floor_double(loc.getZ());
+
+        return loc.getWorld().isChunkLoaded(x >> 4, z >> 4);
+    }
 }
