@@ -1,6 +1,7 @@
 package fr.salers.annunaki.command.impl;
 
 import fr.salers.annunaki.Annunaki;
+import fr.salers.annunaki.command.CommandInfo;
 import fr.salers.annunaki.command.SubCommand;
 import fr.salers.annunaki.config.Config;
 import fr.salers.annunaki.data.PlayerData;
@@ -9,6 +10,7 @@ import org.bukkit.OfflinePlayer;
 
 import java.util.UUID;
 
+@CommandInfo(command = "banwave", permission = "annunaki.command.alerts")
 public class BanwaveCommand extends SubCommand {
     @Override
     public void handle(PlayerData data, String[] args) {
@@ -37,7 +39,7 @@ public class BanwaveCommand extends SubCommand {
                     send(data, Config.BANWAVE_COMMAND_STOPPED.getAsString());
                 }
             } else {
-                send(data, "&cUsage: /banwave <player>");
+                send(data, "&cUsage: /banwave add <player>");
             }
         } else {
             String player = args[2];

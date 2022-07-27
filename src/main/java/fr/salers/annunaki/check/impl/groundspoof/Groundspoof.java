@@ -5,6 +5,7 @@ import fr.salers.annunaki.check.Check;
 import fr.salers.annunaki.check.CheckInfo;
 import fr.salers.annunaki.data.PlayerData;
 import fr.salers.annunaki.util.PacketUtil;
+import org.bukkit.Bukkit;
 
 
 @CheckInfo(
@@ -23,9 +24,14 @@ public class Groundspoof extends Check {
     @Override
     public void handle(PacketReceiveEvent event) {
         if (PacketUtil.isPosition(event.getPacketType())) {
-            boolean exempt = data.getCollisionProcessor().isBuggedInBlocks() || data.getCollisionProcessor().isNearBoat() || data.getCollisionProcessor().isLastInVehicle() || data.getPlayer().getVehicle() != null || data.getPlayer().getLocation() == null || data.getCollisionProcessor().isChunkLoaded(data.getPlayer().getLocation());
+            boolean exempt = data.getCollisionProcessor().isBuggedInBlocks() ||
+                    data.getCollisionProcessor().isNearBoat() ||
+                    data.getCollisionProcessor().isLastInVehicle() ||
+                    data.getPlayer().getVehicle() != null ||
+                    data.getPlayer().getLocation() == null ||
+                    !data.getCollisionProcessor().isChunkLoaded(data.getPlayer().getLocation());
             if(!exempt) {
-                boolean isOnGround = data.getCollisionProcessor().isCollisionOnGround() && data.getCollisionProcessor().isLastCollisionOnGround() && !data.getCollisionProcessor().isMathOnGround();
+                boolean isOnGround = data.getCollisionProcessor().isMathOnGround() && data.getCollisionProcessor().isLastMathOnGround();
 
                 if (!isOnGround && data.getCollisionProcessor().isClientOnGround()) {
                     if (buffer++ >= 1) {
@@ -35,6 +41,8 @@ public class Groundspoof extends Check {
                 } else {
                     buffer = Math.max(buffer - 0.1, 0);
                 }
+
+               // Bukkit.broadcastMessage("" + data.getCollisionProcessor().isCollisionOnGround());
             }
         }
     }

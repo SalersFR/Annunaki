@@ -13,6 +13,8 @@ fr.salers.annunaki.check.impl.badpackets.BadPacketsB
 fr.salers.annunaki.check.impl.badpackets.BadPacketsC
 fr.salers.annunaki.check.impl.badpackets.BadPacketsD
 fr.salers.annunaki.check.impl.fly.FlyA
+fr.salers.annunaki.check.impl.fly.FlyB
+fr.salers.annunaki.check.impl.groundspoof.Groundspoof
 fr.salers.annunaki.check.impl.killaura.KillAuraA
 fr.salers.annunaki.check.impl.killaura.KillAuraB
 fr.salers.annunaki.check.impl.motion.MotionA

@@ -52,3 +52,6 @@ target/classes/checks.yml
 target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
 target/classes/META-INF/services/fr.salers.annunaki.check.Check
 target/classes/checks.yml
+.idea/jarRepositories.xml
+target/classes/config.yml
+target/classes/META-INF/services/fr.salers.annunaki.check.Check

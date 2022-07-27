@@ -5,7 +5,7 @@ import fr.salers.annunaki.command.SubCommand;
 import fr.salers.annunaki.config.Config;
 import fr.salers.annunaki.data.PlayerData;
 
-@CommandInfo(command = "alerts", permission = "ptsd.command.alerts")
+@CommandInfo(command = "alerts", permission = "annunaki.command.alerts")
 public class AlertsCommand extends SubCommand {
 
     @Override

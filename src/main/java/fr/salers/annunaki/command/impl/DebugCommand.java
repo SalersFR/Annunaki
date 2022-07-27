@@ -5,7 +5,7 @@ import fr.salers.annunaki.command.SubCommand;
 import fr.salers.annunaki.config.Config;
 import fr.salers.annunaki.data.PlayerData;
 
-@CommandInfo(command = "debug", permission = "ptsd.command.debug")
+@CommandInfo(command = "debug", permission = "annunaki.command.debug")
 public class DebugCommand extends SubCommand {
 
     @Override

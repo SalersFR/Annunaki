@@ -35,7 +35,7 @@ public class BaseCommand implements CommandExecutor {
 
         Player player = (Player) sender;
 
-        if (!player.hasPermission("ptsd.command.base")) {
+        if (!player.hasPermission("annunaki.command.base")) {
             send(player, Config.NO_PERMISSION.getAsString());
             return true;
         }

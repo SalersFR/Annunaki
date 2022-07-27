@@ -16,3 +16,21 @@ checks:
 
     &d%info%
   click-command: '/tp %player%'
+
+banwave:
+  enabled: true
+  interval: 6h
+  ban:
+    delay-ticks: 20
+    commands:
+       - "kick %player% Unfair Advantage"
+       - "broadcast &d%player% &rwas banned for an &dUnfair Advantage"
+  broadcast:
+    enabled: true
+    start: "\n &dBanwave started! \n"
+    end: "\n &dBanwave ended, banning &r%players% &dplayers! \n"
+  command:
+    started: "&dBanwave has been started!"
+    already-running: "&dA banwave is already running"
+    stopped: "&dBanwave has been stopped!"
+    not-running: "&dNo banwave is running."

@@ -1,5 +1,6 @@
 D:\Antishit\Annunaki\src\main\java\fr\salers\annunaki\data\processor\impl\ActionProcessor.java
 D:\Antishit\Annunaki\src\main\java\fr\salers\annunaki\manager\PlayerDataManager.java
+D:\Antishit\Annunaki\src\main\java\fr\salers\annunaki\check\impl\groundspoof\Groundspoof.java
 D:\Antishit\Annunaki\src\main\java\fr\salers\annunaki\util\mc\BlockPos.java
 D:\Antishit\Annunaki\src\main\java\fr\salers\annunaki\check\impl\autoclicker\AutoclickerC.java
 D:\Antishit\Annunaki\src\main\java\fr\salers\annunaki\util\lag\ConfirmedPotionEffect.java
@@ -8,6 +9,7 @@ D:\Antishit\Annunaki\src\main\java\fr\salers\annunaki\check\ConfigInfo.java
 D:\Antishit\Annunaki\src\main\java\fr\salers\annunaki\command\CommandInfo.java
 D:\Antishit\Annunaki\src\main\java\fr\salers\annunaki\listener\BukkitListener.java
 D:\Antishit\Annunaki\src\main\java\fr\salers\annunaki\util\lag\ConfirmedVelocity.java
+D:\Antishit\Annunaki\src\main\java\fr\salers\annunaki\check\impl\fly\FlyB.java
 D:\Antishit\Annunaki\src\main\java\fr\salers\annunaki\check\impl\aim\AimE.java
 D:\Antishit\Annunaki\src\main\java\fr\salers\annunaki\check\CheckInfo.java
 D:\Antishit\Annunaki\src\main\java\fr\salers\annunaki\data\processor\impl\entity\EntityMovementType.java
@@ -31,7 +33,6 @@ D:\Antishit\Annunaki\src\main\java\fr\salers\annunaki\util\mc\MovingObjectPositi
 D:\Antishit\Annunaki\src\main\java\fr\salers\annunaki\util\PacketUtil.java
 D:\Antishit\Annunaki\src\main\java\fr\salers\annunaki\data\processor\impl\entity\EntityMovement.java
 D:\Antishit\Annunaki\src\main\java\fr\salers\annunaki\check\impl\speed\SpeedA.java
-D:\Antishit\Annunaki\src\main\java\fr\salers\annunaki\data\processor\TrackingProcessor.java
 D:\Antishit\Annunaki\src\main\java\fr\salers\annunaki\Annunaki.java
 D:\Antishit\Annunaki\src\main\java\fr\salers\annunaki\data\processor\impl\RotationProcessor.java
 D:\Antishit\Annunaki\src\main\java\fr\salers\annunaki\util\mc\MathHelper.java
@@ -45,6 +46,8 @@ D:\Antishit\Annunaki\src\main\java\fr\salers\annunaki\data\processor\impl\Collis
 D:\Antishit\Annunaki\src\main\java\fr\salers\annunaki\manager\NmsManager.java
 D:\Antishit\Annunaki\src\main\java\fr\salers\annunaki\util\ClickingStats.java
 D:\Antishit\Annunaki\src\main\java\fr\salers\annunaki\check\impl\badpackets\BadPacketsB.java
+D:\Antishit\Annunaki\src\main\java\fr\salers\annunaki\util\version\ClientVersion.java
+D:\Antishit\Annunaki\src\main\java\fr\salers\annunaki\banwave\BanwaveTask.java
 D:\Antishit\Annunaki\src\main\java\fr\salers\annunaki\command\BaseCommand.java
 D:\Antishit\Annunaki\src\main\java\fr\salers\annunaki\util\mc\EnumFacing.java
 D:\Antishit\Annunaki\src\main\java\fr\salers\annunaki\util\Pair.java
@@ -66,12 +69,15 @@ D:\Antishit\Annunaki\src\main\java\fr\salers\annunaki\data\processor\impl\Telepo
 D:\Antishit\Annunaki\src\main\java\fr\salers\annunaki\command\impl\AlertsCommand.java
 D:\Antishit\Annunaki\src\main\java\fr\salers\annunaki\check\impl\badpackets\BadPacketsA.java
 D:\Antishit\Annunaki\src\main\java\fr\salers\annunaki\manager\TaskManager.java
+D:\Antishit\Annunaki\src\main\java\fr\salers\annunaki\manager\ViaManager.java
 D:\Antishit\Annunaki\src\main\java\fr\salers\annunaki\config\Config.java
 D:\Antishit\Annunaki\src\main\java\fr\salers\annunaki\task\type\PreTask.java
 D:\Antishit\Annunaki\src\main\java\fr\salers\annunaki\check\impl\badpackets\BadPacketsD.java
 D:\Antishit\Annunaki\src\main\java\fr\salers\annunaki\check\impl\autoclicker\AutoclickerB.java
 D:\Antishit\Annunaki\src\main\java\fr\salers\annunaki\util\mc\Vec3.java
 D:\Antishit\Annunaki\src\main\java\fr\salers\annunaki\check\impl\autoclicker\AutoclickerE.java
+D:\Antishit\Annunaki\src\main\java\fr\salers\annunaki\command\impl\BanwaveCommand.java
+D:\Antishit\Annunaki\src\main\java\fr\salers\annunaki\util\version\ServerVersion.java
 D:\Antishit\Annunaki\src\main\java\fr\salers\annunaki\data\PlayerData.java
 D:\Antishit\Annunaki\src\main\java\fr\salers\annunaki\data\processor\impl\entity\EntityProcessor.java
 D:\Antishit\Annunaki\src\main\java\fr\salers\annunaki\util\world\WrappedBlock.java
@@ -79,6 +85,7 @@ D:\Antishit\Annunaki\src\main\java\fr\salers\annunaki\command\impl\DebugCommand.
 D:\Antishit\Annunaki\src\main\java\fr\salers\annunaki\util\MathUtil.java
 D:\Antishit\Annunaki\src\main\java\fr\salers\annunaki\nms\NmsImplementation.java
 D:\Antishit\Annunaki\src\main\java\fr\salers\annunaki\task\type\PostTask.java
+D:\Antishit\Annunaki\src\main\java\fr\salers\annunaki\banwave\BanwaveManager.java
 D:\Antishit\Annunaki\src\main\java\fr\salers\annunaki\util\mc\Vec3i.java
 D:\Antishit\Annunaki\src\main\java\fr\salers\annunaki\nms\impl\NmsImplementation8.java
 D:\Antishit\Annunaki\src\main\java\fr\salers\annunaki\check\impl\motion\MotionA.java

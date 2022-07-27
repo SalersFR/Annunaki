@@ -6,6 +6,8 @@ fr\salers\annunaki\data\processor\impl\entity\EntityMovementType.class
 fr\salers\annunaki\util\PacketUtil.class
 fr\salers\annunaki\command\BaseCommand.class
 fr\salers\annunaki\util\mc\BlockPos.class
+fr\salers\annunaki\banwave\BanwaveManager.class
+fr\salers\annunaki\manager\ViaManager.class
 fr\salers\annunaki\check\impl\aim\AimC.class
 fr\salers\annunaki\data\processor\impl\entity\EntityProcessor.class
 fr\salers\annunaki\check\impl\autoclicker\AutoclickerC.class
@@ -17,7 +19,6 @@ fr\salers\annunaki\util\mc\BlockPos$1$1.class
 fr\salers\annunaki\data\processor\impl\entity\TrackedEntity.class
 fr\salers\annunaki\check\impl\speed\SpeedA.class
 fr\salers\annunaki\util\mc\MovingObjectPosition$MovingObjectType.class
-fr\salers\annunaki\data\processor\TrackingProcessor$TrackedEntity.class
 fr\salers\annunaki\util\lag\ConfirmedPotionEffect.class
 fr\salers\annunaki\task\Task.class
 fr\salers\annunaki\util\MathUtil.class
@@ -27,6 +28,7 @@ fr\salers\annunaki\check\impl\aim\AimE.class
 fr\salers\annunaki\check\impl\autoclicker\AutoclickerE.class
 fr\salers\annunaki\manager\NmsManager.class
 fr\salers\annunaki\data\processor\Processor.class
+fr\salers\annunaki\util\version\ServerVersion.class
 fr\salers\annunaki\check\impl\velocity\VelocityA.class
 fr\salers\annunaki\manager\TaskManager.class
 fr\salers\annunaki\util\ColorUtil.class
@@ -63,7 +65,6 @@ fr\salers\annunaki\check\impl\badpackets\BadPacketsA.class
 fr\salers\annunaki\check\impl\autoclicker\AutoclickerD.class
 fr\salers\annunaki\util\mc\EnumFacing$AxisDirection.class
 fr\salers\annunaki\check\impl\reach\ReachA.class
-fr\salers\annunaki\data\processor\TrackingProcessor.class
 fr\salers\annunaki\listener\PacketEventsInListener.class
 fr\salers\annunaki\util\lag\ConfirmedVelocity.class
 fr\salers\annunaki\manager\CheckManager.class
@@ -82,16 +83,21 @@ fr\salers\annunaki\manager\PlayerDataManager.class
 fr\salers\annunaki\check\impl\autoclicker\AutoclickerA.class
 fr\salers\annunaki\task\type\PostTask.class
 fr\salers\annunaki\check\impl\aim\AimA.class
+fr\salers\annunaki\check\impl\fly\FlyB.class
 fr\salers\annunaki\check\impl\motion\MotionB.class
 fr\salers\annunaki\listener\BukkitListener.class
 META-INF\services\fr.salers.annunaki.check.Check
 fr\salers\annunaki\util\mc\BlockPos$1.class
 fr\salers\annunaki\util\mc\BlockPos$MutableBlockPos.class
 fr\salers\annunaki\util\lag\ConfirmedPotionStatus.class
+fr\salers\annunaki\banwave\BanwaveTask.class
 fr\salers\annunaki\check\impl\badpackets\BadPacketsC.class
+fr\salers\annunaki\util\version\ClientVersion.class
 fr\salers\annunaki\check\impl\motion\MotionA.class
+fr\salers\annunaki\command\impl\BanwaveCommand.class
 fr\salers\annunaki\util\mc\MathHelper.class
 fr\salers\annunaki\task\impl\TransactionTask.class
+fr\salers\annunaki\check\impl\groundspoof\Groundspoof.class
 fr\salers\annunaki\check\impl\autoclicker\AutoclickerB.class
 fr\salers\annunaki\task\type\PreTask.class
 fr\salers\annunaki\util\mc\BlockPos$2.class
