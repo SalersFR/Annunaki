@@ -13,8 +13,8 @@ import fr.salers.annunaki.util.PacketUtil;
  */
 
 @CheckInfo(
-        type = "BadPackets",
-        name = "D",
+        type = "D",
+        name = "BadPackets",
         description = "Checks for invalid place order.",
         experimental = false,
         maxVl = 30,

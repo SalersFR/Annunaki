@@ -7,8 +7,8 @@ import fr.salers.annunaki.data.PlayerData;
 import fr.salers.annunaki.util.PacketUtil;
 
 @CheckInfo(
-        type = "Fly",
-        name = "B",
+        type = "B",
+        name = "Fly",
         description = "Checks if a player is ignoring gravity.",
         experimental = true,
         maxVl = 50,

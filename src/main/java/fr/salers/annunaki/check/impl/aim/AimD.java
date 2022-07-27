@@ -13,8 +13,8 @@ import fr.salers.annunaki.util.PacketUtil;
  */
 
 @CheckInfo(
-        type = "Aim",
-        name = "D",
+        type = "D",
+        name = "Aim",
         description = "Checks for rounded rotation values.",
         experimental = false,
         maxVl = 50,

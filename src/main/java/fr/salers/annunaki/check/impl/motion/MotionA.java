@@ -16,8 +16,8 @@ import org.bukkit.potion.PotionEffectType;
  */
 
 @CheckInfo(
-        type = "Motion",
-        name = "A",
+        type = "A",
+        name = "Motion",
         description = "Checks for an invalid jump motion.",
         experimental = false,
         maxVl = 50,

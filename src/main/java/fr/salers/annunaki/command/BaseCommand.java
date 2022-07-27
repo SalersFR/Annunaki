@@ -28,22 +28,13 @@ public class BaseCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        if (!(sender instanceof Player)) {
-            send(sender, Config.NOT_PLAYER.getAsString());
+        if (!sender.hasPermission("annunaki.command.base")) {
+            send(sender, Config.NO_PERMISSION.getAsString());
             return true;
         }
-
-        Player player = (Player) sender;
-
-        if (!player.hasPermission("annunaki.command.base")) {
-            send(player, Config.NO_PERMISSION.getAsString());
-            return true;
-        }
-
-        PlayerData data = Annunaki.getInstance().getPlayerDataManager().get(player);
 
         if (args.length == 0) {
-            send(player, Config.HELP.getAsString());
+            send(sender, Config.HELP.getAsString());
             return true;
         }
 
@@ -54,14 +45,18 @@ public class BaseCommand implements CommandExecutor {
         }).findFirst();
 
         if (!subCommand.isPresent()) {
-            send(player, Config.HELP.getAsString());
+            send(sender, Config.HELP.getAsString());
             return true;
         }
 
-        if (player.hasPermission(subCommand.get().getClass().getAnnotation(CommandInfo.class).permission())) {
-            subCommand.get().handle(data, args);
+        if (sender.hasPermission(subCommand.get().getClass().getAnnotation(CommandInfo.class).permission())) {
+            if(!subCommand.get().getClass().getAnnotation(CommandInfo.class).console() && !(sender instanceof Player)) {
+                send(sender, "You must be a player to use this command.");
+                return true;
+            }
+            subCommand.get().handle(sender, args);
         } else {
-            send(player, Config.NO_PERMISSION.getAsString());
+            send(sender, Config.NO_PERMISSION.getAsString());
         }
 
         return true;

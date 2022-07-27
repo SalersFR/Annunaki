@@ -16,8 +16,8 @@ import java.util.LinkedList;
  * made on dev.notonweed.annunaki.check.impl.killaura
  */
 @CheckInfo(
-        type = "KillAura",
-        name = "A",
+        type = "A",
+        name = "KillAura",
         description = "Checks for a post interact packet.",
         experimental = false,
         maxVl = 50,

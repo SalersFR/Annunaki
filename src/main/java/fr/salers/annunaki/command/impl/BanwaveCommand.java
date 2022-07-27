@@ -7,49 +7,72 @@ import fr.salers.annunaki.config.Config;
 import fr.salers.annunaki.data.PlayerData;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
+import org.bukkit.command.CommandSender;
 
 import java.util.UUID;
 
-@CommandInfo(command = "banwave", permission = "annunaki.command.alerts")
+@CommandInfo(command = "banwave", console = true, permission = "annunaki.command.alerts")
 public class BanwaveCommand extends SubCommand {
     @Override
-    public void handle(PlayerData data, String[] args) {
-        if(args.length <= 2) {
+    public void handle(CommandSender sender, String[] args) {
+        if(args.length == 1) {
+            send(sender, "&cUsage: /annunaki banwave <add|remove|start|stop> [player]");
+        } else if(args.length == 2) {
             if(args[1].equalsIgnoreCase("list")) {
-                StringBuilder sb = new StringBuilder();
-                for(UUID id : Annunaki.getInstance().getBanwaveManager().banwavePlayers) {
-                    OfflinePlayer player = Bukkit.getOfflinePlayer(id);
-                    if(player != null) {
-                        sb.append(player.getName()).append(", ");
+                String message = "&dBanwave players: &r";
+                if(Annunaki.getInstance().getBanwaveManager().banwavePlayers.size() > 0) {
+                    for (UUID id : Annunaki.getInstance().getBanwaveManager().banwavePlayers) {
+                        OfflinePlayer player = Bukkit.getOfflinePlayer(id);
+                        if (player != null) {
+                            message = String.join(", ", message, player.getName());
+                        }
                     }
+                } else {
+                    message = "&dBanwave players: &rNone";
                 }
-                send(data, sb.toString());
+                send(sender, message);
             } else if(args[1].equalsIgnoreCase("start")) {
                 if(Annunaki.getInstance().getBanwaveManager().running) {
-                    send(data, Config.BANWAVE_ALREADY_RUNNING.getAsString());
+                    send(sender, Config.BANWAVE_ALREADY_RUNNING.getAsString());
                 } else {
-                    Annunaki.getInstance().getBanwaveManager().start();
-                    send(data, Config.BANWAVE_COMMAND_STARTED.getAsString());
+                    if(Annunaki.getInstance().getBanwaveManager().start()) {
+                        send(sender, Config.BANWAVE_COMMAND_STARTED.getAsString());
+                    } else {
+                        send(sender, "&cCould not start banwave");
+                    }
                 }
             } else if(args[1].equalsIgnoreCase("stop")) {
                 if(!Annunaki.getInstance().getBanwaveManager().running) {
-                    send(data, Config.BANWAVE_NOT_RUNNING.getAsString());
+                    send(sender, Config.BANWAVE_NOT_RUNNING.getAsString());
                 } else {
                     Annunaki.getInstance().getBanwaveManager().stop();
-                    send(data, Config.BANWAVE_COMMAND_STOPPED.getAsString());
+                    send(sender, Config.BANWAVE_COMMAND_STOPPED.getAsString());
                 }
-            } else {
-                send(data, "&cUsage: /banwave add <player>");
             }
         } else {
             String player = args[2];
-            if(Bukkit.getOfflinePlayer(player) == null) {
-                send(data, "&cPlayer not found.");
-            } else {
+            if(args[1].equalsIgnoreCase("remove")) {
                 OfflinePlayer target = Bukkit.getOfflinePlayer(player);
+                if (Annunaki.getInstance().getBanwaveManager().banwavePlayers.contains(target.getUniqueId())) {
+                    Annunaki.getInstance().getBanwaveManager().banwavePlayers.remove(target.getUniqueId());
+                    send(sender, "&dRemoved " + target.getName() + " from banwave.");
+                } else {
+                    send(sender, "&c" + target.getName() + " is not in banwave.");
+                }
+            } else if(args[1].equalsIgnoreCase("add")) {
+                if (Bukkit.getOfflinePlayer(player) == null) {
+                    send(sender, "&cPlayer not found.");
+                } else {
+                    OfflinePlayer target = Bukkit.getOfflinePlayer(player);
 
-                Annunaki.getInstance().getBanwaveManager().banwavePlayers.add(Bukkit.getOfflinePlayer(player).getUniqueId());
-                send(data, "&a" + target.getPlayer().getName() + " added to banwave.");
+                    if (!Annunaki.getInstance().getBanwaveManager().banwavePlayers.contains(target.getUniqueId())) {
+                        Annunaki.getInstance().getBanwaveManager().banwavePlayers.add(target.getUniqueId());
+                    } else {
+                        send(sender, "&cPlayer already in banwave.");
+                        return;
+                    }
+                    send(sender, "&a" + target.getName() + " added to banwave.");
+                }
             }
         }
     }

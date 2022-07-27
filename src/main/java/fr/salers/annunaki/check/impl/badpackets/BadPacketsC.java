@@ -13,8 +13,8 @@ import fr.salers.annunaki.data.processor.impl.ActionProcessor;
  */
 
 @CheckInfo(
-        type = "BadPackets",
-        name = "C",
+        type = "C",
+        name = "BadPackets",
         description = "Checks for invalid sneak/sprint packets during an attack.",
         experimental = false,
         maxVl = 30,

@@ -19,8 +19,8 @@ import java.util.Locale;
  */
 
 @CheckInfo(
-        type = "Autoclicker",
-        name = "E",
+        type = "E",
+        name = "Autoclicker",
         description = "Checks for common clicker flaws.",
         experimental = false,
         maxVl = -1,

@@ -15,8 +15,8 @@ import fr.salers.annunaki.util.PacketUtil;
  */
 
 @CheckInfo(
-        type = "Aim",
-        name = "A",
+        type = "A",
+        name = "Aim",
         description = "Checks for flaws in aim modules.",
         experimental = false,
         maxVl = 50,

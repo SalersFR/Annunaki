@@ -5,7 +5,9 @@ commands:
     &5&lAnnunaki AntiCheat
 
     &7- &d/annunaki alerts
+    &7- &d/annunaki banwave
     &7- &d/annunaki debug
+    &7- &d/annunaki reload
   alerts-enabled: '&aAlerts are now enabled!'
   alerts-disabled: '&cAlerts are now disabled!'
 

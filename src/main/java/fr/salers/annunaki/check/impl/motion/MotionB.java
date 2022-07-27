@@ -14,8 +14,8 @@ import fr.salers.annunaki.util.PacketUtil;
  */
 
 @CheckInfo(
-        type = "Motion",
-        name = "B",
+        type = "B",
+        name = "Motion",
         description = "Checks for repeated horizontal motions in air.",
         experimental = false,
         maxVl = 50,

@@ -19,8 +19,8 @@ import java.util.Locale;
  */
 
 @CheckInfo(
-        type = "Autoclicker",
-        name = "C",
+        type = "C",
+        name = "Autoclicker",
         description = "Checks for an impossible consistency.",
         experimental = false,
         maxVl = -1,

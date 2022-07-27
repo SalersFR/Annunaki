@@ -28,7 +28,6 @@ public class BanwaveTask implements Runnable {
         if(manager.banwavePlayers.isEmpty()) {
             manager.total = total;
             manager.stop();
-            manager.task.cancel();
         }
     }
 }

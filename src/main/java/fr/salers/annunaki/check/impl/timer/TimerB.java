@@ -15,8 +15,8 @@ import java.util.List;
  * made on fr.salers.annunaki.check.impl.timer
  */
 @CheckInfo(
-        type = "Timer",
-        name = "B",
+        type = "B",
+        name = "Timer",
         description = "Checks is sending packets too fast.",
         experimental = false,
         maxVl = 50,

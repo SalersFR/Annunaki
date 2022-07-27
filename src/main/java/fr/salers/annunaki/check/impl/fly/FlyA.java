@@ -17,8 +17,8 @@ import java.util.Locale;
  * made on dev.annunaki.anticheat.check.impl.fly
  */
 @CheckInfo(
-        type = "Fly",
-        name = "A",
+        type = "A",
+        name = "Fly",
         description = "Checks if player isn't following gravity.",
         experimental = false,
         maxVl = 50,

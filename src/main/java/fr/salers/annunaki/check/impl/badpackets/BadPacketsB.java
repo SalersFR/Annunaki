@@ -12,8 +12,8 @@ import fr.salers.annunaki.util.PacketUtil;
  */
 
 @CheckInfo(
-        type = "BadPackets",
-        name = "B",
+        type = "B",
+        name = "BadPackets",
         description = "Checks for an impossible pitch.",
         experimental = false,
         maxVl = 30,

@@ -2,11 +2,13 @@ package fr.salers.annunaki.util.world;
 
 
 import fr.salers.annunaki.Annunaki;
+import fr.salers.annunaki.data.processor.impl.CollisionProcessor;
 import lombok.Getter;
 import lombok.Setter;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
+import org.bukkit.block.Block;
 import org.bukkit.util.Vector;
 
 import java.util.ArrayList;
@@ -71,33 +73,34 @@ public class SimpleCollisionBox {
     }
 
     public List<WrappedBlock> getCollidingBlocks(final World world) {
-        final List<WrappedBlock> blockList = new ArrayList<>();
+        ArrayList<WrappedBlock> blocks = new ArrayList<>();
+        boolean valid = maxY + 0.01 > 0 && world != null;
 
-        Bukkit.getScheduler().runTask(Annunaki.getInstance(), () -> {
-            if (minY == maxY) {
-                for (double x = minX; x <= maxX; x += (maxX - minX)) {
+        if (valid) {
+            for (double x = minX; x <= maxX; x += (maxX - minX)) {
+                for (double y = minY; y <= maxY + 0.01; y += (maxY - minY) / 4) {
                     for (double z = minZ; z <= maxZ; z += (maxZ - minZ)) {
-                        Location location = new Location(world, x, minY, z);
-
-                        blockList.add(new WrappedBlock(location.getBlock()));
-                    }
-                }
-            } else {
-                for (double x = minX; x <= maxX; x += (maxX - minX)) {
-                    for (double y = minY; y <= maxY; y += (maxY - minY)) {
-                        for (double z = minZ; z <= maxZ; z += (maxZ - minZ)) {
-                            Location location = new Location(world, x, y, z);
-
-                            blockList.add(new WrappedBlock(location.getBlock()));
+                        Block block = getBlock(world, x, y, z);
+                        if (block != null) {
+                            blocks.add(new WrappedBlock(block));
                         }
+
                     }
                 }
             }
+        }
 
-            blockList.removeIf(block -> !block.isLoaded());
-        });
+        return blocks;
+    }
 
-        return blockList;
+    private Block getBlock(World w, double x, double y, double z) {
+        if (w != null) {
+            Location loc = new Location(w, x, y, z);
+            if (CollisionProcessor.isChunkLoaded(loc)) {
+                return loc.getWorld().getBlockAt(loc);
+            }
+        }
+        return null;
     }
 
 

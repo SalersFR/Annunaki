@@ -26,8 +26,8 @@ import java.util.List;
  */
 
 @CheckInfo(
-        type = "Timer",
-        name = "A",
+        type = "A",
+        name = "Timer",
         description = "Checks is sending packets too slow or too fast.",
         experimental = false,
         maxVl = 50,

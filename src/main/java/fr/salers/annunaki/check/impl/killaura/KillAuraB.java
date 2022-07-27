@@ -15,8 +15,8 @@ import fr.salers.annunaki.util.PacketUtil;
  */
 
 @CheckInfo(
-        type = "KillAura",
-        name = "B",
+        type = "B",
+        name = "KillAura",
         description = "Checks for aura like ground-moves.",
         experimental = false,
         maxVl = 50,

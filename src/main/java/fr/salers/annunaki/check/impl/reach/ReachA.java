@@ -18,8 +18,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @CheckInfo(
-        type = "Reach",
-        name = "A",
+        type = "A",
+        name = "Reach",
         description = "Checks for attacking out of range",
         experimental = true,
         maxVl = 15,

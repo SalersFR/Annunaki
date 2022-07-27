@@ -15,8 +15,8 @@ import org.bukkit.Bukkit;
  */
 
 @CheckInfo(
-        type = "Aim",
-        name = "C",
+        type = "C",
+        name = "Aim",
         description = "Checks for incoherent rotation values.",
         experimental = false,
         maxVl = 50,

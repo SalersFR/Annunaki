@@ -17,8 +17,8 @@ import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 
 @CheckInfo(
-        type = "Reach",
-        name = "B",
+        type = "B",
+        name = "Reach",
         description = "Checks for attacking out of range",
         experimental = true,
         maxVl = 15,

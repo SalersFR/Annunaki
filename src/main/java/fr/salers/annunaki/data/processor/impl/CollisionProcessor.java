@@ -78,11 +78,12 @@ public class CollisionProcessor extends Processor {
 
             collisionBox = new SimpleCollisionBox(loc);
 
-            collisionBox.expand(0, -1.0E-3, 0);
+            // expand: positive to expand, negative to shrink
+            collisionBox.expand(0, 0.1, 0);
 
             boundingBox = new AxisAlignedBB(loc.getX(), loc.getY(), loc.getZ());
 
-            horizontalCollisionBox = collisionBox.expand(0.1, 1.0E-3, 0.01);
+            horizontalCollisionBox = collisionBox.expand(0.1, 0.01, 0.01);
 
             bonkingBoundingBox = new SimpleCollisionBox(loc).expand(0, 0, -1.81, 0.01, 0, 0);
 
@@ -105,7 +106,7 @@ public class CollisionProcessor extends Processor {
             Block climbableBlock = getBlock(new Location(data.getPlayer().getWorld(), flooredX, flooredY, flooredZ));
             entityCollisions = getEntitiesWithinRadius(
                     data.getPlayer(), loc.toLocation(data.getPlayer().getWorld()),
-                    0.45 + (PacketEvents.getAPI().getPlayerManager().getPing(data.getPlayer()) / 50) * 0.35f);
+                    0.5);
 
 
             if (collidingBlocks == null) return;
@@ -118,10 +119,10 @@ public class CollisionProcessor extends Processor {
 
             onIce = collidingBlocks.stream().anyMatch(WrappedBlock::isIce);
             onSlime = collidingBlocks.stream().anyMatch(WrappedBlock::isSlime);
-            ;
+
             onSoulSand = collidingBlocks.stream().anyMatch(WrappedBlock::isSoulSand) || collidingBlocks.stream().
                     anyMatch(block -> block.isSoulSand() && block.getY() <= loc.getY());
-            ;
+
             inWeb = collidingBlocks.stream().anyMatch(WrappedBlock::isWeb);
             inWater = collidingBlocks.stream().anyMatch(WrappedBlock::isWater) || isInLiquid(data.getPlayer());
             inLava = collidingBlocks.stream().anyMatch(WrappedBlock::isLava) || isInLiquid(data.getPlayer());
@@ -140,8 +141,7 @@ public class CollisionProcessor extends Processor {
                     && block.getY() - data.getPositionProcessor().getY() >= 1.8) || haveABlockNearHead(data.getPlayer())
                     || haveABlockNearHead(data.getPositionProcessor().getVectorPos().toLocation(data.getPlayer().getWorld()))
                     || blockNearHead(data.getPositionProcessor().getVectorPos().toLocation(data.getPlayer().getWorld()))
-                    || blockNearHead(data.getPlayer())
-            ;
+                    || blockNearHead(data.getPlayer());
 
             teleporting = placing = false;
 
@@ -395,7 +395,7 @@ public class CollisionProcessor extends Processor {
     }
 
 
-    public boolean isChunkLoaded(Location loc) {
+    public static boolean isChunkLoaded(Location loc) {
         int x = MathHelper.floor_double(loc.getX()), z = MathHelper.floor_double(loc.getZ());
 
         return loc.getWorld().isChunkLoaded(x >> 4, z >> 4);

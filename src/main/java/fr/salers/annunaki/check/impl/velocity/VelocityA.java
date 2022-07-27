@@ -14,8 +14,8 @@ import org.bukkit.Bukkit;
  */
 
 @CheckInfo(
-        type = "Velocity",
-        name = "A",
+        type = "A",
+        name = "Velocity",
         description = "Checks for vertical velocity modifications.",
         experimental = true,
         maxVl = 30,

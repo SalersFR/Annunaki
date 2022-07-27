@@ -15,8 +15,8 @@ import org.bukkit.Bukkit;
  */
 
 @CheckInfo(
-        type = "Aim",
-        name = "E",
+        type = "E",
+        name = "Aim",
         description = "Checks for smalls rotations.",
         experimental = false,
         maxVl = 50,

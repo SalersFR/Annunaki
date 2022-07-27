@@ -32,17 +32,17 @@ public class CheckConfig extends YamlConfiguration {
 
             CheckManager cm = new CheckManager(null);
             for(Check c : cm.getChecks()) {
-                if(!isSet(c.getCheckInfo().name())) {
-                    String path = c.getCheckInfo().name() + c.getCheckInfo().type();
+                if(!isSet(c.getCheckInfo().name().toLowerCase())) {
+                    String path = c.getCheckInfo().name().toLowerCase() + "." + c.getCheckInfo().type().toLowerCase();
                     set(path + ".enabled", true);
                     set(path + ".punish", c.getCheckInfo().punish());
                     set(path + ".max-vl", c.getCheckInfo().maxVl());
                     set(path + ".punish-commands", List.of("" + c.getCheckInfo().maxVl() + ":kick %player% Unfair Advantage"));
-                    save(checkConfig);
                 }
             }
+            // dont save every check... helps
+            save(checkConfig);
 
-            cm.getChecks().clear();
             cm = null;
         } catch (Exception exception) {
             Annunaki.getInstance().getLogger().log(Level.SEVERE, "Exception while loading checks.yml.");

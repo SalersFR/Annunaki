@@ -25,8 +25,8 @@ import java.util.function.Consumer;
  */
 
 @CheckInfo(
-        type = "Aim",
-        name = "B",
+        type = "B",
+        name = "Aim",
         description = "Checks for switch-aiming.",
         experimental = false,
         maxVl = 50,

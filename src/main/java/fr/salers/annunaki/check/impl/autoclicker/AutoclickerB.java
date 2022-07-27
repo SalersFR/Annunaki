@@ -19,8 +19,8 @@ import java.util.Locale;
  */
 
 @CheckInfo(
-        type = "Autoclicker",
-        name = "B",
+        type = "B",
+        name = "Autoclicker",
         description = "Checks for repeated & consistent stats.",
         experimental = false,
         maxVl = -1,

@@ -15,8 +15,8 @@ import fr.salers.annunaki.util.PacketUtil;
  * made on dev.annunaki.anticheat.check.impl.strafe
  */
 @CheckInfo(
-        type = "Strafe",
-        name = "A",
+        type = "A",
+        name = "Strafe",
         description = "Checks if player isn't following friction on ground.",
         experimental = false,
         maxVl = 50,

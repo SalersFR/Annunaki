@@ -15,8 +15,8 @@ import lombok.SneakyThrows;
  */
 
 @CheckInfo(
-        type = "BadPackets",
-        name = "A",
+        type = "A",
+        name = "BadPackets",
         description = "Checks for a missing interact packet.",
         experimental = false,
         maxVl = 30,

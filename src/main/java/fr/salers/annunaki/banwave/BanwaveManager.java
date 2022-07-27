@@ -23,7 +23,7 @@ public class BanwaveManager {
     public List<UUID> banwavePlayers = new ArrayList<UUID>();
 
 
-    public void start() {
+    public boolean start() {
         if(!running) {
             running = true;
             if (!banwavePlayers.isEmpty()) {
@@ -32,8 +32,12 @@ public class BanwaveManager {
                 }
 
                 task = Bukkit.getScheduler().runTaskTimer(Annunaki.getInstance(), new BanwaveTask(this), 0L, Config.BANWAVE_TICKS.getAsInt());
+                return true;
+            } else {
+               return false;
             }
         }
+        return false;
     }
 
     public void stop() {
@@ -44,7 +48,9 @@ public class BanwaveManager {
                 Bukkit.broadcastMessage(Config.BANWAVE_ENDED.getAsString().replace("%players%", "" + total));
             }
 
-            task.cancel();
+            if(task != null && Bukkit.getScheduler().isCurrentlyRunning(task.getTaskId())) {
+                task.cancel();
+            }
         }
     }
 }

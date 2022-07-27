@@ -11,5 +11,6 @@ public @interface CommandInfo {
 
     String command();
 
+    boolean console();
     String permission();
 }

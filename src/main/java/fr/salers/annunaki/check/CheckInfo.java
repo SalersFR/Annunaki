@@ -9,9 +9,9 @@ import java.lang.annotation.Target;
 @Target(ElementType.TYPE)
 public @interface CheckInfo {
 
-    String type();
-
     String name();
+
+    String type();
 
     String description();
 

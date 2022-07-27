@@ -18,8 +18,8 @@ import java.util.Locale;
  * made on dev.annunaki.anticheat.check.impl.autoclicker
  */
 @CheckInfo(
-        type = "Autoclicker",
-        name = "D",
+        type = "D",
+        name = "Autoclicker",
         description = "Combined autoclicker check.",
         experimental = false,
         maxVl = -1,
