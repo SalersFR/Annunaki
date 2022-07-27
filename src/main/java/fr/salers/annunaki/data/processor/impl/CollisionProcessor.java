@@ -82,8 +82,6 @@ public class CollisionProcessor extends Processor {
 
             boundingBox = new AxisAlignedBB(loc.getX(), loc.getY(), loc.getZ());
 
-            boundingBox.expand(0, -1.0E-3, 0);
-
             horizontalCollisionBox = collisionBox.expand(0.1, 1.0E-3, 0.01);
 
             bonkingBoundingBox = new SimpleCollisionBox(loc).expand(0, 0, -1.81, 0.01, 0, 0);
