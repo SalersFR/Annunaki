@@ -26,3 +26,4 @@ fr.salers.annunaki.check.impl.strafe.StrafeA
 fr.salers.annunaki.check.impl.timer.TimerA
 fr.salers.annunaki.check.impl.timer.TimerB
 fr.salers.annunaki.check.impl.velocity.VelocityA
+fr.salers.annunaki.check.impl.velocity.VelocityB
