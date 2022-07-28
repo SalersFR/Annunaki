@@ -23,7 +23,7 @@ public enum ClientVersion {
 	@Setter
 	boolean bedrock = false;
 
-	int protocol, intVersion;
+	final int protocol, intVersion;
 
 	ClientVersion(String string, int protocolVersion, int version) {
 		this.version = string;

@@ -11,6 +11,6 @@ public @interface CommandInfo {
 
     String command();
 
-    boolean console();
-    String permission();
+    boolean console() default false;
+    String permission() default "annuaki.command.default";
 }

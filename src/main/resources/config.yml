@@ -8,11 +8,12 @@ commands:
     &7- &d/annunaki banwave
     &7- &d/annunaki debug
     &7- &d/annunaki reload
+    &7- &d/annunaki settings
   alerts-enabled: '&aAlerts are now enabled!'
   alerts-disabled: '&cAlerts are now disabled!'
 
 checks:
-  alert: '&5Annunaki &7// &d%player% &7failed &d%type% (%name%)%experimental% &5x%vl%'
+  alert: '&5Annunaki &7// &d%player% &7failed &d%name% (%type%)%experimental% &5x%vl%'
   hover: |
     &d%description%
 

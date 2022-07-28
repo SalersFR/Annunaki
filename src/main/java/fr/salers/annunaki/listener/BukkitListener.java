@@ -11,11 +11,18 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.messaging.PluginMessageListener;
 
+import java.lang.reflect.InvocationTargetException;
+
 public class BukkitListener implements Listener, PluginMessageListener {
 
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
         Annunaki.getInstance().getPlayerDataManager().add(event.getPlayer());
+        if(Annunaki.getInstance().getServerVersion().getVersion() < 13) {
+            addChannel(event.getPlayer(), "MC|BRAND");
+        } else {
+            addChannel(event.getPlayer(), "minecraft:brand");
+        }
     }
 
     @EventHandler
@@ -25,10 +32,16 @@ public class BukkitListener implements Listener, PluginMessageListener {
 
     @EventHandler
     public void onInvClick(final InventoryClickEvent event) {
-        final PlayerData data = new PlayerData((Player) event.getWhoClicked());
-        data.getGuiOpen().handleClickEvent(event);
+        if(event.getWhoClicked() instanceof Player) {
+            final PlayerData data = Annunaki.getInstance().getPlayerDataManager().get((Player) event.getWhoClicked());
 
-        event.setCancelled(true);
+            if (data.getGuiOpen() != null) {
+                if (event.getClickedInventory().getName().equalsIgnoreCase(data.getGuiOpen().getInventory().getName())) {
+                    data.getGuiOpen().handleClickEvent(event);
+                    event.setCancelled(true);
+                }
+            }
+        }
     }
 
     @Override
@@ -55,6 +68,15 @@ public class BukkitListener implements Listener, PluginMessageListener {
         } catch(Exception e) {
             e.printStackTrace();
             player.kickPlayer("Could not determine your client.");
+        }
+    }
+
+    private void addChannel(final Player player, final String channel) {
+        try {
+            player.getClass().getMethod("addChannel", String.class).invoke(player, channel);
+        } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException
+                 | SecurityException e) {
+            e.printStackTrace();
         }
     }
 }

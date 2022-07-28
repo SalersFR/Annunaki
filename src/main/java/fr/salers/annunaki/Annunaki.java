@@ -8,6 +8,7 @@ import fr.salers.annunaki.listener.BukkitListener;
 import fr.salers.annunaki.listener.PacketEventsInListener;
 import fr.salers.annunaki.listener.PacketEventsOutListener;
 import fr.salers.annunaki.manager.*;
+import fr.salers.annunaki.util.version.ServerVersion;
 import io.github.retrooper.packetevents.factory.spigot.SpigotPacketEventsBuilder;
 import lombok.Getter;
 import org.bukkit.Bukkit;
@@ -24,6 +25,7 @@ public class Annunaki extends JavaPlugin {
     private final NmsManager nmsManager = new NmsManager();
     private final TaskManager taskManager = new TaskManager();
 
+    private ServerVersion serverVersion;
 
     private final CheckConfig checkConfig = new CheckConfig();
 
@@ -47,10 +49,19 @@ public class Annunaki extends JavaPlugin {
                 .bStats(true);
 
         PacketEvents.getAPI().load();
+
+        serverVersion = ServerVersion.get();
     }
 
     @Override
     public void onEnable() {
+        if (serverVersion == ServerVersion.UNSUPPORTED) {
+            Bukkit.getConsoleSender().sendMessage(
+                    "Your server version is unsupported! Please use a server version between 1.8 and 1.19");
+            Bukkit.getPluginManager().disablePlugin(instance);
+            return;
+        }
+
         saveDefaultConfig();
 
         try {
@@ -64,7 +75,17 @@ public class Annunaki extends JavaPlugin {
 
         getCommand("annunaki").setExecutor(new BaseCommand());
 
-        Bukkit.getPluginManager().registerEvents(new BukkitListener(), this);
+        BukkitListener listener = new BukkitListener();
+
+        Bukkit.getPluginManager().registerEvents(listener, this);
+
+        if(serverVersion.getVersion() < 13) {
+            Bukkit.getMessenger().registerIncomingPluginChannel(this, "MC|Brand", listener);
+        } else {
+            Bukkit.getMessenger().registerIncomingPluginChannel(this, "minecraft:brand", listener);
+        }
+
+        Bukkit.getMessenger().registerIncomingPluginChannel(this, "", listener);
 
         PacketEvents.getAPI().getEventManager()
                 .registerListeners(new PacketEventsInListener(), new PacketEventsOutListener());

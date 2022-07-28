@@ -36,8 +36,7 @@ public class AimC extends Check {
             if (Math.abs(rotationProcessor.getDeltaYaw()) > 0 &&
                     Math.abs(rotationProcessor.getDeltaPitch()) > 0 &&
                     rotationProcessor.getAccelYaw() > 1.025 &&
-                    rotationProcessor.getAccelYaw() < 17.5
-            ) {
+                    rotationProcessor.getAccelYaw() < 17.5) {
 
                 final double gcdPitch = MathUtil.getGcd(rotationProcessor.getDeltaPitch(), rotationProcessor.getLastDeltaPitch());
                 final double gcdYaw = MathUtil.getGcd(rotationProcessor.getDeltaYaw(), rotationProcessor.getLastDeltaYaw());

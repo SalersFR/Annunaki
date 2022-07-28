@@ -2,6 +2,7 @@ package fr.salers.annunaki.util.version;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import org.bukkit.Bukkit;
 
 @AllArgsConstructor
 @Getter
@@ -11,4 +12,10 @@ public enum ServerVersion {
 
 	final int version;
 
+	public static ServerVersion get() {
+		String ver = Bukkit.getVersion();
+
+		// TODO: Simplify this there is a much more readable way of doing it.
+		return ver.contains("1.8") ? EIGHT : ver.contains("1.9") ? NINE : ver.contains("1.10") ? TEN : ver.contains("1.11") ? ELEVEN : ver.contains("1.12") ? TWELVE : ver.contains("1.13") ? THIRTEEN : ver.contains("1.14") ? FOURTEEN : ver.contains("1.15") ? FIFTEEN : ver.contains("1.16") ? SIXTEEN : ver.contains("1.17") ? SEVENTEEN : ver.contains("1.18") ? EIGHTEEN : ver.contains("1.19") ? NINETEEN : UNSUPPORTED;
+	}
 }

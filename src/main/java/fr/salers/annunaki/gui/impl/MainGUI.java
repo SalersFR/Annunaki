@@ -13,7 +13,7 @@ import org.bukkit.inventory.Inventory;
 public class MainGUI extends AbstractGUI {
 
     public MainGUI() {
-        super(Bukkit.createInventory(null, 27, "§dAnnunaki - Main GUI"));
+        super(Bukkit.createInventory(null, 27, "§dAnnunaki"));
     }
 
     @Override

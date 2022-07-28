@@ -75,7 +75,7 @@ public abstract class Check {
                 .filter(PlayerData::isAlerts)
                 .forEach(data -> data.getPlayer().spigot().sendMessage(alert));
 
-        if(!data.getPlayer().hasPermission("ptsd.bypass.punishment")
+        if(!data.getPlayer().hasPermission("annunaki.bypass.punishment")
                 && configInfo.isPunish() && punishCommands.containsKey(vl)) {
             Bukkit.dispatchCommand(Bukkit.getConsoleSender(), punishCommands.get(vl).replace("%player%", data.getPlayer().getName()).replace("%check%", checkInfo.name()));
         }
@@ -91,8 +91,8 @@ public abstract class Check {
         info.setMaxVl((int) Annunaki.getInstance().getCheckConfig().get(checkInfo, "max-vl", checkInfo.maxVl()));
         info.setPunish(((boolean) Annunaki.getInstance().getCheckConfig().get(checkInfo, "punish", checkInfo.punish())));
 
-        for(String s : Annunaki.getInstance().getCheckConfig().getStringList(checkInfo.type().toLowerCase()
-                + "." + checkInfo.name().toLowerCase() + ".punish-commands")) {
+        for(String s : Annunaki.getInstance().getCheckConfig().getStringList(checkInfo.name().toLowerCase()
+                + "." + checkInfo.type().toLowerCase() + ".punish-commands")) {
             String[] split = s.split(":");
             punishCommands.put(Integer.valueOf(split[0]), s.split(":")[1]);
         }

@@ -60,7 +60,7 @@ public abstract class AbstractGUI {
     }
 
     protected void setItems() {
-        items.stream().forEach(simpleItem -> this.inventory.setItem(simpleItem.getSlot(), simpleItem.create()));
+        items.forEach(simpleItem -> this.inventory.setItem(simpleItem.getSlot(), simpleItem.create()));
 
     }
 

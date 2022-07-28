@@ -64,8 +64,8 @@ public class CheckConfig extends YamlConfiguration {
     }
 
     public Object get(CheckInfo checkInfo, String path, Object value) {
-        path = checkInfo.type().toLowerCase()
-                + "." + checkInfo.name().toLowerCase()
+        path = checkInfo.name().toLowerCase()
+                + "." + checkInfo.type().toLowerCase()
                 + "." + path;
 
         if (contains(path)) {
