@@ -20,6 +20,7 @@ fr\salers\annunaki\data\processor\impl\entity\TrackedEntity.class
 fr\salers\annunaki\check\impl\speed\SpeedA.class
 fr\salers\annunaki\util\mc\MovingObjectPosition$MovingObjectType.class
 fr\salers\annunaki\util\lag\ConfirmedPotionEffect.class
+fr\salers\annunaki\manager\GuiManager.class
 fr\salers\annunaki\task\Task.class
 fr\salers\annunaki\util\MathUtil.class
 fr\salers\annunaki\check\impl\timer\TimerA.class
@@ -36,17 +37,18 @@ fr\salers\annunaki\util\mc\MovingObjectPosition.class
 fr\salers\annunaki\data\processor\impl\ActionProcessor$1.class
 fr\salers\annunaki\data\processor\impl\TransactionProcessor.class
 fr\salers\annunaki\data\PlayerData.class
+fr\salers\annunaki\gui\impl\MainGUI.class
 fr\salers\annunaki\util\mc\BlockPos$2$1.class
 fr\salers\annunaki\check\impl\reach\ReachB.class
 fr\salers\annunaki\check\ConfigInfo.class
 fr\salers\annunaki\util\world\WrappedBlock.class
 fr\salers\annunaki\data\processor\impl\CollisionProcessor.class
 fr\salers\annunaki\nms\impl\NmsImplementation8.class
-fr\salers\annunaki\check\impl\velocity\VelocityB.class
 fr\salers\annunaki\check\impl\badpackets\BadPacketsA$1.class
 fr\salers\annunaki\data\processor\impl\RotationProcessor.class
 fr\salers\annunaki\check\impl\fly\FlyA.class
 fr\salers\annunaki\check\impl\killaura\KillAuraB.class
+fr\salers\annunaki\gui\AbstractGUI.class
 fr\salers\annunaki\data\processor\impl\entity\EntityMovement.class
 fr\salers\annunaki\config\CheckConfig.class
 fr\salers\annunaki\command\impl\DebugCommand.class
@@ -68,6 +70,7 @@ fr\salers\annunaki\util\mc\EnumFacing$AxisDirection.class
 fr\salers\annunaki\check\impl\reach\ReachA.class
 fr\salers\annunaki\listener\PacketEventsInListener.class
 fr\salers\annunaki\util\lag\ConfirmedVelocity.class
+fr\salers\annunaki\gui\item\SimpleItem.class
 fr\salers\annunaki\manager\CheckManager.class
 fr\salers\annunaki\data\processor\impl\VelocityProcessor.class
 fr\salers\annunaki\nms\NmsImplementation.class
@@ -77,6 +80,7 @@ fr\salers\annunaki\command\impl\AlertsCommand.class
 fr\salers\annunaki\util\mc\IStringSerializable.class
 fr\salers\annunaki\check\CheckInfo.class
 fr\salers\annunaki\Annunaki.class
+fr\salers\annunaki\gui\impl\checks\ChecksMainGUI.class
 fr\salers\annunaki\util\world\SimpleCollisionBox.class
 fr\salers\annunaki\check\impl\badpackets\BadPacketsB.class
 fr\salers\annunaki\data\processor\impl\ActionProcessor.class
@@ -88,6 +92,7 @@ fr\salers\annunaki\check\impl\fly\FlyB.class
 fr\salers\annunaki\check\impl\motion\MotionB.class
 fr\salers\annunaki\listener\BukkitListener.class
 META-INF\services\fr.salers.annunaki.check.Check
+fr\salers\annunaki\command\impl\SettingsCommand.class
 fr\salers\annunaki\util\mc\BlockPos$1.class
 fr\salers\annunaki\util\mc\BlockPos$MutableBlockPos.class
 fr\salers\annunaki\util\lag\ConfirmedPotionStatus.class

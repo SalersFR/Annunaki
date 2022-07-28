@@ -6,6 +6,7 @@ import fr.salers.annunaki.util.version.ClientVersion;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.messaging.PluginMessageListener;
@@ -20,6 +21,14 @@ public class BukkitListener implements Listener, PluginMessageListener {
     @EventHandler
     public void onQuit(PlayerQuitEvent event) {
         Annunaki.getInstance().getPlayerDataManager().remove(event.getPlayer());
+    }
+
+    @EventHandler
+    public void onInvClick(final InventoryClickEvent event) {
+        final PlayerData data = new PlayerData((Player) event.getWhoClicked());
+        data.getGuiOpen().handleClickEvent(event);
+
+        event.setCancelled(true);
     }
 
     @Override

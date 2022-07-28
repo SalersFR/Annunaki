@@ -1,5 +1,6 @@
 package fr.salers.annunaki.gui.impl;
 
+import fr.salers.annunaki.Annunaki;
 import fr.salers.annunaki.gui.AbstractGUI;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -12,11 +13,12 @@ import org.bukkit.inventory.Inventory;
 public class MainGUI extends AbstractGUI {
 
     public MainGUI() {
-        super(Bukkit.createInventory(null, 17, "§dAnnunaki - Main GUI"));
+        super(Bukkit.createInventory(null, 27, "§dAnnunaki - Main GUI"));
     }
 
     @Override
     public void createItems() {
-        createItem(Material.ITEM_FRAME, () -> Bukkit.broadcastMessage("L"), "", null);
+        createItem(Material.ITEM_FRAME, (player) -> Annunaki.getInstance().getPlayerDataManager().get(player).getGuiManager()
+                .getMainGUI().display(player), "§cChecks", null, 11);
     }
 }

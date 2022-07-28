@@ -1,19 +1,18 @@
 package fr.salers.annunaki.data;
 
 
-import fr.salers.annunaki.Annunaki;
 import fr.salers.annunaki.check.Check;
-import fr.salers.annunaki.config.Config;
 import fr.salers.annunaki.data.processor.Processor;
 import fr.salers.annunaki.data.processor.impl.*;
+import fr.salers.annunaki.gui.AbstractGUI;
 import fr.salers.annunaki.manager.CheckManager;
+import fr.salers.annunaki.manager.GuiManager;
 import fr.salers.annunaki.util.Pair;
 import fr.salers.annunaki.util.mc.AxisAlignedBB;
 import fr.salers.annunaki.util.version.ClientVersion;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
@@ -36,7 +35,11 @@ public class PlayerData {
     private final CollisionProcessor collisionProcessor = new CollisionProcessor(this);
     private final StatusProcessor statusProcessor = new StatusProcessor(this);
     private final TeleportProcessor teleportProcessor = new TeleportProcessor(this);
+    @Setter
+    private AbstractGUI guiOpen;
     // private final EntityProcessor entityProcessor = new EntityProcessor(this);
+
+    private final GuiManager guiManager = new GuiManager();
 
     private List<Pair<AxisAlignedBB, Long>> targetLocs = new ArrayList<>();
 

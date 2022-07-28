@@ -7,10 +7,7 @@ import fr.salers.annunaki.config.CheckConfig;
 import fr.salers.annunaki.listener.BukkitListener;
 import fr.salers.annunaki.listener.PacketEventsInListener;
 import fr.salers.annunaki.listener.PacketEventsOutListener;
-import fr.salers.annunaki.manager.NmsManager;
-import fr.salers.annunaki.manager.PlayerDataManager;
-import fr.salers.annunaki.manager.TaskManager;
-import fr.salers.annunaki.manager.ViaManager;
+import fr.salers.annunaki.manager.*;
 import io.github.retrooper.packetevents.factory.spigot.SpigotPacketEventsBuilder;
 import lombok.Getter;
 import org.bukkit.Bukkit;
@@ -26,6 +23,7 @@ public class Annunaki extends JavaPlugin {
     private final PlayerDataManager playerDataManager = new PlayerDataManager();
     private final NmsManager nmsManager = new NmsManager();
     private final TaskManager taskManager = new TaskManager();
+
 
     private final CheckConfig checkConfig = new CheckConfig();
 

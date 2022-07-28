@@ -1,12 +1,16 @@
 package fr.salers.annunaki.gui;
 
+import fr.salers.annunaki.Annunaki;
 import fr.salers.annunaki.gui.item.SimpleItem;
 import lombok.Getter;
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 /**
  * @author Salers
@@ -24,16 +28,39 @@ public abstract class AbstractGUI {
         items = new ArrayList<>();
 
         createItems();
+        setItems();
     }
 
-    public SimpleItem createItem(final Material type, final Runnable runnable, final String name, final List<String> lore) {
-        return new SimpleItem(type, runnable).setName(name).setLore(lore);
-
+    public SimpleItem createItem(final Material type, final Consumer<Player> runnable, final String name, final List<String> lore, final int slot) {
+        return addItem(new SimpleItem(type, runnable, slot).setName(name).setLore(lore));
 
     }
 
-    public void addItem(final SimpleItem simpleItem) {
+    public SimpleItem addItem(final SimpleItem simpleItem) {
         this.items.add(simpleItem);
+        return simpleItem;
+
+    }
+
+    public void display(final Player player) {
+        Annunaki.getInstance().getPlayerDataManager().get(player).setGuiOpen(this);
+        player.openInventory(this.inventory);
+    }
+
+    public void handleClickEvent(final InventoryClickEvent event) {
+        final Player player = (Player) event.getWhoClicked();
+        final int itemId = event.getCurrentItem().getTypeId() * event.getRawSlot();
+
+        //wtf??
+        if(event.getCurrentItem().getType() == Material.AIR) return;
+
+        this.items.stream().filter(simpleItem -> simpleItem.getSalersId() == itemId).findAny().get().getClickAction().accept(player);
+
+
+    }
+
+    protected void setItems() {
+        items.stream().forEach(simpleItem -> this.inventory.setItem(simpleItem.getSlot(), simpleItem.create()));
 
     }
 
