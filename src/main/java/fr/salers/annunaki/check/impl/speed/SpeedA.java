@@ -61,7 +61,8 @@ public class SpeedA extends Check {
                 if ((!collisionProcessor.isClientOnGround() && Math.abs(jumpValue - positionProcessor.getDeltaY()) <= 0.001)
                         || (positionProcessor.getDeltaXZ() > clientMotion && (collisionProcessor.isBonkingHead() || collisionProcessor.isLastBonkingHead()))) {
                     final float yawAdd = (float) data.getRotationProcessor().getYaw() * 0.017453292F;
-                    clientMotion += Math.hypot(-(double) (MathHelper.sin(yawAdd) * 0.2F), (double) (MathHelper.cos(yawAdd) * 0.2F)) + 0.175f;
+                    clientMotion += Math.max(0.225, Math.hypot(-(double) (MathHelper.sin(yawAdd) * 0.2F),
+                            (double) (MathHelper.cos(yawAdd) * 0.2F)) + 0.02f) + 0.1f;
                 }
 
                 //in the case player took velocity we add the values to our prediction
@@ -100,13 +101,12 @@ public class SpeedA extends Check {
 
                 //actually applying these values
                 clientMotion *= friction;
-                clientMotion += moveFactorAdd * (data.getCollisionProcessor().isClientOnGround() ? 1 : 1.5F);
-
+                clientMotion += moveFactorAdd;
 
                 //the speed difference between we expect the player to move, and what he actually moved
-                final double ratio = (positionProcessor.getDeltaXZ() - clientMotion);
+                final double ratio = (positionProcessor.getDeltaXZ() / clientMotion);
 
-                if (ratio > 0.0005 && positionProcessor.getDeltaXZ() > 0.1 && data.getTeleportProcessor().getTeleportTicks() > 1) {
+                if (ratio > 1.0275 && positionProcessor.getDeltaXZ() > 0.1 && data.getTeleportProcessor().getTeleportTicks() > 1) {
                     //don't make the buffer redundant
                     buffer += buffer < 6.0 ? 1.0 : 5.0E-5;
                     if (buffer > 3.0)
