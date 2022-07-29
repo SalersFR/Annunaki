@@ -46,9 +46,6 @@ public class AimC extends Check {
                 final double fixedPitch = pitch - (pitch % gcdPitch);
                 final double pitchOffset = Math.abs(pitch - fixedPitch);
 
-                final Class<? extends Check> aimB = data.getChecks().stream().filter(check -> check.getCheckInfo().name().
-                        equalsIgnoreCase("Aim") && check.getCheckInfo().type().equalsIgnoreCase("B")).findFirst().get().getClass();
-
                 if(Double.toString(pitchOffset).contains("E") && rotationProcessor.getSensitivity() > 10) {
                     if(++buffer > 5)
                         fail("offset=" + pitchOffset);
