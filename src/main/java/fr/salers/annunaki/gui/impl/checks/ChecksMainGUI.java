@@ -1,6 +1,9 @@
 package fr.salers.annunaki.gui.impl.checks;
 
+import fr.salers.annunaki.Annunaki;
 import fr.salers.annunaki.gui.AbstractGUI;
+import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.inventory.Inventory;
 
 /**
@@ -9,12 +12,15 @@ import org.bukkit.inventory.Inventory;
  */
 public class ChecksMainGUI extends AbstractGUI {
 
-    public ChecksMainGUI(Inventory inventory) {
-        super(inventory);
+    public ChecksMainGUI() {
+        super(Bukkit.createInventory(null, 18, "§cChecks"));
     }
 
     @Override
     public void createItems() {
+        createItem(Material.DIAMOND_AXE, (player) -> Annunaki.getInstance().getPlayerDataManager().get(player).getGuiManager()
+                .getCombatChecksGUI().display(player),"§6Combat Checks", null, 11);
+
 
     }
 }

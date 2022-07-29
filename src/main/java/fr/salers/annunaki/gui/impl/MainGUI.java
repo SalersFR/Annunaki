@@ -19,6 +19,6 @@ public class MainGUI extends AbstractGUI {
     @Override
     public void createItems() {
         createItem(Material.ITEM_FRAME, (player) -> Annunaki.getInstance().getPlayerDataManager().get(player).getGuiManager()
-                .getMainGUI().display(player), "§cChecks", null, 11);
+                .getChecksMainGUI().display(player), "§cChecks", null, 11);
     }
 }

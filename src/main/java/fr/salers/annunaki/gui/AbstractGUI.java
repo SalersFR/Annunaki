@@ -56,6 +56,14 @@ public abstract class AbstractGUI {
 
         this.items.stream().filter(simpleItem -> simpleItem.getSalersId() == itemId).findAny().get().getClickAction().accept(player);
 
+        this.inventory.clear();
+        this.items.clear();
+
+        createItems();
+        setItems();
+
+        player.updateInventory();
+
 
     }
 

@@ -4,6 +4,7 @@ import fr.salers.annunaki.Annunaki;
 import fr.salers.annunaki.check.Check;
 import fr.salers.annunaki.check.CheckInfo;
 import fr.salers.annunaki.manager.CheckManager;
+import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
@@ -48,6 +49,15 @@ public class CheckConfig extends YamlConfiguration {
             Annunaki.getInstance().getLogger().log(Level.SEVERE, "Exception while loading checks.yml.");
 
             exception.printStackTrace();
+        }
+    }
+
+    public void modifyCheckStatus(final boolean enabled, final String path) {
+        this.set(path, enabled);
+        try {
+            this.load(checkConfig);
+        } catch (IOException | InvalidConfigurationException e) {
+            throw new RuntimeException(e);
         }
     }
 
