@@ -14,7 +14,7 @@ import java.util.Locale;
  * made on fr.salers.annunaki.gui.impl.checks.combat.impl
  */
 public class AimChecksGUI extends AbstractGUI {
-    
+
     public AimChecksGUI() {
         super(Bukkit.createInventory(null, 36, "§aAim Checks"));
 

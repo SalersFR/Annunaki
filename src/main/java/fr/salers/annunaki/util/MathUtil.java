@@ -75,7 +75,7 @@ public class MathUtil {
     }
 
     public static double getAbsGcd(final double a, final double b) {
-        return getGcdL((long) (EXPANDER * a), (long) (EXPANDER * b));
+        return Math.abs(getGcdL((long) (EXPANDER * a), (long) (EXPANDER * b)));
     }
 
 

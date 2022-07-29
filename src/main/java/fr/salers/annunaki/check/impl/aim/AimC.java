@@ -17,7 +17,7 @@ import org.bukkit.Bukkit;
 @CheckInfo(
         type = "C",
         name = "Aim",
-        description = "Checks for incoherent rotation values.",
+        description = "Checks for common gcd fixing methods.",
         experimental = false,
         maxVl = 50,
         punish = true
@@ -38,23 +38,18 @@ public class AimC extends Check {
                     rotationProcessor.getAccelYaw() > 1.025 &&
                     rotationProcessor.getAccelYaw() < 17.5) {
 
-                final double gcdPitch = MathUtil.getGcd(rotationProcessor.getDeltaPitch(), rotationProcessor.getLastDeltaPitch());
-                final double gcdYaw = MathUtil.getGcd(rotationProcessor.getDeltaYaw(), rotationProcessor.getLastDeltaYaw());
+                final double gcdPitch = MathUtil.getAbsGcd(rotationProcessor.getDeltaPitch(), rotationProcessor.getLastDeltaPitch()) / MathUtil.EXPANDER;
+                final double pitch = rotationProcessor.getPitch();
 
-                if (gcdYaw == 0 && gcdPitch == 0) return;
+                final double fixedPitch = pitch - (pitch % gcdPitch);
+                final double pitchOffset = Math.abs(pitch - fixedPitch);
 
-                final double yawSens = (Math.cbrt(gcdYaw / 0.8 / 0.15) - 0.2) / 0.6;
-                final double pitchSens = (Math.cbrt(gcdPitch / 0.8 / 0.15) - 0.2) / 0.6;
+                if(Double.toString(pitchOffset).contains("E")) {
+                    if(++buffer > 5)
+                        fail("offset=" + pitchOffset);
+                } else if(buffer > 0) buffer -= 0.005;
 
-                final double ratio = yawSens / pitchSens;
 
-                if (ratio > 8.75) {
-                    if (++buffer > 4)
-                        fail("ratio=" + ratio);
-                } else if (buffer > 0) buffer -= 0.05D;
-
-                if (data.getDebugging().equalsIgnoreCase("AimC"))
-                    Bukkit.broadcastMessage("ratio=" + ratio + " buffer=" + buffer);
             }
 
         }
