@@ -1,7 +1,9 @@
 package fr.salers.annunaki.gui.impl.checks.combat;
 
+import fr.salers.annunaki.Annunaki;
 import fr.salers.annunaki.gui.AbstractGUI;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 
 /**
  * @author Salers
@@ -10,11 +12,14 @@ import org.bukkit.Bukkit;
 public class CombatChecksGUI extends AbstractGUI {
 
     public CombatChecksGUI() {
-        super(Bukkit.createInventory(null, 36   , "§eCombat Checks"));
+        super(Bukkit.createInventory(null, 27   , "§eCombat Checks"));
     }
 
     @Override
     public void createItems() {
+        createItem(Material.FISHING_ROD,
+                (player) -> Annunaki.getInstance().getPlayerDataManager().get(player).getGuiManager().getAimChecksGUI().display(player)
+        , "§Aim Checks", null, 11);
 
     }
 }

@@ -13,7 +13,7 @@ import org.bukkit.inventory.Inventory;
 public class ChecksMainGUI extends AbstractGUI {
 
     public ChecksMainGUI() {
-        super(Bukkit.createInventory(null, 18, "§cChecks"));
+        super(Bukkit.createInventory(null, 27, "§cChecks"));
     }
 
     @Override

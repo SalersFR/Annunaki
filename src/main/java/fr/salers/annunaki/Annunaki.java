@@ -67,7 +67,6 @@ public class Annunaki extends JavaPlugin {
         try {
             checkConfig.setup();
         } catch (IOException e) {
-
         }
 
         nmsManager.setup();

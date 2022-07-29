@@ -7,6 +7,7 @@ import org.bukkit.Material;
 import org.bukkit.inventory.Inventory;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Locale;
 
 /**
@@ -30,7 +31,7 @@ public class AimChecksGUI extends AbstractGUI {
 
             createItem(enabled ? Material.WRITTEN_BOOK : Material.BOOK, player -> Annunaki.getInstance().
                     getCheckConfig().modifyCheckStatus(!enabled, "aim." + checks + ".enabled"), "Aim " + checks.toUpperCase(Locale.ROOT)
-                    , Arrays.asList("§dEnabled : " + enabledChar), i);
+                    , List.of("§dEnabled : " + enabled), i);
             i++;
         }
 
