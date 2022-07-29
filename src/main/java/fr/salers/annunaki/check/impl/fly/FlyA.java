@@ -77,7 +77,7 @@ public class FlyA extends Check {
                 }
             }
 
-            final double threshold = positionProcessor.isLastSentPosition() ? 0.001 : 0.03125;
+            final double threshold = positionProcessor.isLastSentPosition() ? 1.0E-7 : 0.03125;
             final boolean exempt = collisionProcessor.isInWater()
                     || collisionProcessor.isInLava()
                     || collisionProcessor.isOnClimbable()
@@ -94,10 +94,10 @@ public class FlyA extends Check {
             if (exempt || collisionProcessor.getClientAirTicks() < 3)
                 return;
 
-            if (lowestOffset > threshold)
+            if (lowestOffset > threshold) {
                 if (++buffer > 5)
                     fail("offset=" + lowestOffset + " threshold=" + threshold);
-                else if (buffer > 0) buffer -= 0.1;
+            }  else if (buffer > 0) buffer -= 0.1;
 
             if (data.getDebugging().toLowerCase(Locale.ROOT).contains("flya"))
                 Bukkit.broadcastMessage("offset=" + (float) lowestOffset);

@@ -106,13 +106,13 @@ public class SpeedA extends Check {
                 //the speed difference between we expect the player to move, and what he actually moved
                 final double ratio = (positionProcessor.getDeltaXZ() / clientMotion);
 
-                if (ratio > 1.0275 && positionProcessor.getDeltaXZ() > 0.1 && data.getTeleportProcessor().getTeleportTicks() > 1) {
+                if (ratio > 1.05 && positionProcessor.getDeltaXZ() > 0.1 && data.getTeleportProcessor().getTeleportTicks() > 1) {
                     //don't make the buffer redundant
                     buffer += buffer < 6.0 ? 1.0 : 5.0E-5;
                     if (buffer > 3.0)
                         fail("exceeded maximum predicted movement, " + (ratio * 100.0) + "% faster than normal");
 
-                } else if (buffer > 0) buffer -= 0.085D;
+                } else if (buffer > 0) buffer -= 0.05D;
 
                 if (data.getDebugging().toLowerCase(Locale.ROOT).contains("speeda"))
                     Bukkit.broadcastMessage("ratio=" + ratio + " client=" + clientMotion + " player)" + positionProcessor.getDeltaXZ());

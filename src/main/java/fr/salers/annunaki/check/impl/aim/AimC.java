@@ -9,6 +9,8 @@ import fr.salers.annunaki.util.MathUtil;
 import fr.salers.annunaki.util.PacketUtil;
 import org.bukkit.Bukkit;
 
+import java.lang.reflect.Field;
+
 /**
  * @author Salers
  * made on dev.notonweed.annunaki.check.impl.aim
@@ -44,10 +46,13 @@ public class AimC extends Check {
                 final double fixedPitch = pitch - (pitch % gcdPitch);
                 final double pitchOffset = Math.abs(pitch - fixedPitch);
 
-                if(Double.toString(pitchOffset).contains("E")) {
+                final Class<? extends Check> aimB = data.getChecks().stream().filter(check -> check.getCheckInfo().name().
+                        equalsIgnoreCase("Aim") && check.getCheckInfo().type().equalsIgnoreCase("B")).findFirst().get().getClass();
+
+                if(Double.toString(pitchOffset).contains("E") && rotationProcessor.getSensitivity() > 10) {
                     if(++buffer > 5)
                         fail("offset=" + pitchOffset);
-                } else if(buffer > 0) buffer -= 0.005;
+                } else if(buffer > 0) buffer -= 0.01;
 
 
             }

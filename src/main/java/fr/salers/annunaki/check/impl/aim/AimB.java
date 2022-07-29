@@ -32,6 +32,8 @@ import java.util.function.Consumer;
         maxVl = 50,
         punish = true
 )
+
+
 public class AimB extends Check {
 
 

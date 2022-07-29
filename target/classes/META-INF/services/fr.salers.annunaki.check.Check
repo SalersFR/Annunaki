@@ -19,6 +19,7 @@ fr.salers.annunaki.check.impl.killaura.KillAuraA
 fr.salers.annunaki.check.impl.killaura.KillAuraB
 fr.salers.annunaki.check.impl.motion.MotionA
 fr.salers.annunaki.check.impl.motion.MotionB
+fr.salers.annunaki.check.impl.motion.MotionC
 fr.salers.annunaki.check.impl.reach.ReachA
 fr.salers.annunaki.check.impl.reach.ReachB
 fr.salers.annunaki.check.impl.speed.SpeedA

@@ -69,6 +69,7 @@ fr\salers\annunaki\check\impl\badpackets\BadPacketsA.class
 fr\salers\annunaki\check\impl\autoclicker\AutoclickerD.class
 fr\salers\annunaki\util\mc\EnumFacing$AxisDirection.class
 fr\salers\annunaki\check\impl\reach\ReachA.class
+fr\salers\annunaki\check\impl\motion\MotionC.class
 fr\salers\annunaki\listener\PacketEventsInListener.class
 fr\salers\annunaki\util\lag\ConfirmedVelocity.class
 fr\salers\annunaki\gui\item\SimpleItem.class

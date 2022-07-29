@@ -13,6 +13,7 @@ import fr.salers.annunaki.check.impl.killaura.KillAuraA;
 import fr.salers.annunaki.check.impl.killaura.KillAuraB;
 import fr.salers.annunaki.check.impl.motion.MotionA;
 import fr.salers.annunaki.check.impl.motion.MotionB;
+import fr.salers.annunaki.check.impl.motion.MotionC;
 import fr.salers.annunaki.check.impl.reach.ReachA;
 import fr.salers.annunaki.check.impl.reach.ReachB;
 import fr.salers.annunaki.check.impl.speed.SpeedA;
@@ -57,6 +58,7 @@ public class CheckManager {
                 new Groundspoof(data),
                 new MotionA(data),
                 new MotionB(data),
+                new MotionC(data),
                 new FlyA(data),
                 new TimerA(data),
                 new TimerB(data)
