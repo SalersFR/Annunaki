@@ -9,15 +9,15 @@ import java.lang.annotation.Target;
 @Target(ElementType.TYPE)
 public @interface CheckInfo {
 
-    String name();
+    String name() default "change";
 
-    String type();
+    String type() default "A";
 
-    String description();
+    String description() default "Not set";
 
-    boolean experimental();
+    boolean experimental() default false;
 
-    int maxVl();
+    int maxVl() default 10;
 
-    boolean punish();
+    boolean punish() default true;
 }

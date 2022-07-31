@@ -3,7 +3,6 @@ commands:
   not-player: '&cYou must be a player to do that!'
   help: |
     &5&lAnnunaki AntiCheat
-
     &7- &d/annunaki alerts
     &7- &d/annunaki banwave
     &7- &d/annunaki debug
@@ -15,9 +14,12 @@ commands:
 checks:
   alert: '&5Annunaki &7// &d%player% &7failed &d%name% (%type%)%experimental% &5x%vl%'
   hover: |
-    &d%description%
+    &7%description%
 
-    &d%info%
+    &7Info: &d%info%
+    &7TPS: &d%tps%
+    &7Ping: &d%ping%
+    &7Version: &d%version%
   click-command: '/tp %player%'
 
 banwave:

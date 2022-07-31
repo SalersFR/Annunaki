@@ -1,10 +1,12 @@
 package fr.salers.annunaki.check;
 
+import com.github.retrooper.packetevents.PacketEvents;
 import com.github.retrooper.packetevents.event.PacketReceiveEvent;
 import com.github.retrooper.packetevents.event.PacketSendEvent;
 import fr.salers.annunaki.Annunaki;
 import fr.salers.annunaki.config.Config;
 import fr.salers.annunaki.data.PlayerData;
+import io.github.retrooper.packetevents.util.SpigotReflectionUtil;
 import lombok.Getter;
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.ComponentBuilder;
@@ -57,13 +59,13 @@ public abstract class Check {
                 .replaceAll("%type%", checkInfo.type())
                 .replaceAll("%name%", checkInfo.name())
                 .replaceAll("%experimental%", checkInfo.experimental() ? "*" : "")
-                .replaceAll("%vl%", String.valueOf(this.vl)));
+                .replaceAll("%vl%", String.valueOf(this.vl)).replaceAll("%tps%", "" +SpigotReflectionUtil.getTPS()).replaceAll("%version%", data.getVersion().getVersion()).replaceAll("%ping%", "" + data.getTransactionProcessor().getPing()));
 
         alert.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT,
                 new ComponentBuilder(
                         Config.HOVER.getAsString()
                                 .replaceAll("%description%", checkInfo.description())
-                                .replaceAll("%info%", info)
+                                .replaceAll("%info%", info).replaceAll("%tps%", "" +SpigotReflectionUtil.getTPS()).replaceAll("%version%", data.getVersion().getVersion()).replaceAll("%ping%", "" + data.getTransactionProcessor().getPing())
                 ).create()));
 
         alert.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND,

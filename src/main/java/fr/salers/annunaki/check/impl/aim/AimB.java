@@ -36,10 +36,9 @@ import java.util.function.Consumer;
 
 public class AimB extends Check {
 
+    private double deltaY, deltaXY;
 
-    private final Set<Integer> candidates = new HashSet<>();
     private int hitTicks;
-    private int s, sensitivity;
 
     public AimB(PlayerData data) {
         super(data);
@@ -49,79 +48,34 @@ public class AimB extends Check {
     @Override
     public void handle(PacketReceiveEvent event) {
         if (event.getPacketType() == PacketType.Play.Client.INTERACT_ENTITY) {
-            hitTicks = 0;
+            if(data.getActionProcessor().getAction() == WrapperPlayClientInteractEntity.InteractAction.ATTACK)
+                hitTicks = 0;
         } else if (PacketUtil.isRotation(event.getPacketType())) {
-            final RotationProcessor rotationProcessor = data.getRotationProcessor();
+            deltaXY = Math.hypot(data.getPositionProcessor().getDeltaX(), data.getPositionProcessor().getDeltaY());
 
-            final float pitch = rotationProcessor.getPitch();
-            final float lPitch = rotationProcessor.getLastPitch();
+            if(hitTicks < 6 && data.getActionProcessor().getLastTarget() != null) {
+                double[] offset = MathUtil.getOffsetFromLocation(data.getPlayer().getLocation(), data.getActionProcessor().getLastTarget().getLocation());
 
-            final float yaw = rotationProcessor.getYaw();
-            final float lYaw = rotationProcessor.getLastYaw();
+                if(Math.abs(offset[0]) > 30 || Math.abs(offset[1]) > 60) {
+                    return;
+                }
 
-            final float deltaPitch = rotationProcessor.getDeltaPitch();
+                double accel = Math.abs(deltaY - deltaXY);
 
-            if (Math.abs(rotationProcessor.getPitch()) != 90.0f) {
-                final double error = Math.max(Math.abs(pitch), Math.abs(lPitch)) * 3.814697265625E-6;
-                computeSensitivity(deltaPitch, error);
+                if(accel > 200) {
+                    buffer++;
+                } else if(accel > 150) {
+                    buffer+=0.5f;
+                } else if(buffer > 0) buffer-= 0.2f;
+
+                if(buffer > 4) {
+                    fail(String.format("d=%.4f p=%.4f b=%s yo=%.1f po=%.1f", accel, deltaXY, buffer, offset[0], offset[1]));
+                    buffer /= 2;
+                }
+
             }
-
-            final float distanceX = circularDistance(yaw, lYaw);
-            final double error = Math.max(Math.abs(yaw), Math.abs(lYaw)) * 3.814697265625E-6;
-
-            computeSensitivity(distanceX, error);
-
-            if (candidates.size() == 1) {
-                s = candidates.iterator().next();
-                sensitivity = 200 * s / 143;
-            } else {
-                sensitivity = -1;
-                forEach(candidates::add);
-            }
-
-            final double expandedGCD = MathUtil.getAbsGcd(Math.abs(rotationProcessor.getDeltaPitch()),
-                    Math.abs(rotationProcessor.getLastDeltaPitch()));
-            if(sensitivity != -1 && deltaPitch != 0 && expandedGCD < 131072L) {
-                if(++buffer > 5)
-                    fail("gcd=" + expandedGCD + " sens=" + sensitivity);
-            } else if(sensitivity == -1 && deltaPitch != 0 && expandedGCD > 50000L && distanceX > 7.5 && hitTicks < 4) {
-                if(++buffer > 10)
-                    fail("gcd=" + expandedGCD + " sens=" + sensitivity);
-            } else if(buffer > 0) buffer -= 0.25;
-
+            deltaY = deltaXY;
         } else if (PacketUtil.isFlying(event.getPacketType()))
             hitTicks++;
-    }
-
-    public void computeSensitivity(double delta, double error) {
-        final double start = delta - error;
-        final double end = delta + error;
-        forEach(s -> {
-            final double f0 = ((double) s / 142.0) * 0.6 + 0.2;
-            final double f = (f0 * f0 * f0 * 8.0) * 0.15;
-            final int pStart = (int) Math.ceil(start / f);
-            final int pEnd = (int) Math.floor(end / f);
-            if (pStart <= pEnd) {
-                for (int p = pStart; p <= pEnd; p++) {
-                    final double d = p * f;
-                    if (!(d >= start && d <= end)) {
-                        candidates.remove(s);
-                    }
-                }
-            } else {
-                candidates.remove(s);
-            }
-        });
-    }
-
-    public float circularDistance(float a, float b) {
-        float d = Math.abs(a % 360.0f - b % 360.0f);
-        return d < 180.0f ? d : 360.0f - d;
-    }
-
-    public void forEach(Consumer<Integer> consumer) {
-        for (int s = 0; s <= 143; s++) {
-            consumer.accept(s);
-        }
     }
 }

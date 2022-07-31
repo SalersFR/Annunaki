@@ -12,6 +12,7 @@ import fr.salers.annunaki.util.version.ServerVersion;
 import io.github.retrooper.packetevents.factory.spigot.SpigotPacketEventsBuilder;
 import lombok.Getter;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.IOException;
@@ -100,6 +101,10 @@ public class Annunaki extends JavaPlugin {
         }
 
         taskManager.start();
+
+        for(Player p : Bukkit.getOnlinePlayers()) {
+            playerDataManager.add(p);
+        }
     }
 
     @Override

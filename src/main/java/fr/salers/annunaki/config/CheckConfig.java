@@ -57,7 +57,7 @@ public class CheckConfig extends YamlConfiguration {
         try {
             this.load(checkConfig);
         } catch (IOException | InvalidConfigurationException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
 

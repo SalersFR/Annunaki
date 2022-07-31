@@ -35,6 +35,7 @@ public class PlayerData {
     private final CollisionProcessor collisionProcessor = new CollisionProcessor(this);
     private final StatusProcessor statusProcessor = new StatusProcessor(this);
     private final TeleportProcessor teleportProcessor = new TeleportProcessor(this);
+
     @Setter
     private AbstractGUI guiOpen;
     // private final EntityProcessor entityProcessor = new EntityProcessor(this);
@@ -52,7 +53,7 @@ public class PlayerData {
     @Setter
     private String debugging = "";
 
-    private ClientVersion version;
+    private ClientVersion version = ClientVersion.v18;
 
     public void confirm(Runnable runnable) {
         transactionProcessor.confirm(runnable);

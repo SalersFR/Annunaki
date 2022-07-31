@@ -21,6 +21,10 @@ public class TransactionProcessor extends Processor {
     private final List<Runnable> postTasks = new ArrayList<>();
     private int sent, received;
 
+    long timestamp;
+
+    int ping;
+
     public TransactionProcessor(PlayerData data) {
         super(data);
     }
@@ -40,6 +44,8 @@ public class TransactionProcessor extends Processor {
             short id = transaction.getActionId();
 
             if (id != -4516 && id != -4517) return;
+
+            ping = (int) (System.currentTimeMillis() - timestamp);
 
             ++received;
 
@@ -66,6 +72,8 @@ public class TransactionProcessor extends Processor {
             if (id != -4516 && id != -4517) return;
 
             ++sent;
+
+            timestamp = System.currentTimeMillis();
 
             if (postTasks.isEmpty()) {
                 transactionTasks.add(new ArrayList<>());

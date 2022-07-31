@@ -1,10 +1,7 @@
 package fr.salers.annunaki.command;
 
 import fr.salers.annunaki.Annunaki;
-import fr.salers.annunaki.command.impl.AlertsCommand;
-import fr.salers.annunaki.command.impl.BanwaveCommand;
-import fr.salers.annunaki.command.impl.DebugCommand;
-import fr.salers.annunaki.command.impl.SettingsCommand;
+import fr.salers.annunaki.command.impl.*;
 import fr.salers.annunaki.config.Config;
 import fr.salers.annunaki.data.PlayerData;
 import fr.salers.annunaki.util.ColorUtil;
@@ -23,7 +20,8 @@ public class BaseCommand implements CommandExecutor {
             new AlertsCommand(),
             new DebugCommand(),
             new BanwaveCommand(),
-            new SettingsCommand()
+            new SettingsCommand(),
+            new ReloadCommand()
     );
 
     // Could probably be cleaner, but this is better than what I've done before so it's good for now

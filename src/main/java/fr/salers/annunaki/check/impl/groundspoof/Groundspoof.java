@@ -36,12 +36,12 @@ public class Groundspoof extends Check {
                 boolean isOnGround = (data.getCollisionProcessor().isLastCollisionOnGround() || data.getCollisionProcessor().isCollisionOnGround()) && (data.getCollisionProcessor().isMathOnGround() || data.getCollisionProcessor().isLastMathOnGround());
 
                 if (!isOnGround &&  data.getCollisionProcessor().isClientOnGround()) {
-                    if (buffer++ >= 1) {
-                        fail("client=" + data.getCollisionProcessor().isClientOnGround() + ", server=" + false);
+                    if (buffer++ > 1) {
+                        fail("client=" + data.getCollisionProcessor().isClientOnGround() + ", server=false");
                         buffer = 0;
                     }
                 } else {
-                    buffer = Math.max(buffer - 0.1, 0);
+                    buffer = Math.max(buffer - 0.05, 0);
                 }
 
                // Bukkit.broadcastMessage("" + data.getCollisionProcessor().isCollisionOnGround());
