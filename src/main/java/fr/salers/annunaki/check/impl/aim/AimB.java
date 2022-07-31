@@ -51,7 +51,7 @@ public class AimB extends Check {
             if(data.getActionProcessor().getAction() == WrapperPlayClientInteractEntity.InteractAction.ATTACK)
                 hitTicks = 0;
         } else if (PacketUtil.isRotation(event.getPacketType())) {
-            deltaXY = Math.hypot(data.getPositionProcessor().getDeltaX(), data.getPositionProcessor().getDeltaY());
+            deltaXY = Math.hypot(getExpiermentalDeltaX(), getExpiermentalDeltaY());
 
             if(hitTicks < 6 && data.getActionProcessor().getLastTarget() != null) {
                 double[] offset = MathUtil.getOffsetFromLocation(data.getPlayer().getLocation(), data.getActionProcessor().getLastTarget().getLocation());
@@ -77,5 +77,23 @@ public class AimB extends Check {
             deltaY = deltaXY;
         } else if (PacketUtil.isFlying(event.getPacketType()))
             hitTicks++;
+    }
+
+    public float getExpiermentalDeltaX() {
+        float deltaYaw = data.getRotationProcessor().getDeltaYaw();
+        float sens = data.getRotationProcessor().getSensitivity();
+        float f = sens * 0.6f + .2f;
+        float calc = f * f * f * 8;
+
+        return deltaYaw / (calc * .15f);
+    }
+
+    public float getExpiermentalDeltaY() {
+        float deltaPitch = data.getRotationProcessor().getDeltaPitch();
+        float sens = data.getRotationProcessor().getSensitivity();
+        float f = sens * 0.6f + .2f;
+        float calc = f * f * f * 8;
+
+        return deltaPitch / (calc * .15f);
     }
 }

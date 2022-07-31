@@ -2,6 +2,7 @@ package fr.salers.annunaki.check.impl.aim;
 
 import com.github.retrooper.packetevents.event.PacketReceiveEvent;
 import com.github.retrooper.packetevents.protocol.packettype.PacketType;
+import com.github.retrooper.packetevents.wrapper.play.client.WrapperPlayClientInteractEntity;
 import fr.salers.annunaki.check.Check;
 import fr.salers.annunaki.check.CheckInfo;
 import fr.salers.annunaki.data.PlayerData;
@@ -58,7 +59,8 @@ public class AimA extends Check {
             }
 
         } else if (event.getPacketType() == PacketType.Play.Client.INTERACT_ENTITY) {
-            hitTicks = 0;
+            if(data.getActionProcessor().getAction() == WrapperPlayClientInteractEntity.InteractAction.ATTACK)
+                hitTicks = 0;
         } else if (PacketUtil.isFlying(event.getPacketType())) {
             hitTicks++;
         }
