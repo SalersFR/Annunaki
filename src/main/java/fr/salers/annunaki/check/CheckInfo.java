@@ -20,4 +20,6 @@ public @interface CheckInfo {
     int maxVl() default 10;
 
     boolean punish() default true;
+
+    boolean enabled() default true;
 }

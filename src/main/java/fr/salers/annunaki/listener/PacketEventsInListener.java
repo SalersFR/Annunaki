@@ -25,7 +25,7 @@ public class PacketEventsInListener extends PacketListenerAbstract {
 
         data.getProcessors().forEach(processor -> processor.handlePre(event));
 
-        data.getChecks().forEach(check -> check.handle(event));
+        data.getChecks().stream().filter(c -> c.getConfigInfo().isEnabled()).forEach(c -> c.handle(event));
 
         data.getProcessors().forEach(processor -> processor.handlePost(event));
     }

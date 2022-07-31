@@ -7,6 +7,6 @@ import lombok.Setter;
 @Setter
 public class ConfigInfo {
 
-    private boolean punish;
+    private boolean punish, enabled;
     private int maxVl;
 }

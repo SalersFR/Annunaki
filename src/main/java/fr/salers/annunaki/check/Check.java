@@ -29,13 +29,12 @@ public abstract class Check {
     protected double buffer = -1;
     private int vl;
 
-    private HashMap<Integer, String> punishCommands;
+    private HashMap<Integer, String> punishCommands= new HashMap<>();
 
     public Check(final PlayerData data) {
         this.data = data;
         checkInfo = getClass().getAnnotation(CheckInfo.class);
         configInfo = loadConfigInfo();
-        punishCommands = new HashMap<>();
     }
 
     public void handle(PacketReceiveEvent event) {
@@ -92,6 +91,7 @@ public abstract class Check {
 
         info.setMaxVl((int) Annunaki.getInstance().getCheckConfig().get(checkInfo, "max-vl", checkInfo.maxVl()));
         info.setPunish(((boolean) Annunaki.getInstance().getCheckConfig().get(checkInfo, "punish", checkInfo.punish())));
+        info.setEnabled(((boolean) Annunaki.getInstance().getCheckConfig().get(checkInfo, "enabled", checkInfo.enabled())));
 
         for(String s : Annunaki.getInstance().getCheckConfig().getStringList(checkInfo.name().toLowerCase()
                 + "." + checkInfo.type().toLowerCase() + ".punish-commands")) {

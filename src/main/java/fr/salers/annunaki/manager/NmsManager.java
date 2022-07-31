@@ -17,8 +17,6 @@ public class NmsManager {
         String version = Bukkit.getServer().getClass().getPackage()
                 .getName().replace("org.bukkit.craftbukkit.", "");
 
-        Bukkit.broadcastMessage(version);
-
         switch (version) {
             case "v1_8_R3":
                 nmsImplementation = new NmsImplementation8();
