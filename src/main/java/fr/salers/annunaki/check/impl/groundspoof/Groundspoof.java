@@ -44,7 +44,9 @@ public class Groundspoof extends Check {
                     buffer = Math.max(buffer - 0.05, 0);
                 }
 
-               // Bukkit.broadcastMessage("" + data.getCollisionProcessor().isCollisionOnGround());
+               Bukkit.broadcastMessage("" + data.getCollisionProcessor().isCollisionOnGround());
+            } else {
+                Bukkit.broadcastMessage("exempt");
             }
         }
     }

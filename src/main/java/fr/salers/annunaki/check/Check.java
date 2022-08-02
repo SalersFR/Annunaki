@@ -58,7 +58,10 @@ public abstract class Check {
                 .replaceAll("%type%", checkInfo.type())
                 .replaceAll("%name%", checkInfo.name())
                 .replaceAll("%experimental%", checkInfo.experimental() ? "*" : "")
-                .replaceAll("%vl%", String.valueOf(this.vl)).replaceAll("%tps%", "" +SpigotReflectionUtil.getTPS()).replaceAll("%version%", data.getVersion().getVersion()).replaceAll("%ping%", "" + data.getTransactionProcessor().getPing()));
+                .replaceAll("%vl%", String.valueOf(this.vl))
+                .replaceAll("%tps%", "" +SpigotReflectionUtil.getTPS())
+                .replaceAll("%version%", data.getVersion().getVersion())
+                .replaceAll("%ping%", "" + data.getTransactionProcessor().getPing()));
 
         alert.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT,
                 new ComponentBuilder(
@@ -80,8 +83,6 @@ public abstract class Check {
                 && configInfo.isPunish() && punishCommands.containsKey(vl)) {
             Bukkit.dispatchCommand(Bukkit.getConsoleSender(), punishCommands.get(vl).replace("%player%", data.getPlayer().getName()).replace("%check%", checkInfo.name()));
         }
-
-        // TODO: banwaves
 
         // TODO: log in database
     }
