@@ -4,14 +4,11 @@ import com.github.retrooper.packetevents.event.PacketReceiveEvent;
 import com.github.retrooper.packetevents.protocol.packettype.PacketType;
 import fr.salers.annunaki.check.Check;
 import fr.salers.annunaki.check.CheckInfo;
-import fr.salers.annunaki.data.PlayerData;
 import fr.salers.annunaki.util.ClickingStats;
 import fr.salers.annunaki.util.PacketUtil;
-import org.bukkit.Bukkit;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Locale;
 
 /**
  * @author Salers
@@ -30,12 +27,8 @@ public class AutoclickerE extends Check {
 
     private int lastOutliers;
 
-    private List<Integer> delays = new LinkedList<>();
+    private final List<Integer> delays = new LinkedList<>();
     private int updates;
-
-    public AutoclickerE(PlayerData data) {
-        super(data);
-    }
 
     @Override
     public void handle(PacketReceiveEvent event) {
@@ -58,8 +51,7 @@ public class AutoclickerE extends Check {
                         fail("ent=" + entropy + " skew=" + skewness + " std=" + std + " kurt=" + kurtosis + " outs=" + outliers);
                 } else if (buffer > 0) buffer -= 0.025D;
 
-                if (data.getDebugging().toLowerCase(Locale.ROOT).contains("autoclickere"))
-                    Bukkit.broadcastMessage("std=" + std + " ent=" + entropy);
+                debug("std=" + std + " ent=" + entropy);
 
                 lastOutliers = outliers;
 

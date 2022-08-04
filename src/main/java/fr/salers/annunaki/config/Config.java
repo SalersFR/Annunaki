@@ -29,7 +29,9 @@ public enum Config {
     BANWAVE_ALREADY_RUNNING("banwave.command.already-running", "&dA banwave is already running"),
     BANWAVE_COMMAND_STARTED("banwave.command.started", "&dBanwave has been started!"),
     BANWAVE_NOT_RUNNING("banwave.command.not-running", "&dNo banwave is running"),
-    BANWAVE_COMMAND_STOPPED("banwave.command.stopped", "&dBanwave has been stopped!");
+    BANWAVE_COMMAND_STOPPED("banwave.command.stopped", "&dBanwave has been stopped!"),
+
+    SILENT("checks.silent", false);
 
 
     private final String path;

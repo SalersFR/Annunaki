@@ -3,7 +3,6 @@ package fr.salers.annunaki.check.impl.motion;
 import com.github.retrooper.packetevents.event.PacketReceiveEvent;
 import fr.salers.annunaki.check.Check;
 import fr.salers.annunaki.check.CheckInfo;
-import fr.salers.annunaki.data.PlayerData;
 import fr.salers.annunaki.data.processor.impl.CollisionProcessor;
 import fr.salers.annunaki.data.processor.impl.PositionProcessor;
 import fr.salers.annunaki.util.PacketUtil;
@@ -23,11 +22,6 @@ import fr.salers.annunaki.util.PacketUtil;
 )
 
 public class MotionB extends Check {
-
-    public MotionB(PlayerData data) {
-        super(data);
-    }
-
     @Override
     public void handle(PacketReceiveEvent event) {
         if(PacketUtil.isPosition(event.getPacketType())) {

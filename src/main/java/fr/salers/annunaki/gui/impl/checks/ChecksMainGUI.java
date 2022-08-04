@@ -4,7 +4,6 @@ import fr.salers.annunaki.Annunaki;
 import fr.salers.annunaki.gui.AbstractGUI;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.inventory.Inventory;
 
 /**
  * @author Salers
@@ -18,7 +17,7 @@ public class ChecksMainGUI extends AbstractGUI {
 
     @Override
     public void createItems() {
-        createItem(Material.DIAMOND_AXE, (player) -> Annunaki.getInstance().getPlayerDataManager().get(player).getGuiManager()
+        createItem(Material.DIAMOND_AXE, (player) -> Annunaki.getInstance().getPlayerManager().get(player).getGuiManager()
                 .getCombatChecksGUI().display(player),"§6Combat Checks", null, 11);
 
 

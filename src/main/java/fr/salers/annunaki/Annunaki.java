@@ -22,13 +22,15 @@ public class Annunaki extends JavaPlugin {
 
     private static Annunaki instance;
 
-    private final PlayerDataManager playerDataManager = new PlayerDataManager();
+    private final PlayerManager playerManager = new PlayerManager();
     private final NmsManager nmsManager = new NmsManager();
     private final TaskManager taskManager = new TaskManager();
 
     private ServerVersion serverVersion;
 
     private final CheckConfig checkConfig = new CheckConfig();
+
+    private final CheckManager checkManager = new CheckManager();
 
     private final BanwaveManager banwaveManager = new BanwaveManager();
 
@@ -68,6 +70,7 @@ public class Annunaki extends JavaPlugin {
         try {
             checkConfig.setup();
         } catch (IOException e) {
+            throw new RuntimeException(e);
         }
 
         nmsManager.setup();
@@ -103,7 +106,7 @@ public class Annunaki extends JavaPlugin {
         taskManager.start();
 
         for(Player p : Bukkit.getOnlinePlayers()) {
-            playerDataManager.add(p);
+            playerManager.add(p);
         }
     }
 

@@ -19,7 +19,7 @@ public class PacketEventsInListener extends PacketListenerAbstract {
 
         if (player == null) return;
 
-        PlayerData data = Annunaki.getInstance().getPlayerDataManager().get(player);
+        PlayerData data = Annunaki.getInstance().getPlayerManager().get(player);
 
         if (data == null) return;
 

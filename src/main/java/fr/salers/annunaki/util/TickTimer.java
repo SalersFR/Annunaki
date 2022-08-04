@@ -1,7 +1,6 @@
 package fr.salers.annunaki.util;
 
 import lombok.Getter;
-import lombok.Setter;
 
 /**
  * @author Salers

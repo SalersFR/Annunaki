@@ -29,6 +29,7 @@ public class ActionProcessor extends Processor {
     private WrapperPlayClientInteractEntity.InteractAction action;
 
     private int lastBlockPlaceId;
+    private int attackTicks;
 
     public ActionProcessor(PlayerData data) {
         super(data);
@@ -72,15 +73,18 @@ public class ActionProcessor extends Processor {
         } else if (PacketUtil.isFlying(event.getPacketType())) {
             placeTicks++;
             digTicks++;
+            attackTicks++;
             sentSneak = sentSprint = false;
         } else if (event.getPacketType() == PacketType.Play.Client.INTERACT_ENTITY) {
             final WrapperPlayClientInteractEntity wrapper = new WrapperPlayClientInteractEntity(event);
 
             action = wrapper.getAction();
 
-            if (wrapper.getAction() == WrapperPlayClientInteractEntity.InteractAction.ATTACK)
+            if (wrapper.getAction() == WrapperPlayClientInteractEntity.InteractAction.ATTACK) {
                 lastTarget = data.getPlayer().getWorld().getEntities().stream().filter(entity -> entity.getEntityId()
                         == wrapper.getEntityId()).findAny().orElse(null);
+                attackTicks = 0;
+            }
         }
     }
 }

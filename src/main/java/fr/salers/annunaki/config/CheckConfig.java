@@ -31,7 +31,7 @@ public class CheckConfig extends YamlConfiguration {
         try {
             load(checkConfig);
 
-            CheckManager cm = new CheckManager(null);
+            CheckManager cm = new CheckManager();
             for(Check c : cm.getChecks()) {
                 if(!isSet(c.getCheckInfo().name().toLowerCase())) {
                     String path = c.getCheckInfo().name().toLowerCase() + "." + c.getCheckInfo().type().toLowerCase();

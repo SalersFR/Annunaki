@@ -4,9 +4,7 @@ import fr.salers.annunaki.Annunaki;
 import fr.salers.annunaki.gui.AbstractGUI;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.inventory.Inventory;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 

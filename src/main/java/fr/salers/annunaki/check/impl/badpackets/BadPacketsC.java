@@ -4,7 +4,6 @@ import com.github.retrooper.packetevents.event.PacketReceiveEvent;
 import com.github.retrooper.packetevents.protocol.packettype.PacketType;
 import fr.salers.annunaki.check.Check;
 import fr.salers.annunaki.check.CheckInfo;
-import fr.salers.annunaki.data.PlayerData;
 import fr.salers.annunaki.data.processor.impl.ActionProcessor;
 
 /**
@@ -21,10 +20,6 @@ import fr.salers.annunaki.data.processor.impl.ActionProcessor;
         punish = true
 )
 public class BadPacketsC extends Check {
-
-    public BadPacketsC(PlayerData data) {
-        super(data);
-    }
 
     @Override
     public void handle(PacketReceiveEvent event) {

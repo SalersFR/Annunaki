@@ -4,7 +4,6 @@ import com.github.retrooper.packetevents.event.PacketReceiveEvent;
 import com.github.retrooper.packetevents.protocol.packettype.PacketType;
 import fr.salers.annunaki.check.Check;
 import fr.salers.annunaki.check.CheckInfo;
-import fr.salers.annunaki.data.PlayerData;
 import fr.salers.annunaki.util.MathUtil;
 import fr.salers.annunaki.util.PacketUtil;
 
@@ -27,11 +26,7 @@ import java.util.LinkedList;
 public class KillAuraA extends Check {
 
     private long lastFlying;
-    private Deque<Long> delays = new LinkedList<>();
-
-    public KillAuraA(PlayerData data) {
-        super(data);
-    }
+    private final Deque<Long> delays = new LinkedList<>();
 
     @Override
     public void handle(PacketReceiveEvent event) {

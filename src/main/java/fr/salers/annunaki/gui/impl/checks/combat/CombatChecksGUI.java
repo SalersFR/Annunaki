@@ -18,7 +18,7 @@ public class CombatChecksGUI extends AbstractGUI {
     @Override
     public void createItems() {
         createItem(Material.FISHING_ROD,
-                (player) -> Annunaki.getInstance().getPlayerDataManager().get(player).getGuiManager().getAimChecksGUI().display(player)
+                (player) -> Annunaki.getInstance().getPlayerManager().get(player).getGuiManager().getAimChecksGUI().display(player)
         , "§Aim Checks", null, 11);
 
     }

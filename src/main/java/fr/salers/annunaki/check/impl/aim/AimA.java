@@ -5,7 +5,6 @@ import com.github.retrooper.packetevents.protocol.packettype.PacketType;
 import com.github.retrooper.packetevents.wrapper.play.client.WrapperPlayClientInteractEntity;
 import fr.salers.annunaki.check.Check;
 import fr.salers.annunaki.check.CheckInfo;
-import fr.salers.annunaki.data.PlayerData;
 import fr.salers.annunaki.data.processor.impl.RotationProcessor;
 import fr.salers.annunaki.util.MathUtil;
 import fr.salers.annunaki.util.PacketUtil;
@@ -26,10 +25,6 @@ import fr.salers.annunaki.util.PacketUtil;
 public class AimA extends Check {
 
     private int hitTicks;
-
-    public AimA(PlayerData data) {
-        super(data);
-    }
 
     @Override
     public void handle(PacketReceiveEvent event) {

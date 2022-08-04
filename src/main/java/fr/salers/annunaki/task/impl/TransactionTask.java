@@ -17,7 +17,7 @@ public class TransactionTask implements PreTask, PostTask {
     public void handlePreTick() {
         WrapperPlayServerWindowConfirmation transaction =
                 new WrapperPlayServerWindowConfirmation(0, (short) -4516, false);
-        for (PlayerData value : Annunaki.getInstance().getPlayerDataManager().values()) {
+        for (PlayerData value : Annunaki.getInstance().getPlayerManager().values()) {
             if (value.getActionProcessor().getLastTarget() != null) {
                 final AxisAlignedBB aabb = Annunaki.getInstance().getNmsManager().getNmsImplementation().getAABB(value.getPlayer());
                 value.getTargetLocs().add(new Pair<>(new AxisAlignedBB(value.getActionProcessor().getLastTarget().getLocation()), System.currentTimeMillis()));
@@ -26,7 +26,7 @@ public class TransactionTask implements PreTask, PostTask {
             }
         }
 
-        Annunaki.getInstance().getPlayerDataManager().values().forEach(data
+        Annunaki.getInstance().getPlayerManager().values().forEach(data
                 -> PacketEvents.getAPI().getPlayerManager().sendPacket(data.getPlayer(), transaction));
     }
 
@@ -35,7 +35,7 @@ public class TransactionTask implements PreTask, PostTask {
         WrapperPlayServerWindowConfirmation transaction =
                 new WrapperPlayServerWindowConfirmation(0, (short) -4517, false);
 
-        Annunaki.getInstance().getPlayerDataManager().values().stream().filter(Objects::nonNull).forEach(data
+        Annunaki.getInstance().getPlayerManager().values().stream().filter(Objects::nonNull).forEach(data
                 -> PacketEvents.getAPI().getPlayerManager().sendPacket(data.getPlayer(), transaction));
     }
 }

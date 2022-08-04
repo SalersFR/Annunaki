@@ -30,7 +30,7 @@ public class ConfirmedVelocity {
         using lasts, since its delayed from the client
          */
         final float friction = data.getCollisionProcessor().isLastClientOnGround() ?
-                ((float) Annunaki.getInstance().getNmsManager().getNmsImplementation().getFriction(data.getPositionProcessor().getLastVectorPos()) * 0.91F)
+                (Annunaki.getInstance().getNmsManager().getNmsImplementation().getFriction(data.getPositionProcessor().getLastVectorPos()) * 0.91F)
                 : 0.91F;
 
         final float f = 0.16277136F / (friction * friction * friction);

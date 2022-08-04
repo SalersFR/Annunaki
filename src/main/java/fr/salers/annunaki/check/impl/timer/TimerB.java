@@ -4,11 +4,7 @@ import com.github.retrooper.packetevents.event.PacketReceiveEvent;
 import com.github.retrooper.packetevents.protocol.packettype.PacketType;
 import fr.salers.annunaki.check.Check;
 import fr.salers.annunaki.check.CheckInfo;
-import fr.salers.annunaki.data.PlayerData;
 import fr.salers.annunaki.util.PacketUtil;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author Salers
@@ -26,9 +22,6 @@ public class TimerB extends Check {
 
     private long balance = -150L, last = System.currentTimeMillis();
 
-    public TimerB(PlayerData data) {
-        super(data);
-    }
 
     @Override
     public void handle(PacketReceiveEvent event) {

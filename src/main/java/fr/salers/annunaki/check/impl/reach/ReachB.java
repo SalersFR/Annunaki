@@ -2,7 +2,6 @@ package fr.salers.annunaki.check.impl.reach;
 
 import com.github.retrooper.packetevents.event.PacketReceiveEvent;
 import com.github.retrooper.packetevents.protocol.packettype.PacketType;
-import com.github.retrooper.packetevents.wrapper.play.client.WrapperPlayClientInteractEntity;
 import fr.salers.annunaki.Annunaki;
 import fr.salers.annunaki.check.Check;
 import fr.salers.annunaki.check.CheckInfo;
@@ -26,21 +25,16 @@ import org.bukkit.entity.Player;
 )
 public class ReachB extends Check {
 
-    int hitTicks = 0;
-
-    public ReachB(PlayerData data) {
-        super(data);
-    }
 
     @Override
     public void handle(PacketReceiveEvent event) {
-        if(hitTicks > 0 && (event.getPacketType().equals(PacketType.Play.Client.PLAYER_POSITION_AND_ROTATION) || event.getPacketType().equals(PacketType.Play.Client.PLAYER_POSITION))) {
+        if(data.getActionProcessor().getAttackTicks() < 3 && (event.getPacketType().equals(PacketType.Play.Client.PLAYER_POSITION_AND_ROTATION) || event.getPacketType().equals(PacketType.Play.Client.PLAYER_POSITION))) {
             CollisionProcessor collision = data.getCollisionProcessor();
             boolean exempt = data.getPlayer().getGameMode() == GameMode.CREATIVE || collision.isTeleporting() || collision.isLastInVehicle() || !(data.getActionProcessor().getLastTarget() instanceof Player);
             if (!exempt) {
                 Player target = (Player) data.getActionProcessor().getLastTarget();
-                if(Annunaki.getInstance().getPlayerDataManager().get(target) != null) {
-                    PlayerData targetData = Annunaki.getInstance().getPlayerDataManager().get(target);
+                if(Annunaki.getInstance().getPlayerManager().get(target) != null) {
+                    PlayerData targetData = Annunaki.getInstance().getPlayerManager().get(target);
                     if (targetData.getCollisionProcessor().isLastInVehicle() || targetData.getCollisionProcessor().isTeleporting()) {
                         return;
                     }
@@ -75,9 +69,8 @@ public class ReachB extends Check {
                             double m = eyeLoc.distanceTo(one.hitVec);
                             double d33 = rayEnd.distanceTo(two.hitVec);
 
-                            if (data.getDebugging().equalsIgnoreCase("reachb")) {
-                                Bukkit.broadcastMessage("m: " + m + ", d33: " + d33);
-                            }
+                            debug(Bukkit.broadcastMessage("m: " + m + ", d33: " + d33));
+
 
                             min = Math.min(min, Math.min(d33, m));
                         }
@@ -108,12 +101,6 @@ public class ReachB extends Check {
                 }
 
             }
-
-            hitTicks--;
-        } else if(event.getPacketType().equals(PacketType.Play.Client.INTERACT_ENTITY)) {
-            if(data.getActionProcessor().getAction() == WrapperPlayClientInteractEntity.InteractAction.ATTACK) {
-                hitTicks = 5;
-            }
         }
     }
 
@@ -134,7 +121,7 @@ public class ReachB extends Check {
         float var4 = MathHelper.sin(-yaw * 0.017453292F - (float)Math.PI);
         float var5 = -MathHelper.cos(-pitch * 0.017453292F);
         float var6 = MathHelper.sin(-pitch * 0.017453292F);
-        return new Vec3((double)(var4 * var5), (double)var6, (double)(var3 * var5));
+        return new Vec3(var4 * var5, var6, var3 * var5);
     }
 
     public Vec3 getPositionEyes(float eyeHeight)

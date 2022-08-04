@@ -13,14 +13,26 @@ public class AlertsCommand extends SubCommand {
 
     @Override
     public void handle(CommandSender sender, String[] args) {
-        PlayerData data = Annunaki.getInstance().getPlayerDataManager().get((Player)sender);
+        PlayerData data = Annunaki.getInstance().getPlayerManager().get((Player)sender);
 
-        String message = data.isAlerts()
-                ? Config.ALERTS_DISABLED.getAsString()
-                : Config.ALERTS_ENABLED.getAsString();
+        if(args.length < 2) {
 
-        data.setAlerts(!data.isAlerts());
+            String message = data.isAlerts()
+                    ? Config.ALERTS_DISABLED.getAsString()
+                    : Config.ALERTS_ENABLED.getAsString();
 
-        send(sender, message);
+            data.setAlerts(!data.isAlerts());
+
+            send(sender, message);
+        } else {
+            try {
+                long delay = Long.parseLong(args[2]);
+                data.setAlertDelay(delay);
+                send(sender, "You set your alert delay to " + delay + "ms.");
+            } catch(Exception e) {
+                send(sender, "Could not set your delay.");
+            }
+
+        }
     }
 }

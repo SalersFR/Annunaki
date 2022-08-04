@@ -5,7 +5,6 @@ import com.github.retrooper.packetevents.protocol.packettype.PacketType;
 import com.github.retrooper.packetevents.wrapper.play.client.WrapperPlayClientInteractEntity;
 import fr.salers.annunaki.check.Check;
 import fr.salers.annunaki.check.CheckInfo;
-import fr.salers.annunaki.data.PlayerData;
 import fr.salers.annunaki.util.PacketUtil;
 import lombok.SneakyThrows;
 
@@ -25,10 +24,6 @@ import lombok.SneakyThrows;
 public class BadPacketsA extends Check {
 
     private boolean sentInteract, sentInteractAt, sentAttack;
-
-    public BadPacketsA(PlayerData data) {
-        super(data);
-    }
 
     @SneakyThrows
     @Override

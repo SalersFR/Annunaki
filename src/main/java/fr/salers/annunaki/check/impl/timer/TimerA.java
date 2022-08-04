@@ -1,15 +1,9 @@
 package fr.salers.annunaki.check.impl.timer;
 
 import com.github.retrooper.packetevents.event.PacketReceiveEvent;
-import com.github.retrooper.packetevents.protocol.packettype.PacketType;
-import com.github.retrooper.packetevents.protocol.packettype.PacketTypeCommon;
 import fr.salers.annunaki.check.Check;
 import fr.salers.annunaki.check.CheckInfo;
-import fr.salers.annunaki.data.PlayerData;
-import fr.salers.annunaki.util.MathUtil;
 import fr.salers.annunaki.util.PacketUtil;
-import net.minecraft.server.v1_8_R3.Packet;
-import org.bukkit.Bukkit;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -38,9 +32,6 @@ public class TimerA extends Check {
 
     private long last = System.currentTimeMillis();
     private final List<Long> delays = new ArrayList<>();
-    public TimerA(PlayerData data) {
-        super(data);
-    }
 
     @Override
     public void handle(PacketReceiveEvent event) {
@@ -62,7 +53,6 @@ public class TimerA extends Check {
                 delays.clear();
 
             }
-
 
             last = event.getTimestamp();
 

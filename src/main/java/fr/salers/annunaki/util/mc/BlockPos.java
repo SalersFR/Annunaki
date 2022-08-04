@@ -57,7 +57,7 @@ public class BlockPos extends Vec3i {
                             this.lastReturned = blockpos;
                             return this.lastReturned;
                         } else if (this.lastReturned.equals(blockpos1)) {
-                            return (BlockPos) this.endOfData();
+                            return this.endOfData();
                         } else {
                             int i = this.lastReturned.getX();
                             int j = this.lastReturned.getY();
@@ -96,7 +96,7 @@ public class BlockPos extends Vec3i {
                             this.theBlockPos = new MutableBlockPos(blockpos.getX(), blockpos.getY(), blockpos.getZ());
                             return this.theBlockPos;
                         } else if (this.theBlockPos.equals(blockpos1)) {
-                            return (MutableBlockPos) this.endOfData();
+                            return this.endOfData();
                         } else {
                             int i = this.theBlockPos.getX();
                             int j = this.theBlockPos.getY();

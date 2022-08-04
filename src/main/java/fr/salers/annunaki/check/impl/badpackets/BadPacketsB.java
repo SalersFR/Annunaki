@@ -3,7 +3,6 @@ package fr.salers.annunaki.check.impl.badpackets;
 import com.github.retrooper.packetevents.event.PacketReceiveEvent;
 import fr.salers.annunaki.check.Check;
 import fr.salers.annunaki.check.CheckInfo;
-import fr.salers.annunaki.data.PlayerData;
 import fr.salers.annunaki.util.PacketUtil;
 
 /**
@@ -20,10 +19,6 @@ import fr.salers.annunaki.util.PacketUtil;
         punish = true
 )
 public class BadPacketsB extends Check {
-
-    public BadPacketsB(PlayerData data) {
-        super(data);
-    }
 
     @Override
     public void handle(PacketReceiveEvent event) {

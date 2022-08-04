@@ -1,6 +1,5 @@
 package fr.salers.annunaki.data.processor.impl;
 
-import com.github.retrooper.packetevents.PacketEvents;
 import com.github.retrooper.packetevents.event.PacketReceiveEvent;
 import com.github.retrooper.packetevents.event.PacketSendEvent;
 import com.github.retrooper.packetevents.protocol.packettype.PacketType;
@@ -52,7 +51,7 @@ public class CollisionProcessor extends Processor {
             lastOnGroundSlime, lastOnGroundIce, lastPlacing, lastNearSlab, lastNearStairs, lastLastClientOnGround,
             lastNearAnvil, buggedInBlocks;
 
-    private Deque<Vector> teleportVecs = new LinkedList<>();
+    private final Deque<Vector> teleportVecs = new LinkedList<>();
 
     private int collisionAirTicks, clientAirTicks, mathAirTicks, collisionGroundTicks, clientGroundTicks, mathGroundTicks,
             waterTicks, ticksAlive, iceTicks;
@@ -265,11 +264,7 @@ public class CollisionProcessor extends Processor {
         final Location location = player.getLocation();
         final Block highest = location.getWorld().getHighestBlockAt(location);
 
-        if (highest.getType() != Material.AIR) {
-            return true;
-        }
-
-        return false;
+        return highest.getType() != Material.AIR;
     }
 
     public boolean blockNearHead(final Player location) {

@@ -3,13 +3,9 @@ package fr.salers.annunaki.check.impl.aim;
 import com.github.retrooper.packetevents.event.PacketReceiveEvent;
 import fr.salers.annunaki.check.Check;
 import fr.salers.annunaki.check.CheckInfo;
-import fr.salers.annunaki.data.PlayerData;
 import fr.salers.annunaki.data.processor.impl.RotationProcessor;
 import fr.salers.annunaki.util.MathUtil;
 import fr.salers.annunaki.util.PacketUtil;
-import org.bukkit.Bukkit;
-
-import java.lang.reflect.Field;
 
 /**
  * @author Salers
@@ -25,10 +21,6 @@ import java.lang.reflect.Field;
         punish = true
 )
 public class AimC extends Check {
-
-    public AimC(PlayerData data) {
-        super(data);
-    }
 
     @Override
     public void handle(PacketReceiveEvent event) {

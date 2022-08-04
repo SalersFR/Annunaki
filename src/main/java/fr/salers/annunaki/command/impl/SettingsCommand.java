@@ -18,7 +18,7 @@ public class SettingsCommand extends SubCommand {
     @Override
     public void handle(CommandSender sender, String[] args) {
         final Player player = (Player) sender;
-        final PlayerData data = Annunaki.getInstance().getPlayerDataManager().get(player);
+        final PlayerData data = Annunaki.getInstance().getPlayerManager().get(player);
 
         data.getGuiManager().getMainGUI().display(player);
 

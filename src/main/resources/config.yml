@@ -21,6 +21,8 @@ checks:
     &7Ping: &d%ping%
     &7Version: &d%version%
   click-command: '/tp %player%'
+  # Set to true to disable punishments, setbacks and kicks.
+  silent: false
 
 banwave:
   enabled: true

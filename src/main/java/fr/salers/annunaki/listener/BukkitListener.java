@@ -12,12 +12,13 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.messaging.PluginMessageListener;
 
 import java.lang.reflect.InvocationTargetException;
+import java.nio.charset.StandardCharsets;
 
 public class BukkitListener implements Listener, PluginMessageListener {
 
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
-        Annunaki.getInstance().getPlayerDataManager().add(event.getPlayer());
+        Annunaki.getInstance().getPlayerManager().add(event.getPlayer());
         if(Annunaki.getInstance().getServerVersion().getVersion() < 13) {
             addChannel(event.getPlayer(), "MC|BRAND");
         } else {
@@ -27,13 +28,13 @@ public class BukkitListener implements Listener, PluginMessageListener {
 
     @EventHandler
     public void onQuit(PlayerQuitEvent event) {
-        Annunaki.getInstance().getPlayerDataManager().remove(event.getPlayer());
+        Annunaki.getInstance().getPlayerManager().remove(event.getPlayer());
     }
 
     @EventHandler
     public void onInvClick(final InventoryClickEvent event) {
         if(event.getWhoClicked() instanceof Player) {
-            final PlayerData data = Annunaki.getInstance().getPlayerDataManager().get((Player) event.getWhoClicked());
+            final PlayerData data = Annunaki.getInstance().getPlayerManager().get((Player) event.getWhoClicked());
 
             if (data.getGuiOpen() != null) {
                 if (event.getClickedInventory().getName().equalsIgnoreCase(data.getGuiOpen().getInventory().getName())) {
@@ -47,7 +48,7 @@ public class BukkitListener implements Listener, PluginMessageListener {
     @Override
     public void onPluginMessageReceived(String s, Player player, byte[] bytes) {
         try {
-            PlayerData data = Annunaki.getInstance().getPlayerDataManager().get(player);
+            PlayerData data = Annunaki.getInstance().getPlayerManager().get(player);
             if (data != null) {
                 if (Annunaki.getInstance().getViaManager()!= null) {
                     data.setVersion(ClientVersion
@@ -56,7 +57,7 @@ public class BukkitListener implements Listener, PluginMessageListener {
                     data.setVersion(ClientVersion.v18);
                 }
 
-                String brand = new String(bytes, "UTF-8").substring(1);
+                String brand = new String(bytes, StandardCharsets.UTF_8).substring(1);
 
                 if (brand.length() > 16) {
                     brand = "custom brand";

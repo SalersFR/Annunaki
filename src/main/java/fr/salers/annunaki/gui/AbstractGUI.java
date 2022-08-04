@@ -43,7 +43,7 @@ public abstract class AbstractGUI {
     }
 
     public void display(final Player player) {
-        Annunaki.getInstance().getPlayerDataManager().get(player).setGuiOpen(this);
+        Annunaki.getInstance().getPlayerManager().get(player).setGuiOpen(this);
         player.openInventory(this.inventory);
     }
 

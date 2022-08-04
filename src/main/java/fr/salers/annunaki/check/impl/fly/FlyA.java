@@ -3,14 +3,10 @@ package fr.salers.annunaki.check.impl.fly;
 import com.github.retrooper.packetevents.event.PacketReceiveEvent;
 import fr.salers.annunaki.check.Check;
 import fr.salers.annunaki.check.CheckInfo;
-import fr.salers.annunaki.data.PlayerData;
 import fr.salers.annunaki.data.processor.impl.CollisionProcessor;
 import fr.salers.annunaki.data.processor.impl.PositionProcessor;
 import fr.salers.annunaki.util.PacketUtil;
 import fr.salers.annunaki.util.world.WrappedBlock;
-import org.bukkit.Bukkit;
-
-import java.util.Locale;
 
 /**
  * @author Salers
@@ -26,12 +22,6 @@ import java.util.Locale;
 )
 
 public class FlyA extends Check {
-
-    private double prediction;
-
-    public FlyA(PlayerData data) {
-        super(data);
-    }
 
     @Override
     public void handle(PacketReceiveEvent event) {
@@ -55,7 +45,7 @@ public class FlyA extends Check {
 
                     double offset = 69;
 
-                    prediction = (lastDelta - 0.08F) * 0.98F;
+                    double prediction = (lastDelta - 0.08F) * 0.98F;
 
                     if(Math.abs(prediction) < mins)
                         prediction = 0;
@@ -99,8 +89,7 @@ public class FlyA extends Check {
                     fail("offset=" + lowestOffset + " threshold=" + threshold);
             }  else if (buffer > 0) buffer -= 0.1;
 
-            if (data.getDebugging().toLowerCase(Locale.ROOT).contains("flya"))
-                Bukkit.broadcastMessage("offset=" + (float) lowestOffset);
+            debug("offset=" + (float) lowestOffset);
         }
     }
 }

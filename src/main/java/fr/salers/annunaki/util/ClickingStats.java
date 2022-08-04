@@ -13,8 +13,14 @@ import java.util.List;
 
 public class ClickingStats {
 
-    private double entropy, std, kurtosis, variance, skewness, cps;
-    private int outliers, duplicates;
+    private final double entropy;
+    private final double std;
+    private final double kurtosis;
+    private final double variance;
+    private final double skewness;
+    private final double cps;
+    private final int outliers;
+    private final int duplicates;
 
     public ClickingStats(final List<Integer> delays) {
         entropy = MathUtil.getEntropy(delays);

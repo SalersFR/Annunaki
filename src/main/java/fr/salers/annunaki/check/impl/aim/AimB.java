@@ -5,17 +5,9 @@ import com.github.retrooper.packetevents.protocol.packettype.PacketType;
 import com.github.retrooper.packetevents.wrapper.play.client.WrapperPlayClientInteractEntity;
 import fr.salers.annunaki.check.Check;
 import fr.salers.annunaki.check.CheckInfo;
-import fr.salers.annunaki.data.PlayerData;
-import fr.salers.annunaki.data.processor.impl.RotationProcessor;
 import fr.salers.annunaki.util.MathUtil;
 import fr.salers.annunaki.util.PacketUtil;
 import lombok.SneakyThrows;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.Player;
-
-import java.util.HashSet;
-import java.util.Set;
-import java.util.function.Consumer;
 
 /**
  * @author Salers
@@ -39,10 +31,6 @@ public class AimB extends Check {
     private double deltaY, deltaXY;
 
     private int hitTicks;
-
-    public AimB(PlayerData data) {
-        super(data);
-    }
 
     @SneakyThrows
     @Override

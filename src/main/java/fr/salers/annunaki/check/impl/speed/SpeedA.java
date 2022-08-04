@@ -3,7 +3,6 @@ package fr.salers.annunaki.check.impl.speed;
 import com.github.retrooper.packetevents.event.PacketReceiveEvent;
 import fr.salers.annunaki.check.Check;
 import fr.salers.annunaki.check.CheckInfo;
-import fr.salers.annunaki.data.PlayerData;
 import fr.salers.annunaki.data.processor.impl.CollisionProcessor;
 import fr.salers.annunaki.data.processor.impl.PositionProcessor;
 import fr.salers.annunaki.util.MathUtil;
@@ -15,8 +14,6 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.potion.PotionEffectType;
-
-import java.util.Locale;
 
 /**
  * @author Salers
@@ -33,11 +30,6 @@ import java.util.Locale;
 )
 public class SpeedA extends Check {
 
-    private double clientMotion;
-
-    public SpeedA(PlayerData data) {
-        super(data);
-    }
 
     @Override
     public void handle(PacketReceiveEvent event) {
@@ -50,7 +42,7 @@ public class SpeedA extends Check {
                 final CollisionProcessor collisionProcessor = data.getCollisionProcessor();
 
                 //getting last value from the player, so we can apply client movement calculation to it
-                clientMotion = positionProcessor.getLastDeltaXZ();
+                double clientMotion = positionProcessor.getLastDeltaXZ();
 
                 //how high the player should jump
                 final double jumpValue = 0.42F + (data.getPlayer().hasPotionEffect(PotionEffectType.JUMP) ?
@@ -60,9 +52,9 @@ public class SpeedA extends Check {
                 //could also make some lows hops flags
                 if ((!collisionProcessor.isClientOnGround() && Math.abs(jumpValue - positionProcessor.getDeltaY()) <= 0.001)
                         || (positionProcessor.getDeltaXZ() > clientMotion && (collisionProcessor.isBonkingHead() || collisionProcessor.isLastBonkingHead()))) {
-                    final float yawAdd = (float) data.getRotationProcessor().getYaw() * 0.017453292F;
+                    final float yawAdd = data.getRotationProcessor().getYaw() * 0.017453292F;
                     clientMotion += Math.max(0.225, Math.hypot(-(double) (MathHelper.sin(yawAdd) * 0.2F),
-                            (double) (MathHelper.cos(yawAdd) * 0.2F)) + 0.02f) + 0.1f;
+                            MathHelper.cos(yawAdd) * 0.2F) + 0.02f) + 0.1f;
                 }
 
                 //in the case player took velocity we add the values to our prediction
@@ -114,8 +106,7 @@ public class SpeedA extends Check {
 
                 } else if (buffer > 0) buffer -= 0.05D;
 
-                if (data.getDebugging().toLowerCase(Locale.ROOT).contains("speeda"))
-                    Bukkit.broadcastMessage("ratio=" + ratio + " client=" + clientMotion + " player)" + positionProcessor.getDeltaXZ());
+                debug(Bukkit.broadcastMessage("ratio=" + ratio + " client=" + clientMotion + " player)" + positionProcessor.getDeltaXZ()));
 
             } else {
                 buffer = 0;

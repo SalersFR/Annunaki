@@ -7,7 +7,6 @@ import com.github.retrooper.packetevents.wrapper.play.client.WrapperPlayClientKe
 import com.github.retrooper.packetevents.wrapper.play.server.WrapperPlayServerKeepAlive;
 import fr.salers.annunaki.check.Check;
 import fr.salers.annunaki.check.CheckInfo;
-import fr.salers.annunaki.data.PlayerData;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
@@ -16,10 +15,6 @@ import java.util.Deque;
 public class BadPacketsE extends Check {
 
     Deque<Long> queue = new ArrayDeque<Long>();
-
-    public BadPacketsE(PlayerData data) {
-        super(data);
-    }
 
     @Override
     public void handle(PacketReceiveEvent event) {

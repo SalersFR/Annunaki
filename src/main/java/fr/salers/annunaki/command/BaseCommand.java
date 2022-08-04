@@ -1,9 +1,7 @@
 package fr.salers.annunaki.command;
 
-import fr.salers.annunaki.Annunaki;
 import fr.salers.annunaki.command.impl.*;
 import fr.salers.annunaki.config.Config;
-import fr.salers.annunaki.data.PlayerData;
 import fr.salers.annunaki.util.ColorUtil;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

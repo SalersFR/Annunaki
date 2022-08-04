@@ -2,11 +2,8 @@ package fr.salers.annunaki.check.impl.reach;
 
 import com.github.retrooper.packetevents.PacketEvents;
 import com.github.retrooper.packetevents.event.PacketReceiveEvent;
-import com.github.retrooper.packetevents.protocol.packettype.PacketType;
-import com.github.retrooper.packetevents.wrapper.play.client.WrapperPlayClientInteractEntity;
 import fr.salers.annunaki.check.Check;
 import fr.salers.annunaki.check.CheckInfo;
-import fr.salers.annunaki.data.PlayerData;
 import fr.salers.annunaki.util.PacketUtil;
 import fr.salers.annunaki.util.Pair;
 import fr.salers.annunaki.util.mc.AxisAlignedBB;
@@ -27,28 +24,13 @@ import java.util.stream.Collectors;
 )
 public class ReachA extends Check {
 
-    private boolean attacked;
-    private int id;
-
-    public ReachA(PlayerData data) {
-        super(data);
-    }
-
     @Override
     public void handle(PacketReceiveEvent event) {
-        if (event.getPacketType() == PacketType.Play.Client.INTERACT_ENTITY) {
-            WrapperPlayClientInteractEntity useEntity = new WrapperPlayClientInteractEntity(event);
-
-            if (useEntity.getAction() == WrapperPlayClientInteractEntity.InteractAction.ATTACK) {
-                attacked = true;
-                id = useEntity.getEntityId();
-            }
-        } else if (PacketUtil.isFlying(event.getPacketType())) {
-            if (!attacked
+        if (PacketUtil.isFlying(event.getPacketType())) {
+            if (data.getActionProcessor().getAttackTicks() < 2
                     || data.getPlayer().getGameMode() == GameMode.CREATIVE
                     || data.getTargetLocs().isEmpty()
             ) return;
-            attacked = false;
 
 
             final List<Pair<AxisAlignedBB, Long>> locs = getRightLocations(PacketEvents.getAPI().getPlayerManager().getPing(data.getPlayer()), 150);
