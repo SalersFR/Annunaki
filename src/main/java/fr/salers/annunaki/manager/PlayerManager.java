@@ -16,6 +16,10 @@ public class PlayerManager {
     public void add(Player player) {
         PlayerData data = new PlayerData(player.getUniqueId());
 
+        File dir = new File(Annunaki.getInstance().getDataFolder(), "players");
+        if(!dir.exists())
+            dir.mkdirs();
+
         File temp = new File(Annunaki.getInstance().getDataFolder() + File.separator + "players", player.getUniqueId().toString() + ".yml");
         if(!temp.exists()) {
             try {

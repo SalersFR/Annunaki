@@ -25,7 +25,7 @@ public class EntityProcessor extends Processor {
     @Override
     public void handlePre(PacketSendEvent event) {
         if (event.getPacketType() == PacketType.Play.Server.SPAWN_PLAYER) {
-            WrapperPlayServerSpawnPlayer spawnPlayer = new WrapperPlayServerSpawnPlayer(event);
+            WrapperPlayServerSpawnPlayer spawnPlayer = new WrapperPlayServerSpawnPlayer(event.clone());
 
             Vector3d position = spawnPlayer.getPosition();
 
@@ -41,15 +41,13 @@ public class EntityProcessor extends Processor {
 
 
         } else if (event.getPacketType() == PacketType.Play.Server.ENTITY_TELEPORT) {
-            WrapperPlayServerEntityTeleport entityTeleport = new WrapperPlayServerEntityTeleport(event);
+            WrapperPlayServerEntityTeleport entityTeleport = new WrapperPlayServerEntityTeleport(event.clone());
 
             Vector3d position = entityTeleport.getPosition();
 
             TrackedEntityContainer container = trackedEntities.get(entityTeleport.getEntityId());
 
             if (container == null) {
-                if (data.getDebugging().contains("entity"))
-                    Bukkit.broadcastMessage("null container");
                 return;
             }
 
@@ -62,13 +60,11 @@ public class EntityProcessor extends Processor {
 
 
         } else if (event.getPacketType() == PacketType.Play.Server.ENTITY_RELATIVE_MOVE) {
-            WrapperPlayServerEntityRelativeMove relMove = new WrapperPlayServerEntityRelativeMove(event);
+            WrapperPlayServerEntityRelativeMove relMove = new WrapperPlayServerEntityRelativeMove(event.clone());
 
             TrackedEntityContainer container = trackedEntities.get(relMove.getEntityId());
 
             if (container == null) {
-                if (data.getDebugging().contains("entity"))
-                    Bukkit.broadcastMessage("null container");
                 return;
             }
 
@@ -80,13 +76,11 @@ public class EntityProcessor extends Processor {
 
 
         } else if (event.getPacketType() == PacketType.Play.Server.ENTITY_RELATIVE_MOVE_AND_ROTATION) {
-            WrapperPlayServerEntityRelativeMoveAndRotation relMove = new WrapperPlayServerEntityRelativeMoveAndRotation(event);
+            WrapperPlayServerEntityRelativeMoveAndRotation relMove = new WrapperPlayServerEntityRelativeMoveAndRotation(event.clone());
 
             TrackedEntityContainer container = trackedEntities.get(relMove.getEntityId());
 
             if (container == null) {
-                if (data.getDebugging().contains("entity"))
-                    Bukkit.broadcastMessage("null container");
                 return;
             }
 
@@ -104,6 +98,7 @@ public class EntityProcessor extends Processor {
                 }
             });
         }
+        event.cleanUp();
     }
 
     @Override

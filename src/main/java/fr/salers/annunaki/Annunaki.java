@@ -30,7 +30,7 @@ public class Annunaki extends JavaPlugin {
 
     private final CheckConfig checkConfig = new CheckConfig();
 
-    private final CheckManager checkManager = new CheckManager();
+    private CheckManager checkManager;
 
     private final BanwaveManager banwaveManager = new BanwaveManager();
 
@@ -73,6 +73,8 @@ public class Annunaki extends JavaPlugin {
             throw new RuntimeException(e);
         }
 
+        checkManager = new CheckManager();
+
         nmsManager.setup();
         taskManager.setup();
 
@@ -87,8 +89,6 @@ public class Annunaki extends JavaPlugin {
         } else {
             Bukkit.getMessenger().registerIncomingPluginChannel(this, "minecraft:brand", listener);
         }
-
-        Bukkit.getMessenger().registerIncomingPluginChannel(this, "", listener);
 
         PacketEvents.getAPI().getEventManager()
                 .registerListeners(new PacketEventsInListener(), new PacketEventsOutListener());
