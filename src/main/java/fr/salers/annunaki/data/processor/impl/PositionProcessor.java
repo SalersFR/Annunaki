@@ -52,11 +52,7 @@ public class PositionProcessor extends Processor {
 
                 sentPosition = true;
             } else {
-                deltaX = 0;
-                deltaY = 0;
-                deltaZ = 0;
-                deltaXZ = 0;
-
+    
                 sentPosition = false;
             }
 
