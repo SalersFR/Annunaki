@@ -107,8 +107,10 @@ public class CollisionProcessor extends Processor {
                     data.getPlayer(), loc.toLocation(data.getPlayer().getWorld()),
                     0.5);
 
+              updateLastVars();
 
             if (collidingBlocks == null) return;
+        
 
             this.clientOnGround = wrapper.isOnGround();
             this.mathOnGround = wrapper.getLocation().getY() % 0.015625 <= 0.0001;
@@ -185,7 +187,7 @@ public class CollisionProcessor extends Processor {
             else iceTicks++;
 
 
-            updateLastVars();
+          
 
 
         }
